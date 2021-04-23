@@ -42,7 +42,11 @@
         </nav>
     </div>
 </section>
-
+<?php
+  if($_SESSION['notify'] == 2)
+    echo "<script>alert('The name you entered is not an artist');</script>";
+  $_SESSION['notify'] = 0;
+?>
 
 <!--Search Song-->
 <section class="py-7 py-md-0 bg-hero" id="login">
@@ -52,16 +56,16 @@
                 
               <!-- header -->
               <div class="col text-center">
-                <h2> Search For a Song.</h2>
+                <h2> Which artist would you like to invest?</h2>
               </div>
               
 
                 <form action="../APIs/SearchSongsConnection.php" method="post">
                     <!-- Search field -->
                     <div class="form-group">
-                      <input name = "song_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Song Name">
+                      <input name = "artist_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Artist Name">
                     </div>
-                    <div style="position: absolute; right: 15px; top: 76.5px;">  
+                    <div style="position: absolute; right: 15px; top: 140px;">  
                     <button style="background-color: white; border: white;" type = "submit"><img src="Images/magnifying glass.png" width="auto" height="41" /></button>
                     </div>
                    

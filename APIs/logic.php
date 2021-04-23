@@ -12,13 +12,15 @@
         }
         //searches an account based on a given username
         //SQL queries the account table and returns all tuples that have matching username with the given $username
-        // function searchAccount($conn, $username) // done2
-        // {
-        //     $sql = "SELECT * FROM spotify.account WHERE username = '$username'";
-        //     $result = mysqli_query($conn, $sql);
-            
-        //     return $result;
-        // } 
+        function searchAccount($conn, $username) // done2
+        {
+            $sql = "SELECT * FROM account WHERE username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        } 
 
         function signup($conn, $username, $password, $type) //done2
         {
@@ -28,10 +30,10 @@
             $id = $row["max_id"] + 1;
             // $sql = "INSERT INTO account (username, password, account_type, id)
             //         VALUES('$username', '$password', '$type', '$id')";
-            $sql = "INSERT INTO account (username, password, account_type, id)
-                    VALUES(?, ?, ?, $id)";
+            $sql = "INSERT INTO account (username, password, account_type, id, Shares)
+                    VALUES(?, ?, ?, $id, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sss', $username, $password, $type);
+            $stmt->bind_param('sssi', $username, $password, $type, 0);
             if ($stmt->execute() === TRUE) {
                 $notify = 1;
             } else {
@@ -69,6 +71,27 @@
             
             return $result;
         }
+
+        function searchArtistUserShares($conn, $user_username, $artist_username)
+        {
+            $sql = "SELECT * FROM user_artist_share WHERE user_username = ? AND artist_username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ss', $user_username, $artist_username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        }
+
+        function searchArtistPricePerShare($conn, $artist_username)
+        {
+            $sql = "SELECT * FROM artist_per_share WHERE artist_username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $artist_username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        }
+
 
         function searchArtistSong($conn, $username, $song_id)
         {
@@ -178,14 +201,25 @@
             // return $result;
         }
 
-        function searchArtistBySong($conn, $songID)
+        function searchArtist($conn, $username)
         {
             // $sql = "SELECT * FROM artist_song WHERE song_id = $songID";
             // $result = mysqli_query($conn, $sql);
             // return $result;
-            $sql = "SELECT * FROM artist_song WHERE song_id = ?";
+            $sql = "SELECT * FROM artist_song WHERE artist_username = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('i', $songID);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            return $result;
+        }
+
+        function searchArtistShares($conn, $username)
+        {
+            $sql = "SELECT Shares FROM account WHERE username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $username);
             $stmt->execute();
             $result = $stmt->get_result();
 
@@ -364,6 +398,21 @@
             } else {
              echo "Error: " . $sql . "<br>" . $conn->error;
             }
+        }
+
+        function addSharesBought($conn, $user_username, $artist_username, $shares_bought)
+        {
+            $notify = 0;
+            $sql = "INSERT INTO user_artist_share (user_username, artist_username, no_of_share_bought)
+                    VALUES(?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ssi', $user_username, $artist_username, $shares_bought);
+            if ($stmt->execute() === TRUE) {
+                $notify = 1;
+            } else {
+                $notify = 2;
+            }
+            return $notify;
         }
 
         //creates a playlist that has a unique name within the user's playlists
@@ -573,6 +622,24 @@
                 echo "Song not found";  
             }
             
+        }
+
+        function increaseSharesBought($conn, $user_username, $artist_username, $shares_bought)
+        {
+            $notify = 0;
+            $sql = "UPDATE user_artist_share SET no_of_share_bought = $shares_bought WHERE user_username = '$user_username' AND artist_username = '$artist_username'";
+            if ($conn->query($sql) === TRUE) {
+                $notify = 1;
+            } else {
+                $notify = 2;
+            }  
+            return $notify;
+        }
+
+        function addSharesToArtist($conn, $artist_username, $shares_bought)
+        {
+            $sql = "UPDATE account SET Shares = $shares_bought WHERE username = '$artist_username'";
+            $conn->query($sql);
         }
 
         // if the user is an admin, it lets the user delete a Song as well as all relations that song has

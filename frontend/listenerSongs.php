@@ -63,13 +63,13 @@
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <a href="SearchSong.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Search Song
+                  Search Artist
                 </a>
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <a href="RateSongView.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Rate a song
+                  View top invested Artists
                 </a>
               </div>
 

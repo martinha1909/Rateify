@@ -3,44 +3,26 @@
     include 'connection.php';
     include 'logic.php';    
     $conn = connect();
-    $_SESSION['song'] = key($_POST['song_id_no']);
-    $artist = searchArtistBySong($conn,$_SESSION['song']);
-    $temp = searchSong($conn,$_SESSION['song']);
-    if ($temp->num_rows > 0) {
-        while($r = $temp->fetch_assoc()) {
-            $song_name = $r['name'];
-        }
-        $_SESSION['song_choosing'] = $song_name;
-    }
-    if ($artist->num_rows > 0) {
-        while($rows = $artist->fetch_assoc()) {
-            $artist_name = $rows['artist_username'];
-        }
-    $_SESSION['songs_artist'] = $artist_name;
-    }
-    
-    $result = searchSong($conn,$_SESSION['song']);
-    $result2 = searchRatings($conn,$_SESSION['song']);
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $song_info = $row;
-        }
-        $_SESSION['selected_songs_info'] = $song_info;
-      } 
-      else{
-          $_SESSION['selected_songs_info'] = NULL;
-      }
+    $_SESSION['artist'] = key($_POST['artist_name']);
+    $artist_username = $_SESSION['artist'];
+    $user_username = $_SESSION['username'];
+    $_SESSION['current_no_of_shares'] = 0;
+    $_SESSION['per_share_price'] = 0;
 
-    if ($result2->num_rows > 0) {
-        while($row2 = $result2->fetch_assoc()) {
-            $rating_info[] = $row2;
-     }
+    $result = searchArtistUserShares($conn, $user_username, $artist_username);
+    if($result->num_rows > 0)
+    {
+        $row = $result->fetch_assoc();
+        $_SESSION['current_no_of_shares'] += $row['no_of_share_bought'];
+    }
 
-        $_SESSION['song_rating'] = $rating_info;
-    } 
-      else{
-          $_SESSION['song_rating'] = NULL;
-      }
+    $result = searchArtistPricePerShare($conn, $artist_username);
+    if($result->num_rows > 0)
+    {
+        $row = $result->fetch_assoc();
+        $_SESSION['per_share_price'] = $row['price_per_share'];
+    }
+
      
     header("Location: ../frontend/SongPageUser.php");
 

@@ -61,13 +61,13 @@
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <a href="listenerSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Songs
+                  Invest
                 </a>
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
               <form action="../APIs/DisplayPlaylistsConnection.php" method="post">
-              <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "Playlists">
+              <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "Your investments">
               </form>
 
               </div>

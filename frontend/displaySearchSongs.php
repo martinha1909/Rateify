@@ -49,26 +49,26 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-              <h1> Search Results for <?php echo $_SESSION['searchedSongName'];?> </h1>
+              <h1> Search Results for <?php echo $_SESSION['searchedArtistName'];?> </h1>
               </div>
 
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="listener.php"> <- Return to user page</a>.
+                <a href="listener.php"> <- Return to user page</a>
               </div>
 
               <table class="table">
               <div  style = "top: 15px;" class="col text-center">
-                <h6>*Click on Song Name For Details*</h6>
+                <h6>*Click on Artist Name To Invest*</h6>
                 </div>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Album</th>
-                        <th scope="col">Artist</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">No. of plays</th>
+                        <th scope="col">Artist Name</th>
+                        <th scope="col">No. of albums</th>
+                        <th scope="col">No. of songs</th>
+                        <th scope="col">Total no. of plays</th>
+                        <th scope="col">Total shares bought</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -78,117 +78,17 @@
                     include '../APIs/logic.php';
                     include '../APIs/connection.php';
                     $conn = connect();
-                    if(sizeof($_SESSION['all_songs']) != 0)
+                    if((sizeof($_SESSION['all_songs']) == 0) && (sizeof($_SESSION['all_albums']) == 0) )
                     {
-                        $no_of_songs = count($_SESSION['all_songs']);
-                        $song_no = 0;
-                        $id = 1;
-                        while($no_of_songs > $song_no){
-                            $artists = array();
-                            $albums = array();
-                            $album_names = searchAlbumBySong($conn, $_SESSION['all_songs'][$song_no]['id']);
-                            $artist_names = searchArtistBySong($conn, $_SESSION['all_songs'][$song_no]['id']);
-                            if($album_names->num_rows > 0)
-                            {
-                                while($row2 = $album_names->fetch_assoc())
-                                    array_push($albums, $row2['album_name']);
-                            }
-                            if($artist_names->num_rows > 0)
-                            {
-                                while($row3 = $artist_names->fetch_assoc())
-                                {
-                                    array_push($artists, $row3['artist_username']);
-                                }
-                                    
-                                
-                               
-                            }
-
-                            $duration = $_SESSION['all_songs'][$song_no]['duration'];
-                            $no_of_plays = $_SESSION['all_songs'][$song_no]['no_of_plays'];
-                            // $album_name = $_SESSION['all_songs'][$song_no]['album_name'];
-                            $iteration = 0;
-                            $smaller = 0;
-                            $difference = 0;
-                            if(sizeof($artists) > sizeof($albums))
-                            {
-                                $smaller = sizeof($albums);
-                                $difference = sizeof($artists) - sizeof($albums);
-                            }
-                            else
-                            {
-                                $smaller = sizeof($artists);
-                                $difference = sizeof($albums) - sizeof($artists);
-                            }
-                            if(!empty($albums) && !empty($artists))
-                            {
-                                while($iteration < $smaller)
-                                {
-                                    $song_name = $_SESSION['all_songs'][$song_no]['name'];
-                                    $song_id = $_SESSION['all_songs'][$song_no]['id'];
-                                    if($iteration == 0)
-                                    {
-                                        echo '<tr><th scope="row">'.$id.'</th><td><input name = "song_id_no['.$song_id.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$song_name.'"></td><td>'.$albums[$iteration].'</td><td>'.$artists[$iteration].'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
-                                    }
-                                    else
-                                    {
-                                        echo '<tr><th scope="row"></th><td></td><td>'.$albums[$iteration].'</td><td>'.$artists[$iteration].'</td><td></td><td></td></tr>';
-                                    }
-                                    $iteration++;
-                                }
-                                if(sizeof($artists) > sizeof($albums))
-                                {
-                                    while($iteration < sizeof($artists))
-                                    {
-                                        echo '<tr><th scope="row"></th><td></td><td></td><td>'.$artists[$iteration].'</td><td></td><td></td></tr>';
-                                        $iteration++;
-                                    }
-                                }
-                                else
-                                {
-                                    while($iteration < sizeof($albums))
-                                    {
-                                        echo '<tr><th scope="row"></th><td></td><td>'.$albums[$iteration].'</td><td></td><td></td><td></td></tr>';
-                                        $iteration++;
-                                    }
-                                }
-                                
-                            }
-                            else if(empty($albums) && !empty($artists))
-                            {
-                                foreach($artists as $artist)
-                                {
-                                    if($iteration == 0)
-                                        echo '<tr><th scope="row">'.$id.'</th><td>'.$_SESSION['all_songs'][$song_no]['name'].'</td><td></td><td>'.$artist.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
-                                    else
-                                        echo '<tr><th scope="row"></th><td></td><td></td><td>'.$artist.'</td><td></td><td></td></tr>';
-                                    $iteration++;
-                                }
-                            }
-                            else if(!empty($albums) && empty($artists))
-                            {
-                                foreach($albums as $album)
-                                {
-                                    if($iteration == 0)
-                                        echo '<tr><th scope="row">'.$id.'</th><td>'.$_SESSION['all_songs'][$song_no]['name'].'</td><td>'.$album.'</td><td></td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
-                                    else
-                                        echo '<tr><th scope="row"></th><td></td><td></td>'.$album.'<td></td><td></td><td></td></tr>';
-                                    $iteration++;
-                                }
-                            }
-                            else
-                                echo '<tr><th scope="row">'.$id.'</th><td></td><td></td><td></td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
-                            
-                            
-
-                            $id++;
-                            $song_no++;
-                        }
-                       
+                        echo '<h3> No results </h3>';
                     }
                     else
                     {
-                        echo '<h3> No results </h3>';
+                        $id = 1;
+                        $no_of_albums = sizeof($_SESSION['all_albums']);
+                        $no_of_songs = sizeof($_SESSION['all_songs']);
+                        $total_plays = $_SESSION['total_plays'];
+                        echo '<tr><th scope="row">'.$id.'</th><td><input name = "artist_name['.$_SESSION['searchedArtistName'].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$_SESSION['searchedArtistName'].'"></td><td>'.$no_of_albums.'</td><td>'.$no_of_songs.'</td><td>'.$total_plays.'</td><td>'.$_SESSION['shares'].'</tr>';
                     }
                   ?> 
                   </form>

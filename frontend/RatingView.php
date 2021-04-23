@@ -46,9 +46,9 @@
 
 <?php
   if($_SESSION['notify'] == 1)
-    echo "<script>alert('Comment added sucessfully');</script>";
+    echo "<script>alert('Share(s) bought sucessfully');</script>";
   if($_SESSION['notify'] == 2)
-    echo "<script>alert('Failed to add comment');</script>";
+    echo "<script>alert('Failed to buy share');</script>";
   $_SESSION['notify'] = 0;
 ?>
 
@@ -60,29 +60,22 @@
                 
               <!-- header -->
               <div class="col text-center">
-                <h2>Write something about <?php echo $_SESSION['song_choosing'];?></h2>
+                <h2>How many shares would you like to buy?</h2>
               </div>
               
 
                 <form action="../APIs/RatingConnection.php" method="post">
                     <!-- Search field -->
                     <div class="form-group">
-                      <input name = "comment" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter your comment">
+                      <input name = "share" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter amount of shares">
                     </div>
                     <div style="position: absolute; right: 15px; top: 135px;">  
-                    <button type = "submit"><img src="Images/comment.jpg" width="auto" height="41" onclick='window.location.reload();'/></button>
+                    <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                    <div style="position: absolute; right: 0px; top: 50px;">  
+                    <button style="background-color: white; border: white;" type = "submit">Purchase!</button>
                     </div>
-                    <p>
-                        Rate This Song?
-                        <select name="star">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        </select>
-                    </p>
+                  </div>
+                    </div>
                    
                 </form>
                 

@@ -48,63 +48,45 @@
             
             <div class="col-12 mx-auto my-auto text-center">
             <div  class="col text-left">
-                <a href="displaySearchSongs.php"> <-Return to viewing Songs</a>.
+                <a href="displaySearchSongs.php"> <-Return to viewing artist</a>
               </div>
                 <div style = "position: absolute; left:150px;" class="col text-center">
-                    <h1><?php echo $_SESSION['selected_songs_info']['name']?> </h1>
-                    <h5><?php echo $_SESSION['songs_artist'] ?></h5>
-                    <h6><?php echo $_SESSION['selected_songs_info']['date_created']?></h6>
+                    <h1>Your shares with <?php echo $_SESSION['searchedArtistName'];?> </h1>
+                    
                 </div>
                  <!-- hyperlinks -->
              
             </div> 
-            <div style = "position: absolute; top: 300px; left:150px;"class = "col text-center">
-            <div  style = "top: 15px;" class="col text-left">
-                <h5>Ratings</h5>
-                </div>
+            <div style = "position: absolute; top: 200px; left:100px;"class = "col text-center">
             <table style = "width: 1200px;" class="table">
                 </div>
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">User</th>
-                        <th scope="col">star_rating</th>
-                        <th scope="col">Comment</th>
+                        <th scope="col">No. shares you own</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Current price per share</th>
+                        <th scope="col">Current profit for each share</th>
                     </tr>
                     </thead>
                     <tbody>
               <!-- view song form -->
 
                   <?php
-
-                    if(!empty($_SESSION['song_rating']))
-                    {
-                        $no_of_ratings = count($_SESSION['song_rating']);
-                        $rating_no = 0;
-                        $id = 1;
-                        while($no_of_ratings > $rating_no){
-                            $user = $_SESSION['song_rating'][$rating_no]['user_username'];
-                            $star_rating = $_SESSION['song_rating'][$rating_no]['star_rating'];
-                            $comment = $_SESSION['song_rating'][$rating_no]['comment'];
-                            
-                            echo '<tr><th scope="row">'.$id.'</th><td>'.$user.'</td><td>'.$star_rating.'</td><td>'.$comment.'</td></tr>';
-
-                            $id++;
-                            $rating_no++;
-                        }
-                       
-                    }
+                    $profit = $_SESSION['per_share_price'] * 1.05;
+                    $profit = $profit - $_SESSION['per_share_price'];
+                    echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>$'.$_SESSION['per_share_price'].'</td><td>$'.$profit.'</td></tr>';
                   ?>
               </tbody>
             </table> 
             <?php
+            //   echo "<br>";
+            //   echo "<br>";
+            //   echo "<br>";
+            //   $_SESSION['artist_rating'] = $_SESSION['songs_artist'];
+            //   $_SESSION['song_name_rating'] = $_SESSION['selected_songs_info']['name'];
+              echo '<div><a href="RatingView.php"> +Buy more shares</a>.</div>';
               echo "<br>";
-              echo "<br>";
-              echo "<br>";
-              $_SESSION['artist_rating'] = $_SESSION['songs_artist'];
-              $_SESSION['song_name_rating'] = $_SESSION['selected_songs_info']['name'];
-              echo '<div><a href="RatingView.php"> +Rate This Song</a>.</div>';
-              echo "<br>";
+              echo '<div><a href="../APIs/SellSharesConnection.php"> -Sell your shares</a>.</div>';
               echo "<br>";
             ?>
             </div>
