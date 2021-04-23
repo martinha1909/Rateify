@@ -66,7 +66,7 @@
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-              <form action="../APIs/DisplayPlaylistsConnection.php" method="post">
+              <form action="DisplayUserInvestments.php" method="post">
               <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "Your investments">
               </form>
 

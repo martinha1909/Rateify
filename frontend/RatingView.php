@@ -78,25 +78,11 @@
                     </div>
                    
                 </form>
-                
-                <!-- <div class="form-group">
-                    Employee List :  
-                        <select>  
-                        <option value="Select">Select</option>}  
-                        <option value="Vineet">Vineet Saini</option>  
-                        <option value="Sumit">Sumit Sharma</option>  
-                        <option value="Dorilal">Dorilal Agarwal</option>  
-                        <option value="Omveer">Omveer Singh</option>  
-                        <option value="Rohtash">Rohtash Kumar</option>  
-                        <option value="Maneesh">Maneesh Tewatia</option>  
-                        <option value="Priyanka">Priyanka Sachan</option>  
-                        <option value="Neha">Neha Saini</option>  
-                        </select>  
-                </div> -->
+              
 
                 <!--GO Back Button [idk how to move it further down]-->
                 <div class = "positioning">
-                    <a href="listenerSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
+                    <a href="SongPageUser.php" class="btn btn-primary" role="button" aria-pressed="true">
                         <- Go Back
                       </a>
                 </div>

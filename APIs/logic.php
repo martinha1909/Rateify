@@ -226,6 +226,17 @@
             return $result;
         }
 
+        function searchUsersInvestment($conn, $user_username)
+        {
+            $sql = "SELECT * FROM user_artist_share WHERE user_username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $user_username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            return $result;
+        }
+
         //queries all playlist that matches the given $playlist_name in the playlist table
         //result contains all the information of all matching playlist
         function searchPlaylist($conn, $playlist_name) //done2
