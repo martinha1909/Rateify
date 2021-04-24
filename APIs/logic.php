@@ -683,6 +683,20 @@
             $conn->query($sql);
         }
 
+        function sellShares($conn, $user_username, $artist_username, $selling_share)
+        {
+            $notify = 0;
+            $sql = "UPDATE user_artist_share SET no_of_share_bought = no_of_share_bought - '$selling_share' WHERE user_username = '$user_username' AND artist_username = '$artist_username'";
+            if($conn->query($sql) == TRUE)
+                $notify = 1;
+            else
+                $notify = 2;
+            // echo $notify;
+            $sql = "UPDATE account SET Shares = Shares - $selling_share WHERE username = '$artist_username'";
+            $conn->query($sql);
+            return $notify;
+        }
+
         // if the user is an admin, it lets the user delete a Song as well as all relations that song has
         function deleteSong($conn, $songID) //done2
         {

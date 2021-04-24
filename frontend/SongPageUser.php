@@ -86,7 +86,7 @@
             <?php
               echo '<div><a href="RatingView.php"> +Buy more shares</a>.</div>';
               echo "<br>";
-              echo '<div><a href="#"> -Sell your shares</a>.</div>';
+              echo '<div><a href="SellShares.php"> -Sell your shares</a>.</div>';
               echo "<br>";
             ?>
             </div>

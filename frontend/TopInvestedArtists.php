@@ -96,7 +96,7 @@
                             
                             while($row = $result2->fetch_assoc())
                             {
-                                if($id == 6)
+                                if($id == 5)
                                 break;
                                 $result3 = searchArtistPricePerShare($conn, $row['username']);
                                 $row2 = $result3->fetch_assoc();
