@@ -68,7 +68,7 @@
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="RateSongView.php" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="TopInvestedArtists.php" class="btn btn-primary" role="button" aria-pressed="true">
                   View top invested Artists
                 </a>
               </div>

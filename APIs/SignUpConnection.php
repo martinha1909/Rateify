@@ -17,7 +17,7 @@
     {
         $_SESSION['notify'] = 2;
         echo $_SESSION['notify'];
-        // header("Location: ../frontend/signup.php");
+        header("Location: ../frontend/signup.php");
     }
 
     closeCon($conn); 

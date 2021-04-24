@@ -49,7 +49,7 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-              <h1> Search Results for <?php echo $_SESSION['searchedArtistName'];?> </h1>
+              <h1> Top 5 invested artists</h1>
               </div>
 
               <!-- hyperlinks -->
@@ -65,10 +65,8 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Artist Name</th>
-                        <th scope="col">No. of albums</th>
-                        <th scope="col">No. of songs</th>
-                        <th scope="col">Total no. of plays</th>
                         <th scope="col">Total shares bought</th>
+                        <th scope="col">Price per share</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -78,11 +76,45 @@
                     include '../APIs/logic.php';
                     include '../APIs/connection.php';
                     $conn = connect();
-                    $id = 1;
-                    $no_of_albums = sizeof($_SESSION['all_albums']);
-                    $no_of_songs = sizeof($_SESSION['all_songs']);
-                    $total_plays = $_SESSION['total_plays'];
-                    echo '<tr><th scope="row">'.$id.'</th><td><input name = "artist_name['.$_SESSION['searchedArtistName'].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$_SESSION['searchedArtistName'].'"></td><td>'.$no_of_albums.'</td><td>'.$no_of_songs.'</td><td>'.$total_plays.'</td><td>'.$_SESSION['shares'].'</tr>';
+                    $all_shares = array();
+                    $result = searchAccountType($conn, 'artist');
+                    if($result->num_rows == 0)
+                    {
+                        echo '<h3> There are no artists to display </h3>';
+                    }
+                    else
+                    {
+                        while($row = $result->fetch_assoc())
+                        {
+                            array_push($all_shares, $row['Shares']);
+                        }
+                        $id = 1;
+                        rsort($all_shares);
+                        foreach($all_shares as $share)
+                        {
+                            $result2 = searchArtistByShare($conn, $share, 'artist');
+                            
+                            while($row = $result2->fetch_assoc())
+                            {
+                                if($id == 6)
+                                break;
+                                $result3 = searchArtistPricePerShare($conn, $row['username']);
+                                $row2 = $result3->fetch_assoc();
+                                echo '<tr><th scope="row">'.$id.'</th>
+                                            <td><input name = "artist_name['.$row['username'].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$row['username'].'"></td></td>
+                                            <td>'.$row['Shares'].'</td>
+                                            <td>$'.$row2['price_per_share'].'</td></tr>';
+                                $id++;
+                            }
+                        }
+                        // <input name = "artist_name['.$_SESSION['searchedArtistName'].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$_SESSION['searchedArtistName'].'"></td>
+                        
+                    }
+                            // echo '<tr><th scope="row">'.$id.'</th>
+                            //             <td>'.$artist_name.'</td>
+                            //             <td>'.$shares_bought.'</td>
+                            //             <td>$'.$row2['price_per_share'].'</td></tr>';
+                        
                   ?> 
                   </form>
               </tbody>

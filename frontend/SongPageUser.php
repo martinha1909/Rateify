@@ -50,10 +50,15 @@
             <div  class="col text-left">
                 <a href="displaySearchSongs.php"> <-Return to viewing artist</a>
               </div>
-                <div style = "position: absolute; left:150px;" class="col text-center">
+              
+                <div style = "position: absolute; left:130px; bottom: 20px;" class="col text-center">
                     <h1>Your shares with <?php echo $_SESSION['searchedArtistName'];?> </h1>
                     
                 </div>
+                <div  style = "position: absolute;left:100px; top:60px;" class="col text-center">
+                <p> Don't know who to invest? </p>
+                <a href="TopInvestedArtists.php"> View top invested artist here</a>
+              </div>
                  <!-- hyperlinks -->
              
             </div> 
@@ -79,11 +84,6 @@
               </tbody>
             </table> 
             <?php
-            //   echo "<br>";
-            //   echo "<br>";
-            //   echo "<br>";
-            //   $_SESSION['artist_rating'] = $_SESSION['songs_artist'];
-            //   $_SESSION['song_name_rating'] = $_SESSION['selected_songs_info']['name'];
               echo '<div><a href="RatingView.php"> +Buy more shares</a>.</div>';
               echo "<br>";
               echo '<div><a href="#"> -Sell your shares</a>.</div>';

@@ -20,10 +20,21 @@
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
-        } 
+        }
+
+        function searchAccountType($conn, $account_type)
+        {
+            $sql = "SELECT * FROM account WHERE account_type = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $account_type);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        }
 
         function signup($conn, $username, $password, $type) //done2
         {
+            $num_of_shares = 0;
             $notify = 0;
             $result = getMaxID($conn);
             $row = $result->fetch_assoc(); 
@@ -33,11 +44,20 @@
             $sql = "INSERT INTO account (username, password, account_type, id, Shares)
                     VALUES(?, ?, ?, $id, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssi', $username, $password, $type, 0);
+            $stmt->bind_param('sssi', $username, $password, $type, $num_of_shares);
             if ($stmt->execute() === TRUE) {
                 $notify = 1;
             } else {
                 $notify = 2;
+            }
+            if($type == 'artist')
+            {
+                $price_per_share = 1;
+                $sql = "INSERT INTO artist_per_share (artist_username, price_per_share)
+                    VALUES(?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('si', $username, $price_per_share);
+                $stmt->execute();
             }
             return $notify;
         }
@@ -77,6 +97,16 @@
             $sql = "SELECT * FROM user_artist_share WHERE user_username = ? AND artist_username = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('ss', $user_username, $artist_username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        }
+
+        function searchArtistByShare($conn, $share, $account_type)
+        {
+            $sql = "SELECT * FROM account WHERE Shares = ? AND account_type = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('is', $share, $account_type);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
