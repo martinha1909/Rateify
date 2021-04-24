@@ -69,10 +69,6 @@
                     <div class="form-group">
                       <input name = "share" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter amount of shares">
                     </div>
-
-                    <div class="form-group">
-                      <input name = "artist" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter artist name">
-                    </div>
                     <div style="position: absolute; right: 15px; top: 135px;">  
                     <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                     <div style="position: absolute; right: 0px; top: 50px;">  

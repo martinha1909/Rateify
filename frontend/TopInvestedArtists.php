@@ -77,6 +77,7 @@
                     include '../APIs/connection.php';
                     $conn = connect();
                     $all_shares = array();
+                    $users = array();
                     $result = searchAccountType($conn, 'artist');
                     if($result->num_rows == 0)
                     {
@@ -87,33 +88,47 @@
                         while($row = $result->fetch_assoc())
                         {
                             array_push($all_shares, $row['Shares']);
+                            array_push($users, $row['username']);
+                        }
+
+
+                        
+
+                        // $id = 1;
+                        // rsort($all_shares);
+                        $i;
+                        $key;
+                        $key2;
+                        $j;
+                        for($i=1; $i<sizeof($all_shares); $i++)
+                        {
+                            $key = $all_shares[$i];
+                            $key2 = $users[$i];
+                            $j = $i-1;
+                            while($j >= 0 && $all_shares[$j] < $key)
+                            {
+                                $all_shares[($j+1)] = $all_shares[$j];
+                                $users[($j+1)] = $users[$j];
+                                $j = $j-1;
+                            }
+                            $all_shares[($j+1)] = $key;
+                            $users[($j+1)] = $key2;
                         }
                         $id = 1;
-                        rsort($all_shares);
-                        foreach($all_shares as $share)
+                        for($i=0; $i<sizeof($all_shares); $i++)
                         {
-                            $result2 = searchArtistByShare($conn, $share, 'artist');
-                            
-                            while($row = $result2->fetch_assoc())
-                            {
-                                if($id == 5)
+                            if($id == 6)
                                 break;
-                                $result3 = searchArtistPricePerShare($conn, $row['username']);
-                                $row2 = $result3->fetch_assoc();
-                                echo '<tr><th scope="row">'.$id.'</th>
-                                            <td><input name = "artist_name['.$row['username'].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$row['username'].'"></td></td>
-                                            <td>'.$row['Shares'].'</td>
-                                            <td>$'.$row2['price_per_share'].'</td></tr>';
-                                $id++;
-                            }
+                            $result3 = searchArtistPricePerShare($conn, $users[$i]);
+                            $row2 = $result3->fetch_assoc();
+                            echo '<tr><th scope="row">'.$id.'</th>
+                                        <td><input name = "artist_name['.$users[$i].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$users[$i].'"></td></td>
+                                        <td>'.$all_shares[$i].'</td>
+                                        <td>$'.$row2['price_per_share'].'</td></tr>';
+                            $id++;
                         }
-                        // <input name = "artist_name['.$_SESSION['searchedArtistName'].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$_SESSION['searchedArtistName'].'"></td>
                         
                     }
-                            // echo '<tr><th scope="row">'.$id.'</th>
-                            //             <td>'.$artist_name.'</td>
-                            //             <td>'.$shares_bought.'</td>
-                            //             <td>$'.$row2['price_per_share'].'</td></tr>';
                         
                   ?> 
                   </form>
