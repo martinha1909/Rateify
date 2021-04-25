@@ -30,8 +30,31 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
             <a class="navbar-brand heading-black" href="index.php">
-                Rateify
+                HASSNER
             </a>
+            <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Account Balance</p>
+            <p style = "position: absolute;right:40px; top:26px;">
+                <?php
+                    include '../APIs/logic.php';
+                    include '../APIs/connection.php';
+                    $conn = connect();
+                    $result = getUserBalance($conn, $_SESSION['username']);
+                    $balance = $result->fetch_assoc();
+                    echo "Coins: ";
+                    echo $balance['balance'];
+                ?>
+            </p>
+            <p style = "position: absolute;right:165px; top:0px;" class="navbar-light bg-dark">Current Rate</p>
+            <p style = "position: absolute;right:190px; top:26px;">
+                <?php
+                    if($_SESSION['conversion_rate'] > 0)
+                        echo "+";
+                    else if($_SESSION['conversion_rate'] < 0)
+                        echo "-";
+                    echo $_SESSION['conversion_rate'];
+                    echo "%";
+                ?>
+            </p>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -52,7 +75,7 @@
               </div>
               
                 <div style = "position: absolute; left:130px; bottom: 20px;" class="col text-center">
-                    <h1>Your shares with <?php echo $_SESSION['searchedArtistName'];?> </h1>
+                    <h1>Your shares with <?php echo $_SESSION['artist'];?> </h1>
                     
                 </div>
                 <div  style = "position: absolute;left:100px; top:60px;" class="col text-center">
@@ -79,7 +102,7 @@
                   <?php
                     $profit = $_SESSION['per_share_price'] * 0.95;
                     $profit = $profit - $_SESSION['per_share_price'];
-                    echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>$'.$_SESSION['per_share_price'].'</td><td>$'.$profit.'</td></tr>';
+                    echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$profit.'</td></tr>';
                   ?>
               </tbody>
             </table> 

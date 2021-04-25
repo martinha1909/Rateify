@@ -32,8 +32,19 @@
             return $result;
         }
 
+        function getUserBalance($conn, $username)
+        {
+            $sql = "SELECT balance FROM account WHERE username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        }
+
         function signup($conn, $username, $password, $type) //done2
         {
+            $balance = 0;
             $num_of_shares = 0;
             $notify = 0;
             $result = getMaxID($conn);
@@ -41,10 +52,10 @@
             $id = $row["max_id"] + 1;
             // $sql = "INSERT INTO account (username, password, account_type, id)
             //         VALUES('$username', '$password', '$type', '$id')";
-            $sql = "INSERT INTO account (username, password, account_type, id, Shares)
-                    VALUES(?, ?, ?, $id, ?)";
+            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance)
+                    VALUES(?, ?, ?, $id, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssi', $username, $password, $type, $num_of_shares);
+            $stmt->bind_param('sssid', $username, $password, $type, $num_of_shares, $balance);
             if ($stmt->execute() === TRUE) {
                 $notify = 1;
             } else {
@@ -441,7 +452,7 @@
             }
         }
 
-        function addSharesBought($conn, $user_username, $artist_username, $shares_bought)
+        function addSharesBought($conn, $user_username, $artist_username, $shares_bought, $new_balance)
         {
             $notify = 0;
             $sql = "INSERT INTO user_artist_share (user_username, artist_username, no_of_share_bought)
@@ -453,6 +464,8 @@
             } else {
                 $notify = 2;
             }
+            $sql = "UPDATE account SET balance = $new_balance WHERE username = '$user_username'";
+            $conn->query($sql);
             return $notify;
         }
 
@@ -665,10 +678,24 @@
             
         }
 
-        function increaseSharesBought($conn, $user_username, $artist_username, $shares_bought)
+        function increaseSharesBought($conn, $user_username, $artist_username, $shares_bought, $new_balance)
         {
             $notify = 0;
             $sql = "UPDATE user_artist_share SET no_of_share_bought = $shares_bought WHERE user_username = '$user_username' AND artist_username = '$artist_username'";
+            if ($conn->query($sql) === TRUE) {
+                $notify = 1;
+            } else {
+                $notify = 2;
+            }  
+            $sql = "UPDATE account SET balance = $new_balance WHERE username = '$user_username'";
+            $conn->query($sql);
+            return $notify;
+        }
+
+        function purchaseCoins($conn, $username, $coins)
+        {
+            $notify = 0;
+            $sql = "UPDATE account SET balance = balance + $coins WHERE username = '$username'";
             if ($conn->query($sql) === TRUE) {
                 $notify = 1;
             } else {

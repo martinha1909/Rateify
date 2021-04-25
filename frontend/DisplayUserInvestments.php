@@ -1,5 +1,7 @@
 <?php
   session_start();
+  $_SESSION['conversion_rate'] = 0.5;
+  $_SESSION['coins'] = 0;
 ?>
 
 <!doctype html>
@@ -30,8 +32,31 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
             <a class="navbar-brand heading-black" href="index.php">
-                Rateify
+                HASSNER
             </a>
+            <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Account Balance</p>
+            <p style = "position: absolute;right:40px; top:26px;">
+                <?php
+                    include '../APIs/logic.php';
+                    include '../APIs/connection.php';
+                    $conn = connect();
+                    $result = getUserBalance($conn, $_SESSION['username']);
+                    $balance = $result->fetch_assoc();
+                    echo "Coins: ";
+                    echo $balance['balance'];
+                ?>
+            </p>
+            <p style = "position: absolute;right:165px; top:0px;" class="navbar-light bg-dark">Current Rate</p>
+            <p style = "position: absolute;right:190px; top:26px;">
+                <?php
+                    if($_SESSION['conversion_rate'] > 0)
+                        echo "+";
+                    else if($_SESSION['conversion_rate'] < 0)
+                        echo "-";
+                    echo $_SESSION['conversion_rate'];
+                    echo "%";
+                ?>
+            </p>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -69,8 +94,8 @@
                     <tbody>
               <!-- view song form -->
                   <?php
-                    include '../APIs/logic.php';
-                    include '../APIs/connection.php';
+                    // include '../APIs/logic.php';
+                    // include '../APIs/connection.php';
                     $conn = connect();
                     $result = searchUsersInvestment($conn, $_SESSION['username']);
                     if($result->num_rows == 0)
@@ -86,12 +111,18 @@
                             $shares_bought = $row['no_of_share_bought'];
                             $result2 = searchArtistPricePerShare($conn, $artist_name);
                             $row2 = $result2->fetch_assoc();
-                            echo '<tr><th scope="row">'.$id.'</th><td>'.$artist_name.'</td><td>'.$shares_bought.'</td><td>$'.$row2['price_per_share'].'</td></tr>';
+                            echo '<tr><th scope="row">'.$id.'</th><td>'.$artist_name.'</td><td>'.$shares_bought.'</td><td>Coins: '.$row2['price_per_share'].'</td></tr>';
                             $id++;
                         }
                         
                     }
                   ?> 
+                <form action = "BuyCoinsView.php" method = "post">
+                    <div style = "position: absolute;right:500px; top:350px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy coins!">
+                        
+                    </div>
+                </form>
               </tbody>
             </table>
             </div>
