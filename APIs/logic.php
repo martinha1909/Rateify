@@ -704,13 +704,25 @@
             return $notify;
         }
 
+        function withdrawCoins($conn, $username, $coins)
+        {
+            $notify = 0;
+            $sql = "UPDATE account SET balance = balance - $coins WHERE username = '$username'";
+            if ($conn->query($sql) === TRUE) {
+                $notify = 1;
+            } else {
+                $notify = 2;
+            }  
+            return $notify;
+        }
+
         function addSharesToArtist($conn, $artist_username, $shares_bought)
         {
             $sql = "UPDATE account SET Shares = $shares_bought WHERE username = '$artist_username'";
             $conn->query($sql);
         }
 
-        function sellShares($conn, $user_username, $artist_username, $selling_share)
+        function sellShares($conn, $user_username, $artist_username, $selling_share, $profit)
         {
             $notify = 0;
             $sql = "UPDATE user_artist_share SET no_of_share_bought = no_of_share_bought - '$selling_share' WHERE user_username = '$user_username' AND artist_username = '$artist_username'";
@@ -720,6 +732,9 @@
                 $notify = 2;
             // echo $notify;
             $sql = "UPDATE account SET Shares = Shares - $selling_share WHERE username = '$artist_username'";
+            $conn->query($sql);
+
+            $sql = "UPDATE account SET balance = balance + $profit WHERE username = '$user_username'";
             $conn->query($sql);
             return $notify;
         }

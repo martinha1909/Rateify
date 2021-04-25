@@ -1,7 +1,8 @@
 <?php
   session_start();
-  $_SESSION['conversion_rate'] = -0.05;
-  $_SESSION['coins'] = 0;
+  $_SESSION['conversion_rate'];
+  $_SESSION['notify'];
+
 ?>
 
 <!doctype html>
@@ -10,7 +11,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Listener</title>
+    <title>Rateify - Search Songs</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -27,12 +28,20 @@
 </head>
 <body>
 
+<?php
+  if($_SESSION['notify'] == 1)
+    echo "<script>alert('Coins sold successfully');</script>";
+  if($_SESSION['notify'] == 2)
+    echo "<script>alert('Failed to sell coins');</script>";
+  $_SESSION['notify'] = 0;
+?>
+
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
             <a class="navbar-brand heading-black" href="index.php">
-                HASSNER
+                Rateify
             </a>
             <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Account Balance</p>
             <p style = "position: absolute;right:40px; top:26px;">
@@ -71,37 +80,47 @@
         <div class="row vh-md-100">
             <div class="col-12 mx-auto my-auto text-center">
               
-              <div class="col text-center">
-              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
-              <p> Username: <?php echo $_SESSION['username'] ?></p> 
-              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
-              </div>
 
-              <!-- header -->
-              <div class="col text-center">
-                <h2> Please select an action. </h2>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="listenerSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Invest
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-              <form action="DisplayUserInvestments.php" method="post">
-              <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "Your investments">
-              </form>
-
-              </div>
-
-              <!-- logout button-->
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Logout
-                </a>
-              </div>
-              
+              <!-- hyperlinks -->
+              <div style="position:absolute; right: 580px; bottom: 150px"class="col text-center">
+                <a href="DisplayUserInvestments.php"> <- Your Investments</a>
+              </div> 
+                <form action = "../APIs/SellCoinsConnection.php" method = "post">
+                    <div class="form-group">
+                        <h5>How many coins are you selling?</h5>
+                        <input type="text" name = "coins" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter coins">
+                        </div>
+                    <div style = "position: absolute;right: 450px; top:100px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Check Conversion" onclick='window.location.reload();'>
+                        
+                    </div>
+                </form>
+                <p style = "position: absolute;right:510px; top:180px;" class="navbar navbar-expand-lg navbar-light bg-dark">CAD: 
+                    <?php
+                        if($_SESSION['cad']!=0)
+                        {
+                            echo "$";
+                            echo " ";
+                            echo $_SESSION['cad'];
+                        }
+                        else
+                        {
+                            echo "$";
+                            echo " ";
+                            echo 0;
+                        }
+                        
+                    ?>
+                </p>
+                </form>
+                <form action = "../APIs/WithdrawCoinsConnection.php" method = "post">
+                    <div style = "position: absolute;right: 450px; top:300px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell this amount!" onclick='window.location.reload();'>
+                        
+                    </div>
+                    </form>
+              </tbody>
+            </table>
             </div>
         </div>
     </div>

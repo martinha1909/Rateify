@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $_SESSION['conversion_rate'] = 0.5;
+  $_SESSION['conversion_rate'];
   $_SESSION['notify'];
 
 ?>
@@ -60,8 +60,8 @@
                 <?php
                     if($_SESSION['conversion_rate'] > 0)
                         echo "+";
-                    else if($_SESSION['conversion_rate'] < 0)
-                        echo "-";
+                    // else if($_SESSION['conversion_rate'] < 0)
+                    //     echo "-";
                     echo $_SESSION['conversion_rate'];
                     echo "%";
                 ?>
@@ -81,12 +81,13 @@
     <div class="container">
         <div class="row vh-md-100">
             <div class="col-12 mx-auto my-auto text-center">
-              
+            
 
               <!-- hyperlinks -->
               <div style="position:absolute; right: 580px; bottom: 150px"class="col text-center">
                 <a href="DisplayUserInvestments.php"> <- Your Investments</a>
               </div> 
+
                 <form action = "../APIs/BuyCoinsConnection.php" method = "post">
                     <div class="form-group">
                         <h5>Enter Amount in Canadian Dollars</h5>
@@ -102,6 +103,11 @@
                         if($_SESSION['coins']!=0)
                         {
                             echo $_SESSION['coins'];
+                        }
+                        else
+                        {
+                            echo "$ ";
+                            echo 0;
                         }
                         
                     ?>

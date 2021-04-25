@@ -1,7 +1,8 @@
 <?php
   session_start();
-  $_SESSION['conversion_rate'] = 0.5;
+  $_SESSION['conversion_rate'];
   $_SESSION['coins'] = 0;
+  $_SESSION['cad'] = 0;
 ?>
 
 <!doctype html>
@@ -51,8 +52,6 @@
                 <?php
                     if($_SESSION['conversion_rate'] > 0)
                         echo "+";
-                    else if($_SESSION['conversion_rate'] < 0)
-                        echo "-";
                     echo $_SESSION['conversion_rate'];
                     echo "%";
                 ?>
@@ -88,7 +87,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Artist Name</th>
                         <th scope="col">Shares bought</th>
-                        <th scope="col">Price per share</th>
+                        <th scope="col">Price per share (Coins)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -111,15 +110,21 @@
                             $shares_bought = $row['no_of_share_bought'];
                             $result2 = searchArtistPricePerShare($conn, $artist_name);
                             $row2 = $result2->fetch_assoc();
-                            echo '<tr><th scope="row">'.$id.'</th><td>'.$artist_name.'</td><td>'.$shares_bought.'</td><td>Coins: '.$row2['price_per_share'].'</td></tr>';
+                            echo '<tr><th scope="row">'.$id.'</th><td>'.$artist_name.'</td><td>'.$shares_bought.'</td><td>'.$row2['price_per_share'].'</td></tr>';
                             $id++;
                         }
                         
                     }
                   ?> 
                 <form action = "BuyCoinsView.php" method = "post">
-                    <div style = "position: absolute;right:500px; top:350px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                    <div style = "position: absolute;right:400px; top:400px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
                             <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy coins!">
+                        
+                    </div>
+                </form>
+                <form action = "SellCoinsView.php" method = "post">
+                    <div style = "position: absolute;right:600px; top:400px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell coins!">
                         
                     </div>
                 </form>

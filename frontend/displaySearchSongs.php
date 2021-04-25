@@ -49,8 +49,6 @@
                 <?php
                     if($_SESSION['conversion_rate'] > 0)
                         echo "+";
-                    else if($_SESSION['conversion_rate'] < 0)
-                        echo "-";
                     echo $_SESSION['conversion_rate'];
                     echo "%";
                 ?>

@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $_SESSION['profit'];
 ?>
 
 <!doctype html>
@@ -49,8 +50,6 @@
                 <?php
                     if($_SESSION['conversion_rate'] > 0)
                         echo "+";
-                    else if($_SESSION['conversion_rate'] < 0)
-                        echo "-";
                     echo $_SESSION['conversion_rate'];
                     echo "%";
                 ?>
@@ -71,7 +70,7 @@
             
             <div class="col-12 mx-auto my-auto text-center">
             <div  class="col text-left">
-                <a href="displaySearchSongs.php"> <-Return to viewing artist</a>
+                <a href="SearchSong.php"> <-Search Artist</a>
               </div>
               
                 <div style = "position: absolute; left:130px; bottom: 20px;" class="col text-center">
@@ -100,9 +99,9 @@
               <!-- view song form -->
 
                   <?php
-                    $profit = $_SESSION['per_share_price'] * 0.95;
-                    $profit = $profit - $_SESSION['per_share_price'];
-                    echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$profit.'</td></tr>';
+                    $_SESSION['profit'] = $_SESSION['per_share_price'] * 0.95;
+                    $_SESSION['profit'] = $_SESSION['profit'] - $_SESSION['per_share_price'];
+                    echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$_SESSION['profit'].'</td></tr>';
                   ?>
               </tbody>
             </table> 

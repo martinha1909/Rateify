@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $_SESSION['conversion_rate'] = 0.5;
+  $_SESSION['conversion_rate'];
   $_SESSION['coins'] = 0;
 ?>
 
@@ -51,8 +51,6 @@
                 <?php
                     if($_SESSION['conversion_rate'] > 0)
                         echo "+";
-                    else if($_SESSION['conversion_rate'] < 0)
-                        echo "-";
                     echo $_SESSION['conversion_rate'];
                     echo "%";
                 ?>

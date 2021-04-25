@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $_SESSION['conversion_rate'] = 0.5;
+  $_SESSION['conversion_rate'];
   $_SESSION['coins'] = 0;
 ?>
 
@@ -51,8 +51,6 @@
                 <?php
                     if($_SESSION['conversion_rate'] > 0)
                         echo "+";
-                    else if($_SESSION['conversion_rate'] < 0)
-                        echo "-";
                     echo $_SESSION['conversion_rate'];
                     echo "%";
                 ?>
@@ -91,7 +89,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Artist Name</th>
                         <th scope="col">Total shares bought</th>
-                        <th scope="col">Price per share</th>
+                        <th scope="col">Price per share (Coins)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -149,7 +147,7 @@
                             echo '<tr><th scope="row">'.$id.'</th>
                                         <td><input name = "artist_name['.$users[$i].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$users[$i].'"></td></td>
                                         <td>'.$all_shares[$i].'</td>
-                                        <td>Coins: '.$row2['price_per_share'].'</td></tr>';
+                                        <td>'.$row2['price_per_share'].'</td></tr>';
                             $id++;
                         }
                         
