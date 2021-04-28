@@ -9,7 +9,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Sign Up</title>
+    <title>Hassner - Sign Up</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -31,7 +31,7 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
             <a class="navbar-brand heading-black" href="index.php">
-                Rateify
+                HASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
@@ -58,12 +58,12 @@
                 
               <!-- header -->
               <div class="col text-center">
-                <h1> Sign up for a Rateify account.</h1>
+                <h1> Sign up for a Hassner&nbspaccount.</h1>
               </div>
               
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="index.php"> Return to landing page</a>.
+                <a href="index.php"> Return to front page</a>.
               </div>
 
               <div class="col text-center">
@@ -96,16 +96,6 @@
                     <div>
                       <input type="radio" name="account_type" value="artist">
                       <label for="dewey">Artist</label>
-                    </div>
-
-                    <div>
-                      <input type="radio" name="account_type" value="producer">
-                      <label for="louie">Producer</label>
-                    </div>
-
-                    <div>
-                      <input type="radio" name="account_type" value="admin">
-                      <label for="louie">Admin</label>
                     </div>
 
                     <!-- register button -->

@@ -6,10 +6,11 @@
 <!doctype html>
 <html lang="en">
 <head>
+ 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Landing Page</title>
+    <title>Hassner</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -42,9 +43,6 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#features">Features</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link page-scroll" href="#login">Log In</a>
                     </li>
                     <li class="nav-item">
@@ -61,8 +59,8 @@
     <div class="container">
         <div class="row vh-md-100">
             <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
-                <h1 class="heading-black text-capitalize">Listen to and review your favourite songs</h1>
-                <p class="lead py-3">Rateify closes the bridge between listeners and artists, and allows artists to see listener feedback for their songs. Sign up for free.</p>
+                <h1 class="heading-black">Turning your taste into&nbspwealth.</h1>
+                <p class="lead py-3">Hassner creates opportunities for both listeners and artists. Sign up for free.</p>
                 <a class= "nav-link page-scroll" href="#signup" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
                     <!--It loss the green background, but it scrolls to the bottom of the page now (or we can make it go to the signup page automatically)-->
                     Get started now
@@ -77,8 +75,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mx-auto text-center">
-                <h2 class="heading-black">Rateify is the ultimate music platform.</h2>
-                <p class="text-muted lead">Sign up as either a Listener, Artist, Producer, or Administrator</p>
+                <h2 class="heading-black">Hassner is the new way to invest.</h2>
+                <p class="text-muted lead">Sign up as an Investor or an Artist!</p>
             </div>
         </div>
         <div class="row">
@@ -87,38 +85,20 @@
                     <div class="col-md-6 box">
                         <div class="icon-box box-primary">
                             <div class="icon-box-inner">
-                                <span data-feather="headphones" width="35" height="35"></span>
+                                <span data-feather="sliders" width="35" height="35"></span>
                             </div>
                         </div>
-                        <h5>Listeners</h5>
-                        <p class="text-muted">Can listen to songs, create and add songs to playlists, and review songs.</p>
+                        <h5>Investors</h5>
+                        <p class="text-muted">Support your favourite artists and make returns!</p>
                     </div>
                     <div class="col-md-6 box">
                         <div class="icon-box box-success">
                             <div class="icon-box-inner">
-                                <span data-feather="music" width="35" height="35"></span>
+                                <span data-feather="edit-3" width="35" height="35"></span>
                             </div>
                         </div>
                         <h5>Artists</h5>
-                        <p class="text-muted">Can create songs, and create and add songs to albums.</p>
-                    </div>
-                    <div class="col-md-6 box">
-                        <div class="icon-box box-danger">
-                            <div class="icon-box-inner">
-                                <span data-feather="disc" width="35" height="35"></span>
-                            </div>
-                        </div>
-                        <h5>Producers</h5>
-                        <p class="text-muted">Can produce songs added by artists.</p>
-                    </div>
-                    <div class="col-md-6 box">
-                        <div class="icon-box box-info">
-                            <div class="icon-box-inner">
-                                <span data-feather="globe" width="35" height="35"></span>
-                            </div>
-                        </div>
-                        <h5>Administrators</h5>
-                        <p class="text-muted">Can monitor songs and reviews, and remove them if they are unhealthy for the community.</p>
+                        <p class="text-muted">See your growth and funding!</p>
                     </div>
                 </div>
             </div>
@@ -126,34 +106,33 @@
     </div>
 </section>
 
+<!--signup section-->
+<section class="py-5 bg-teal top-right bottom-left" id="signup">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                <h3>Create a Rateify account</h3>
+                <a href="signup.php" class="btn btn-secondary" role="button" aria-pressed="true">
+                    Sign up!
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!--login section-->
-<section class="py-5 bg-dark section-angle top-right bottom-right" id="login">
+<section class="py-5 bg-teal top-right bottom-left" id="login">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <h3>Sign in to your Rateify account</h3>
-                <a href="login.php" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="login.php" class="btn btn-secondary" role="button" aria-pressed="true">
                     Log in
                 </a>
             </div>
         </div>
     </div>
 </section>
-
-<!--signup section-->
-<section class="py-5 bg-dark section-angle top-right bottom-right" id="signup">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <h3>Create a Rateify account</h3>
-                <a href="signup.php" class="btn btn-primary" role="button" aria-pressed="true">
-                    Sign up now!
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
 
 <!--scroll to top-->
 <div class="scroll-top">
