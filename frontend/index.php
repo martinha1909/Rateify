@@ -111,7 +111,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <h3>Create a Rateify account</h3>
+                <h3>Create a Hassner account</h3>
                 <a href="signup.php" class="btn btn-secondary" role="button" aria-pressed="true">
                     Sign up!
                 </a>
@@ -125,7 +125,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <h3>Sign in to your Rateify account</h3>
+                <h3>Sign in to your account</h3>
                 <a href="login.php" class="btn btn-secondary" role="button" aria-pressed="true">
                     Log in
                 </a>
