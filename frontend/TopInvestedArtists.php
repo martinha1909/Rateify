@@ -90,6 +90,7 @@
                         <th scope="col">Artist Name</th>
                         <th scope="col">Total shares bought</th>
                         <th scope="col">Price per share (Coins)</th>
+                        <th scope="col">Rate</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -113,12 +114,7 @@
                             array_push($all_shares, $row['Shares']);
                             array_push($users, $row['username']);
                         }
-
-
                         
-
-                        // $id = 1;
-                        // rsort($all_shares);
                         $i;
                         $key;
                         $key2;
@@ -143,11 +139,24 @@
                             if($id == 6)
                                 break;
                             $result3 = searchArtistPricePerShare($conn, $users[$i]);
+                            $result4 = searchArtistRate($conn, $users[$i]);
+                            $rate = $result4->fetch_assoc();
+                            $rate['rate'] = $rate['rate'] * 100;
                             $row2 = $result3->fetch_assoc();
+                            // echo '<tr><th scope="row">'.$id.'</th>
+                            //             <td><input name = "artist_name['.$users[$i].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$users[$i].'"></td></td>
+                            //             <td>'.$all_shares[$i].'</td>
+                            //             <td>'.$row2['price_per_share'].'</td>
+                            //             <td>'.$rate['rate'].'%</td></tr>';
                             echo '<tr><th scope="row">'.$id.'</th>
                                         <td><input name = "artist_name['.$users[$i].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$users[$i].'"></td></td>
                                         <td>'.$all_shares[$i].'</td>
-                                        <td>'.$row2['price_per_share'].'</td></tr>';
+                                        <td>'.$row2['price_per_share'].'</td>';
+                            if($rate['rate'] > 0)
+                                echo '<td>+'.$rate['rate'].'%</td></tr>';
+                            else
+                                echo '<td>'.$rate['rate'].'%</td></tr>';
+                                        
                             $id++;
                         }
                         

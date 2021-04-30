@@ -70,7 +70,7 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-              <h1> Search Results for <?php echo $_SESSION['artist'];?> </h1>
+              <h1> Search Results for <?php echo $_SESSION['searchedArtistName'];?> </h1>
               </div>
 
               <!-- hyperlinks -->

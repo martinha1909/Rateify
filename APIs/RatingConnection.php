@@ -20,6 +20,8 @@
         $total_shares_bought = $share + $row['no_of_share_bought'];
         $_SESSION['notify'] = increaseSharesBought($conn, $_SESSION['username'], $_SESSION['artist'], $total_shares_bought, $new_balance);
         addSharesToArtist($conn, $_SESSION['artist'], $artist_total_shares);
+        increaseArtistPricePerShare($conn, $_SESSION['artist']);
+        increaseArtistRate($conn, $_SESSION['artist']);
     }
     else
     {
@@ -33,6 +35,8 @@
             $_SESSION['notify'] = addSharesBought($conn, $_SESSION['username'], $_SESSION['artist'], $share, $new_balance);
             $artist_total_shares = $share + $row2['Shares'];
             addSharesToArtist($conn, $_SESSION['artist'], $artist_total_shares);
+            increaseArtistPricePerShare($conn, $_SESSION['artist']);
+            increaseArtistRate($conn, $_SESSION['artist']);
         }
         else
             $_SESSION['notify'] = 2;

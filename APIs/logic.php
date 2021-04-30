@@ -45,6 +45,7 @@
         function signup($conn, $username, $password, $type) //done2
         {
             $balance = 0;
+            $rate = 0;
             $num_of_shares = 0;
             $notify = 0;
             $result = getMaxID($conn);
@@ -52,10 +53,10 @@
             $id = $row["max_id"] + 1;
             // $sql = "INSERT INTO account (username, password, account_type, id)
             //         VALUES('$username', '$password', '$type', '$id')";
-            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance)
-                    VALUES(?, ?, ?, $id, ?, ?)";
+            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate)
+                    VALUES(?, ?, ?, $id, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssid', $username, $password, $type, $num_of_shares, $balance);
+            $stmt->bind_param('sssidd', $username, $password, $type, $num_of_shares, $balance, $rate);
             if ($stmt->execute() === TRUE) {
                 $notify = 1;
             } else {
@@ -67,7 +68,7 @@
                 $sql = "INSERT INTO artist_per_share (artist_username, price_per_share)
                     VALUES(?, ?)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param('si', $username, $price_per_share);
+                $stmt->bind_param('sd', $username, $price_per_share);
                 $stmt->execute();
             }
             return $notify;
@@ -97,6 +98,18 @@
             $sql = "SELECT * FROM spotify.song WHERE id = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('i', $songId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            return $result;
+        }
+
+        function searchArtistRate($conn, $artist_username)
+        {
+            $account_type = 'artist';
+            $sql = "SELECT rate FROM account WHERE username = ? AND account_type = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ss', $artist_username, $account_type);
             $stmt->execute();
             $result = $stmt->get_result();
             
@@ -702,6 +715,19 @@
                 $notify = 2;
             }  
             return $notify;
+        }
+
+        function increaseArtistRate($conn, $artist_username)
+        {
+            $sql = "UPDATE account SET rate = rate + 0.013 WHERE username = '$artist_username'";
+            $conn->query($sql);
+        }
+
+        function increaseArtistPricePerShare($conn, $artist_username)
+        {
+            $rate = 1.2;
+            $sql = "UPDATE artist_per_share SET price_per_share = price_per_share + $rate WHERE artist_username = '$artist_username'";
+            $conn->query($sql);
         }
 
         function withdrawCoins($conn, $username, $coins)

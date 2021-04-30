@@ -4,6 +4,9 @@
     include 'logic.php';    
     $conn = connect();
     $_SESSION['artist'] = key($_POST['artist_name']);
+    $rate_query = searchArtistRate($conn, $_SESSION['artist']);
+    $rate = $rate_query->fetch_assoc();
+    $_SESSION['rate'] = $rate['rate'];
     $artist_username = $_SESSION['artist'];
     $user_username = $_SESSION['username'];
     $_SESSION['current_no_of_shares'] = 0;

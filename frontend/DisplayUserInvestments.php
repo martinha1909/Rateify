@@ -3,6 +3,7 @@
   $_SESSION['conversion_rate'];
   $_SESSION['coins'] = 0;
   $_SESSION['cad'] = 0;
+  $_SESSION['profit'] = 0;
 ?>
 
 <!doctype html>
@@ -88,6 +89,7 @@
                         <th scope="col">Artist Name</th>
                         <th scope="col">Shares bought</th>
                         <th scope="col">Price per share (Coins)</th>
+                        <th scope="col">Rate</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -97,6 +99,7 @@
                     // include '../APIs/connection.php';
                     $conn = connect();
                     $result = searchUsersInvestment($conn, $_SESSION['username']);
+                    $all_profits = 0;
                     if($result->num_rows == 0)
                     {
                         echo '<h3> No results </h3>';
@@ -109,13 +112,21 @@
                             $artist_name = $row['artist_username'];
                             $shares_bought = $row['no_of_share_bought'];
                             $result2 = searchArtistPricePerShare($conn, $artist_name);
+                            $result3 = searchArtistRate($conn, $artist_name);
+                            $rate = $result3->fetch_assoc();
+                            $rate['rate'] = $rate['rate'] * 100;
+                            $all_profits += $rate['rate'];
                             $row2 = $result2->fetch_assoc();
-                            echo '<tr><th scope="row">'.$id.'</th><td>'.$artist_name.'</td><td>'.$shares_bought.'</td><td>'.$row2['price_per_share'].'</td></tr>';
+                            echo '<tr><th scope="row">'.$id.'</th><td>'.$artist_name.'</td><td>'.$shares_bought.'</td><td>'.$row2['price_per_share'].'</td>';
+                            if($rate['rate'] > 0)
+                                echo '<td>+'.$rate['rate'].'%</td></tr>';
+                            else
+                                echo '<td>'.$rate['rate'].'%</td></tr>';
                             $id++;
                         }
                         
                     }
-                  ?> 
+                  ?>
                 <form action = "BuyCoinsView.php" method = "post">
                     <div style = "position: absolute;right:400px; top:400px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
                             <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy coins!">
@@ -132,6 +143,21 @@
             </table>
             </div>
         </div>
+    </div>
+</section>
+<section class="smart-scroll">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <p style = "position: absolute;right:300px; top:0px;" class="navbar-light bg-dark">All Shares Profit</p>
+            <p style = "position: absolute;right:350px; top:26px;">
+                <?php
+                    if($all_profits > 0)
+                        echo "+";
+                    echo $all_profits;
+                    echo "%";
+                ?>
+            </p> 
+        </nav>
     </div>
 </section>
 

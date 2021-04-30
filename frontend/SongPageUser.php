@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $_SESSION['profit'];
+  $_SESSION['profit'] = 0;
 ?>
 
 <!doctype html>
@@ -92,16 +92,16 @@
                         <th scope="col">No. shares you own</th>
                         <th scope="col">Artist</th>
                         <th scope="col">Current price per share</th>
-                        <th scope="col">Current profit for each share</th>
+                        <th scope="col">Selling profit per share</th>
                     </tr>
                     </thead>
                     <tbody>
               <!-- view song form -->
 
                   <?php
-                    $_SESSION['profit'] = $_SESSION['per_share_price'] * 0.95;
-                    $_SESSION['profit'] = $_SESSION['profit'] - $_SESSION['per_share_price'];
-                    echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$_SESSION['profit'].'</td></tr>';
+                    $_SESSION['profit'] = $_SESSION['per_share_price'] * $_SESSION['rate'];
+                    $_SESSION['profit'] = $_SESSION['profit'] + $_SESSION['per_share_price'];
+                    echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$_SESSION['profit'].' ('.$_SESSION['rate'].'%)</td></tr>';
                   ?>
               </tbody>
             </table> 

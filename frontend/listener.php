@@ -79,7 +79,7 @@
 
               <!-- header -->
               <div class="col text-center">
-                <h2> Please select an action. </h2>
+                <h2> Please select an action </h2>
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">

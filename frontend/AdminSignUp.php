@@ -42,13 +42,6 @@
     </div>
 </section>
 
-<?php
-  if($_SESSION['notify'] == 1)
-    echo "<script>alert('Account created sucessfully');</script>";
-  if($_SESSION['notify'] == 2)
-    echo "<script>alert('Failed to create account');</script>";
-  $_SESSION['notify'] = 0;
-?>
 
 <!--signup functionality-->
 <section class="py-7 py-md-0 bg-hero" id="login">
@@ -58,54 +51,27 @@
                 
               <!-- header -->
               <div class="col text-center">
-                <h1> Sign up for a Hassner&nbspaccount.</h1>
-              </div>
-              
-              <!-- hyperlinks -->
-              <div class="col text-center">
-                <a href="index.php"> Return to front page</a>
+                <h1> Become an admin</h1>
               </div>
 
               <div class="col text-center">
-                <a href="login.php"> Already have an account?</a>
+                <a href="AdminSignIn.php"> Sign in as admin</a>
               </div>
-
-              <div class="col text-center">
-                <a href="AdminSignUp.php"> Want to become an admin?</a>
-              </div>
+            
 
                 <!-- signup form -->
-                <form action = "../APIs/SignUpConnection.php" method = "post">
+                <form action = "../APIs/EmailVerification.php" method = "post">
 
                     <!-- username field -->
                     <div class="form-group">
-                    <h5>Username</h5>
-                      <input type="text" name = "username" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
-                    </div>
-
-                    <!-- password field -->
-                    <div class="form-group">
-                    <h5>Password</h5>
-                      <input type="password" name = "password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-
-                    <!-- account type -->
-                    <h5>Account Type</h5>
-                    <div>
-                      <input type="radio" name="account_type" value="user"
-                             checked>
-                      <label for="huey">Listener</label>
-                    </div>
-                    
-                    <div>
-                      <input type="radio" name="account_type" value="artist">
-                      <label for="dewey">Artist</label>
+                    <h5>Enter your email address</h5>
+                      <input type="text" name = "email" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter email">
                     </div>
 
                     <!-- register button -->
                     <!-- TODO: register button functionality-->
                     <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                        <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Register" onclick='window.location.reload();'>
+                        <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Continue to Sign Up" onclick='window.location.reload();'>
                         
                     </div>
                 </form>
