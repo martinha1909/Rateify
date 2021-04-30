@@ -32,7 +32,7 @@
   if($_SESSION['notify'] == 1)
     echo "<script>alert('Coins bought successfully');</script>";
   if($_SESSION['notify'] == 2)
-    echo "<script>alert('Failed to buy coins');</script>";
+    echo "<script>alert('Card verfication failed');</script>";
   $_SESSION['notify'] = 0;
 ?>
 
@@ -52,7 +52,7 @@
                     $result = getUserBalance($conn, $_SESSION['username']);
                     $balance = $result->fetch_assoc();
                     echo "Coins: ";
-                    echo $balance['balance'];
+                    echo number_format((float)$balance['balance'], 2, '.', '');
                 ?>
             </p>
             <p style = "position: absolute;right:165px; top:0px;" class="navbar-light bg-dark">Current Rate</p>
@@ -113,7 +113,7 @@
                     ?>
                 </p>
                 </form>
-                <form action = "../APIs/PurchaseCoinsConnection.php" method = "post">
+                <form action = "CardVerificationView.php" method = "post">
                     <div style = "position: absolute;right: 450px; top:300px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
                             <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy this amount!" onclick='window.location.reload();'>
                         
