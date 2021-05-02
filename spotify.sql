@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2021 at 11:12 PM
+-- Generation Time: May 02, 2021 at 08:47 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -33,30 +33,32 @@ CREATE TABLE `account` (
   `account_type` varchar(50) NOT NULL,
   `id` int(11) NOT NULL,
   `Shares` int(50) NOT NULL,
-  `balance` double NOT NULL
+  `balance` double NOT NULL,
+  `rate` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`username`, `password`, `account_type`, `id`, `Shares`, `balance`) VALUES
-('88Glam', 'artist', 'artist', 1, 38, 0),
-('admin', 'admin', 'admin', 6, 0, 0),
-('ayush', 'test', 'user', 4, 0, 0),
-('chris', 'user', 'user', 5, 0, 0),
-('Drake', 'artist', 'artist', 14, 1, 0),
-('Eminem', 'artist', 'artist', 16, 3, 0),
-('FRVRFRIDAY', 'artist', 'artist', 15, 27, 0),
-('Kanye West', 'artist', 'artist', 13, 0, 0),
-('kep', 'admin', 'admin', 12, 0, 0),
-('kepwessner', '1234', 'user', 11, 0, 0),
-('martin', 'user', 'user', 3, 0, 94.95),
-('Martin Ha', '123456', 'user', 9, 0, 0),
-('Metro Booming', 'producer', 'producer', 7, 0, 0),
-('NAV', 'artist', 'artist', 2, 0, 0),
-('Polygon', 'producer', 'producer', 8, 0, 0),
-('Travis Scott', 'artist', 'artist', 10, 4, 0);
+INSERT INTO `account` (`username`, `password`, `account_type`, `id`, `Shares`, `balance`, `rate`) VALUES
+('88Glam', 'artist', 'artist', 1, 34, 0, 0.04),
+('admin', 'admin', 'admin', 6, 0, 0, 0),
+('admin0', 'admin', 'admin', 17, 0, 0, 0),
+('ayush', 'test', 'user', 4, 0, 0, 0),
+('chris', 'user', 'user', 5, 0, 0, 0),
+('Drake', 'artist', 'artist', 14, 1, 0, -0.02),
+('Eminem', 'artist', 'artist', 16, 3, 0, 0.1),
+('FRVRFRIDAY', 'artist', 'artist', 15, 34, 0, 0.013),
+('Kanye West', 'artist', 'artist', 13, 0, 0, 0),
+('kep', 'admin', 'admin', 12, 0, 0, 0),
+('kepwessner', '1234', 'user', 11, 0, 0, 0),
+('martin', 'user', 'user', 3, 0, 19163.2, 0),
+('Martin Ha', '123456', 'user', 9, 0, 0, 0),
+('Metro Booming', 'producer', 'producer', 7, 0, 0, 0),
+('NAV', 'artist', 'artist', 2, 0, 0, 0),
+('Polygon', 'producer', 'producer', 8, 0, 0, 0),
+('Travis Scott', 'artist', 'artist', 10, 11, 0, -0.174);
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,7 @@ INSERT INTO `artist_album` (`artist_username`, `album_name`) VALUES
 
 CREATE TABLE `artist_per_share` (
   `artist_username` varchar(50) NOT NULL,
-  `price_per_share` int(50) NOT NULL
+  `price_per_share` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -142,11 +144,11 @@ INSERT INTO `artist_per_share` (`artist_username`, `price_per_share`) VALUES
 ('88Glam', 20),
 ('Drake', 1),
 ('Eminem', 50),
-('FRVRFRIDAY', 1),
+('FRVRFRIDAY', 2.2),
 ('Kanye West', 1),
 ('Metro Booming', 1),
 ('NAV', 30),
-('Travis Scott', 40);
+('Travis Scott', 41.2);
 
 -- --------------------------------------------------------
 
@@ -317,10 +319,10 @@ INSERT INTO `user_artist_share` (`user_username`, `artist_username`, `no_of_shar
 ('ayush', 'Drake', 1),
 ('ayush', 'FRVRFRIDAY', 6),
 ('chris', '88Glam', 1),
-('martin', '88Glam', 27),
+('martin', '88Glam', 23),
 ('martin', 'Eminem', 3),
-('martin', 'FRVRFRIDAY', 21),
-('martin', 'Travis Scott', 4);
+('martin', 'FRVRFRIDAY', 28),
+('martin', 'Travis Scott', 11);
 
 --
 -- Indexes for dumped tables
