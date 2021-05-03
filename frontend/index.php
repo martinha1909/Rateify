@@ -32,7 +32,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.php">
+            <a class="navbar-brand heading-black" href="index.php" style = "color: red;">
                 HASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -61,7 +61,7 @@
             <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
                 <h1 class="heading-black">Making&nbspmoney&nbspis&nbspmusic&nbspto&nbspour&nbspears</h1>
                 <p class="lead py-3">Hassner creates opportunities for both listeners and artists. Sign up for free.</p>
-                <a class= "nav-link page-scroll" href="#signup" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
+                <a class= "nav-link page-scroll" href="#signup" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "color: white;">
                     <!--It loss the green background, but it scrolls to the bottom of the page now (or we can make it go to the signup page automatically)-->
                     Get started now
                 </a>
