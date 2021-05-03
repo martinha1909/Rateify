@@ -86,16 +86,52 @@
                     <tr>
                         <th scope="col">#</th>
                         <form action="../APIs/SortArtists.php">
-                            <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Artist" onclick='window.location.reload();'></th>
+                            <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Artist" onclick='window.location.reload();'>
+                                <?php
+                                    if($_SESSION['sort_type'] == 1)
+                                        echo "↑";
+                                    else if($_SESSION['sort_type'] == 4)
+                                        echo "↓";
+                                    else
+                                        echo "";
+                                ?>
+                            </th>
                         </form>
                         <form action="../APIs/SortShares.php">
-                            <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Shares bought" onclick='window.location.reload();'></th>
+                            <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Shares bought" onclick='window.location.reload();'>
+                                <?php
+                                    if($_SESSION['sort_type'] == 2)
+                                        echo "↑";
+                                    else if($_SESSION['sort_type'] == 5)
+                                        echo "↓";
+                                    else
+                                        echo "";
+                                ?>
+                            </th>
                         </form>
                         <form action = "../APIs/SortPricePerShare.php">
-                            <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Price per share (Coins)" onclick='window.location.reload();'></th>
+                            <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Price per share (Coins)" onclick='window.location.reload();'>
+                                <?php
+                                    if($_SESSION['sort_type'] == 3)
+                                        echo "↑";
+                                    else if($_SESSION['sort_type'] == 6)
+                                        echo "↓";
+                                    else
+                                        echo "";
+                                ?>
+                            </th>
                         </form>
                         <form action = "../APIs/SortRates.php">
-                            <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Rate" onclick='window.location.reload();'></th>
+                            <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Rate" onclick='window.location.reload();'>
+                                <?php
+                                    if($_SESSION['sort_type'] == 0)
+                                        echo "↑";
+                                    else if($_SESSION['sort_type'] == 7)
+                                        echo "↓";
+                                    else
+                                        echo "";
+                                ?>
+                            </th>
                         </form>
                     </tr>
                     </thead>
