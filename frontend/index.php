@@ -32,7 +32,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.php" style = "color: red;">
+            <a class="navbar-brand heading-black" href="index.php" style = "color: blue;">
                 HASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
