@@ -149,7 +149,7 @@
                             //             <td>'.$row2['price_per_share'].'</td>
                             //             <td>'.$rate['rate'].'%</td></tr>';
                             echo '<tr><th scope="row">'.$id.'</th>
-                                        <td><input name = "artist_name['.$users[$i].']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$users[$i].'"></td></td>
+                                        <td><input name = "artist_name['.$users[$i].']" type = "submit" style="border:1px transparent; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$users[$i].'"></td></td>
                                         <td>'.$all_shares[$i].'</td>
                                         <td>'.$row2['price_per_share'].'</td>';
                             if($rate['rate'] > 0)

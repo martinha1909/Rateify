@@ -101,7 +101,8 @@
                   <?php
                     $_SESSION['profit'] = $_SESSION['per_share_price'] * $_SESSION['rate'];
                     $_SESSION['profit'] = $_SESSION['profit'] + $_SESSION['per_share_price'];
-                    echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$_SESSION['profit'].' ('.$_SESSION['rate'].'%)</td></tr>';
+                    $rate = $_SESSION['rate'] * 100;
+                    echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$_SESSION['profit'].' ('.$rate.'%)</td></tr>';
                   ?>
               </tbody>
             </table> 
