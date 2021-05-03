@@ -27,7 +27,7 @@
 <body>
 
 <!--navigation-->
-<section class="smart-scroll">
+<section class="smart-scroll py-7 py-md-0 bg-hero">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
             <a class="navbar-brand heading-black" href="index.php">
