@@ -1,5 +1,10 @@
 <?php
     session_start();
-    $_SESSION['sort_type'] = 2;
+    if($_SESSION['sort_type'] == 2)
+    {
+        $_SESSION['sort_type'] = 5;
+    }
+    else
+        $_SESSION['sort_type'] = 2;
     header("Location: ../frontend/DisplayUserInvestments.php");
 ?>

@@ -2,6 +2,7 @@
   session_start();
   $_SESSION['conversion_rate'] = -0.05;
   $_SESSION['coins'] = 0;
+  $_SESSION['sort_type'] = 0;
 ?>
 
 <!doctype html>

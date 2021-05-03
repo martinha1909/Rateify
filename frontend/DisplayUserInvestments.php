@@ -4,7 +4,6 @@
   $_SESSION['coins'] = 0;
   $_SESSION['cad'] = 0;
   $_SESSION['profit'] = 0;
-  $_SESSION['sort_type'];
 ?>
 
 <!doctype html>
@@ -132,85 +131,196 @@
                             $row2 = $result2->fetch_assoc();
                             array_push($all_price_per_share, $row2['price_per_share']);
                         }
-                        if($_SESSION['sort_type'] == 1)
+                        if($_SESSION['sort_type']!=0)
                         {
-                            $i;
-                            $key;
-                            $key2;
-                            $j;
-                            for($i=1; $i<sizeof($all_artists); $i++)
+                            if($_SESSION['sort_type'] == 1)
                             {
-                                $key = $all_artists[$i];
-                                $key2 = $all_shares_bought[$i];
-                                $key3 = $all_rates[$i];
-                                $key4 = $all_price_per_share[$i];
-                                $j = $i-1;
-                                while($j >= 0 && $all_artists[$j] < $key)
+                                $i;
+                                $key;
+                                $key2;
+                                $j;
+                                for($i=1; $i<sizeof($all_artists); $i++)
                                 {
-                                    $all_artists[($j+1)] = $all_artists[$j];
-                                    $all_shares_bought[($j+1)] = $all_shares_bought[$j];
-                                    $all_rates[($j+1)] = $all_rates[$j];
-                                    $all_price_per_share[($j+1)] = $all_price_per_share[$j];
-                                    $j = $j-1;
+                                    $key = $all_artists[$i];
+                                    $key2 = $all_shares_bought[$i];
+                                    $key3 = $all_rates[$i];
+                                    $key4 = $all_price_per_share[$i];
+                                    $j = $i-1;
+                                    while($j >= 0 && $all_artists[$j] < $key)
+                                    {
+                                        $all_artists[($j+1)] = $all_artists[$j];
+                                        $all_shares_bought[($j+1)] = $all_shares_bought[$j];
+                                        $all_rates[($j+1)] = $all_rates[$j];
+                                        $all_price_per_share[($j+1)] = $all_price_per_share[$j];
+                                        $j = $j-1;
+                                    }
+                                    $all_artists[($j+1)] = $key;
+                                    $all_shares_bought[($j+1)] = $key2;
+                                    $all_rates[($j+1)] = $key3;
+                                    $all_price_per_share[($j+1)] = $key4;
                                 }
-                                $all_artists[($j+1)] = $key;
-                                $all_shares_bought[($j+1)] = $key2;
-                                $all_rates[($j+1)] = $key3;
-                                $all_price_per_share[($j+1)] = $key4;
                             }
-                        }
-                        else if($_SESSION['sort_type'] == 2)
-                        {
-                            $i;
-                            $key;
-                            $key2;
-                            $j;
-                            for($i=1; $i<sizeof($all_shares_bought); $i++)
+                            else if($_SESSION['sort_type'] == 2)
                             {
-                                $key = $all_shares_bought[$i];
-                                $key2 = $all_artists[$i];
-                                $key3 = $all_rates[$i];
-                                $key4 = $all_price_per_share[$i];
-                                $j = $i-1;
-                                while($j >= 0 && $all_shares_bought[$j] < $key)
+                                $i;
+                                $key;
+                                $key2;
+                                $j;
+                                for($i=1; $i<sizeof($all_shares_bought); $i++)
                                 {
-                                    $all_shares_bought[($j+1)] = $all_shares_bought[$j];
-                                    $all_artists[($j+1)] = $all_artists[$j];
-                                    $all_rates[($j+1)] = $all_rates[$j];
-                                    $all_price_per_share[($j+1)] = $all_price_per_share[$j];
-                                    $j = $j-1;
+                                    $key = $all_shares_bought[$i];
+                                    $key2 = $all_artists[$i];
+                                    $key3 = $all_rates[$i];
+                                    $key4 = $all_price_per_share[$i];
+                                    $j = $i-1;
+                                    while($j >= 0 && $all_shares_bought[$j] < $key)
+                                    {
+                                        $all_shares_bought[($j+1)] = $all_shares_bought[$j];
+                                        $all_artists[($j+1)] = $all_artists[$j];
+                                        $all_rates[($j+1)] = $all_rates[$j];
+                                        $all_price_per_share[($j+1)] = $all_price_per_share[$j];
+                                        $j = $j-1;
+                                    }
+                                    $all_shares_bought[($j+1)] = $key;
+                                    $all_artists[($j+1)] = $key2;
+                                    $all_rates[($j+1)] = $key3;
+                                    $all_price_per_share[($j+1)] = $key4;
                                 }
-                                $all_shares_bought[($j+1)] = $key;
-                                $all_artists[($j+1)] = $key2;
-                                $all_rates[($j+1)] = $key3;
-                                $all_price_per_share[($j+1)] = $key4;
                             }
-                        }
-                        else if($_SESSION['sort_type'] == 3)
-                        {
-                            $i;
-                            $key;
-                            $key2;
-                            $j;
-                            for($i=1; $i<sizeof($all_price_per_share); $i++)
+                            else if($_SESSION['sort_type'] == 3)
                             {
-                                $key = $all_price_per_share[$i];
-                                $key2 = $all_artists[$i];
-                                $key3 = $all_rates[$i];
-                                $key4 = $all_shares_bought[$i];
-                                $j = $i-1;
-                                while($j >= 0 && $all_price_per_share[$j] < $key)
+                                $i;
+                                $key;
+                                $key2;
+                                $j;
+                                for($i=1; $i<sizeof($all_price_per_share); $i++)
                                 {
-                                    $all_price_per_share[($j+1)] = $all_price_per_share[$j];
-                                    $all_artists[($j+1)] = $all_artists[$j];
-                                    $all_rates[($j+1)] = $all_rates[$j];
-                                    $all_shares_bought[($j+1)] = $all_shares_bought[$j];
-                                    $j = $j-1;
+                                    $key = $all_price_per_share[$i];
+                                    $key2 = $all_artists[$i];
+                                    $key3 = $all_rates[$i];
+                                    $key4 = $all_shares_bought[$i];
+                                    $j = $i-1;
+                                    while($j >= 0 && $all_price_per_share[$j] < $key)
+                                    {
+                                        $all_price_per_share[($j+1)] = $all_price_per_share[$j];
+                                        $all_artists[($j+1)] = $all_artists[$j];
+                                        $all_rates[($j+1)] = $all_rates[$j];
+                                        $all_shares_bought[($j+1)] = $all_shares_bought[$j];
+                                        $j = $j-1;
+                                    }
+                                    $all_price_per_share[($j+1)] = $key;
+                                    $all_artists[($j+1)] = $key2;
+                                    $all_rates[($j+1)] = $key3;
+                                    $all_shares_bought[($j+1)] = $key4;
                                 }
-                                $all_price_per_share[($j+1)] = $key;
-                                $all_artists[($j+1)] = $key2;
-                                $all_rates[($j+1)] = $key3;
-                                $all_shares_bought[($j+1)] = $key4;
+                            }
+                            else if($_SESSION['sort_type'] == 4)
+                            {
+                                $i;
+                                $key;
+                                $key2;
+                                $j;
+                                for($i=1; $i<sizeof($all_artists); $i++)
+                                {
+                                    $key = $all_artists[$i];
+                                    $key2 = $all_shares_bought[$i];
+                                    $key3 = $all_rates[$i];
+                                    $key4 = $all_price_per_share[$i];
+                                    $j = $i-1;
+                                    while($j >= 0 && $all_artists[$j] > $key)
+                                    {
+                                        $all_artists[($j+1)] = $all_artists[$j];
+                                        $all_shares_bought[($j+1)] = $all_shares_bought[$j];
+                                        $all_rates[($j+1)] = $all_rates[$j];
+                                        $all_price_per_share[($j+1)] = $all_price_per_share[$j];
+                                        $j = $j-1;
+                                    }
+                                    $all_artists[($j+1)] = $key;
+                                    $all_shares_bought[($j+1)] = $key2;
+                                    $all_rates[($j+1)] = $key3;
+                                    $all_price_per_share[($j+1)] = $key4;
+                                }
+                            }
+                            else if($_SESSION['sort_type'] == 5)
+                            {
+                                $i;
+                                $key;
+                                $key2;
+                                $j;
+                                for($i=1; $i<sizeof($all_shares_bought); $i++)
+                                {
+                                    $key = $all_shares_bought[$i];
+                                    $key2 = $all_artists[$i];
+                                    $key3 = $all_rates[$i];
+                                    $key4 = $all_price_per_share[$i];
+                                    $j = $i-1;
+                                    while($j >= 0 && $all_shares_bought[$j] > $key)
+                                    {
+                                        $all_shares_bought[($j+1)] = $all_shares_bought[$j];
+                                        $all_artists[($j+1)] = $all_artists[$j];
+                                        $all_rates[($j+1)] = $all_rates[$j];
+                                        $all_price_per_share[($j+1)] = $all_price_per_share[$j];
+                                        $j = $j-1;
+                                    }
+                                    $all_shares_bought[($j+1)] = $key;
+                                    $all_artists[($j+1)] = $key2;
+                                    $all_rates[($j+1)] = $key3;
+                                    $all_price_per_share[($j+1)] = $key4;
+                                }
+                            }
+                            else if($_SESSION['sort_type'] == 6)
+                            {
+                                $i;
+                                $key;
+                                $key2;
+                                $j;
+                                for($i=1; $i<sizeof($all_price_per_share); $i++)
+                                {
+                                    $key = $all_price_per_share[$i];
+                                    $key2 = $all_artists[$i];
+                                    $key3 = $all_rates[$i];
+                                    $key4 = $all_shares_bought[$i];
+                                    $j = $i-1;
+                                    while($j >= 0 && $all_price_per_share[$j] > $key)
+                                    {
+                                        $all_price_per_share[($j+1)] = $all_price_per_share[$j];
+                                        $all_artists[($j+1)] = $all_artists[$j];
+                                        $all_rates[($j+1)] = $all_rates[$j];
+                                        $all_shares_bought[($j+1)] = $all_shares_bought[$j];
+                                        $j = $j-1;
+                                    }
+                                    $all_price_per_share[($j+1)] = $key;
+                                    $all_artists[($j+1)] = $key2;
+                                    $all_rates[($j+1)] = $key3;
+                                    $all_shares_bought[($j+1)] = $key4;
+                                }
+                            }
+                            else if ($_SESSION['sort_type'] == 7)
+                            {
+                                $i;
+                                $key;
+                                $key2;
+                                $j;
+                                for($i=1; $i<sizeof($all_rates); $i++)
+                                {
+                                    $key = $all_rates[$i];
+                                    $key2 = $all_artists[$i];
+                                    $key3 = $all_shares_bought[$i];
+                                    $key4 = $all_price_per_share[$i];
+                                    $j = $i-1;
+                                    while($j >= 0 && $all_rates[$j] > $key)
+                                    {
+                                        $all_rates[($j+1)] = $all_rates[$j];
+                                        $all_artists[($j+1)] = $all_artists[$j];
+                                        $all_shares_bought[($j+1)] = $all_shares_bought[$j];
+                                        $all_price_per_share[($j+1)] = $all_price_per_share[$j];
+                                        $j = $j-1;
+                                    }
+                                    $all_rates[($j+1)] = $key;
+                                    $all_artists[($j+1)] = $key2;
+                                    $all_shares_bought[($j+1)] = $key3;
+                                    $all_price_per_share[($j+1)] = $key4;
+                                }
                             }
                         }
                         else
@@ -251,28 +361,6 @@
                             $id++;
                         }
                     }
-                    // else
-                    // {
-                    //     $id = 1;
-                    //     while($row = $result->fetch_assoc())
-                    //     {
-                    //         $artist_name = $row['artist_username'];
-                    //         $shares_bought = $row['no_of_share_bought'];
-                    //         $result2 = searchArtistPricePerShare($conn, $artist_name);
-                    //         $result3 = searchArtistRate($conn, $artist_name);
-                    //         $rate = $result3->fetch_assoc();
-                    //         $rate['rate'] = $rate['rate'] * 100;
-                    //         $all_profits += $rate['rate'];
-                    //         $row2 = $result2->fetch_assoc();
-                            // echo '<tr><th scope="row">'.$id.'</th><td>'.$artist_name.'</td><td>'.$shares_bought.'</td><td>'.$row2['price_per_share'].'</td>';
-                            // if($rate['rate'] > 0)
-                            //     echo '<td>+'.$rate['rate'].'%</td></tr>';
-                            // else
-                            //     echo '<td>'.$rate['rate'].'%</td></tr>';
-                    //         $id++;
-                    //     }
-                        
-                    // }
                   ?>
                 <form action = "BuyCoinsView.php" method = "post">
                     <div style = "position: absolute;right:400px; top:400px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
