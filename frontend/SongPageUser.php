@@ -1,6 +1,7 @@
 <?php
   session_start();
-  $_SESSION['profit'] = 0;
+  $_SESSION['conversion_rate'];
+  $_SESSION['coins'] = 0;
 ?>
 
 <!doctype html>
@@ -9,7 +10,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Artist</title>
+    <title>Rateify - Search Songs</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -27,14 +28,14 @@
 <body>
 
 <!--navigation-->
-<section class="smart-scroll py-7 py-md-0 bg-hero">
+<section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
             <a class="navbar-brand heading-black" href="index.php">
-                HASSNER
+                Rateify
             </a>
             <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Account Balance</p>
-            <p style = "position: absolute;right:40px; top:26px;">
+            <p style = "position: absolute;right:20px; top:26px;">
                 <?php
                     include '../APIs/logic.php';
                     include '../APIs/connection.php';
@@ -66,30 +67,26 @@
 
 <!-- listener functionality -->
 <section class="py-7 py-md-0 bg-hero" id="login">
-    <div style = "position: absolute; top:200px; left: 20px;"class="container">
-            
+    <div class="container">
+        <div class="row vh-md-100">
             <div class="col-12 mx-auto my-auto text-center">
             <div  class="col text-left">
                 <a href="SearchSong.php"> <-Search Artist</a>
               </div>
               
-                <div style = "position: absolute; left:130px; bottom: 20px;" class="col text-center">
+            <div style = "position: absolute; left:130px; top: -200px;" class="col text-center">
                     <h1>Your shares with <?php echo $_SESSION['artist'];?> </h1>
                     
                 </div>
-                <div  style = "position: absolute;left:100px; top:60px;" class="col text-center">
+                <div  style = "position: absolute;left:100px; top:-100px;" class="col text-center">
                 <p> Don't know who to invest? </p>
                 <a href="TopInvestedArtists.php"> View top invested artist here</a>
               </div>
-                 <!-- hyperlinks -->
-             
-            </div> 
-            <div style = "position: absolute; top: 200px; left:100px;"class = "col text-center">
-            <table style = "width: 1200px;" class="table">
-                </div>
+
+              <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">No. shares you own</th>
+                    <th scope="col">No. shares you own</th>
                         <th scope="col">Artist</th>
                         <th scope="col">Current price per share</th>
                         <th scope="col">Selling profit per share</th>
@@ -97,15 +94,14 @@
                     </thead>
                     <tbody>
               <!-- view song form -->
-
-                  <?php
+              <?php
                     $_SESSION['profit'] = $_SESSION['per_share_price'] * $_SESSION['rate'];
                     $_SESSION['profit'] = $_SESSION['profit'] + $_SESSION['per_share_price'];
                     $rate = $_SESSION['rate'] * 100;
                     echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$_SESSION['profit'].' ('.$rate.'%)</td></tr>';
                   ?>
               </tbody>
-            </table> 
+            </table>
             <?php
               echo '<div><a href="RatingView.php"> +Buy more shares</a>.</div>';
               echo "<br>";
@@ -113,6 +109,7 @@
               echo "<br>";
             ?>
             </div>
+        </div>
     </div>
 </section>
 
