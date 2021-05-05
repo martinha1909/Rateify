@@ -59,21 +59,27 @@
 
               <!-- view song form -->
               <table class="table">
+                <div  style = "top: 15px;" class="col text-center">
+                    <h6>*Click on Album Name to toggle publicity*</h6>
+                </div>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Album Name</th>
                         <th scope="col">No_of_Songs</th>
                         <th scope="col">Duration</th>
+                        <th scope="col">Status</th>
                     </tr>
                     </thead>
                     <tbody>
               <!-- view song form -->
 
               <!--NEED TO EDIT WHERE THIS GOES WHEN CLICKING ALBUM NAME-->
-              <form action="../APIs/DisplayAlbumConnection.php" method="post">
+              <form action="../APIs/PublishAlbumConnection.php" method="post">
                   <?php
-
+                    include '../APIs/logic.php';
+                    include '../APIs/connection.php';
+                    $conn = connect();
                     if(!empty($_SESSION['artists_albums']))
                     {
                         $no_of_albums = count($_SESSION['artists_albums']);
@@ -83,9 +89,19 @@
                             $duration = $_SESSION['artists_albums'][$album_no]['duration'];
                             $no_of_songs = $_SESSION['artists_albums'][$album_no]['no_of_songs'];
                             $album_name = $_SESSION['artists_albums'][$album_no]['name'];
+                            $result = searchAlbum($conn, $album_name);
+                            $published = $result->fetch_assoc();
+                            if($published['Published'] == 0)
+                                $status = "Not Published";
+                            else
+                                $status = "Published";
                             
                             
-                            echo '<tr><th scope="row">'.$id.'</th><td><input name = "album_name['.$album_name.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$album_name.'"></td><td>'.$no_of_songs.'</td><td>'.$duration.'</td></tr>';
+                            echo '<tr><th scope="row">'.$id.'</th>
+                                  <td><input name = "album_name['.$album_name.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$album_name.'" onclick = "window.location.href=window.location.href"></td>
+                                  <td>'.$no_of_songs.'</td>
+                                  <td>'.$duration.'</td>
+                                  <td>'.$status.'</td></tr>';
                             
                             $id++;
                             $album_no++;

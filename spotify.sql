@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2021 at 08:47 PM
+-- Generation Time: May 06, 2021 at 12:44 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -70,19 +70,20 @@ CREATE TABLE `album` (
   `name` varchar(50) NOT NULL,
   `no_of_songs` int(11) NOT NULL,
   `duration` float NOT NULL,
-  `date_created` varchar(10) NOT NULL
+  `date_created` varchar(10) NOT NULL,
+  `Published` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `album`
 --
 
-INSERT INTO `album` (`name`, `no_of_songs`, `duration`, `date_created`) VALUES
-('88Glam 2.5', 0, 0.0000000476837, 'April 10th'),
-('88Glam Reloaded', 2, 6.4, 'April 14th'),
-('Emergency Tsunami', 0, 0, 'December 1'),
-('New Mania', 1, 3.1, 'April 15th'),
-('Utopia', 1, 3.2, 'April 18th');
+INSERT INTO `album` (`name`, `no_of_songs`, `duration`, `date_created`, `Published`) VALUES
+('88Glam 2.5', 0, 0, 'April 10th', 1),
+('88Glam Reloaded', 2, 6.4, 'April 14th', 1),
+('Emergency Tsunami', 0, 0, 'December 1', 0),
+('New Mania', 1, 3.1, 'April 15th', 1),
+('Utopia', 1, 3.2, 'April 18th', 0);
 
 -- --------------------------------------------------------
 
@@ -101,6 +102,7 @@ CREATE TABLE `album_song` (
 
 INSERT INTO `album_song` (`album_name`, `song_id`) VALUES
 ('88Glam Reloaded', 1),
+('88Glam Reloaded', 3),
 ('New Mania', 4);
 
 -- --------------------------------------------------------
@@ -280,23 +282,26 @@ CREATE TABLE `song` (
   `no_of_plays` int(11) NOT NULL,
   `duration` float NOT NULL,
   `name` varchar(50) NOT NULL,
-  `date_created` varchar(50) NOT NULL
+  `date_created` varchar(50) NOT NULL,
+  `Published` int(10) NOT NULL,
+  `Monthly_Listeners` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `song`
 --
 
-INSERT INTO `song` (`id`, `album_name`, `no_of_plays`, `duration`, `name`, `date_created`) VALUES
-(1, '88Glam Reloaded', 3, 3.2, 'Kitchen Witch', 'April 16th'),
-(2, NULL, 1, 3, 'Ricardo', 'April 16th'),
-(4, 'New Mania', 0, 3.1, 'East to West', 'April 16th'),
-(5, NULL, 0, 2, 'Habits', 'April 12th'),
-(6, NULL, 0, 2.4, 'Hit', 'May 5th'),
-(7, NULL, 0, 4.2, 'Drift Away', 'April 1st'),
-(9, NULL, 0, 4, 'Antidote', 'April 17'),
-(10, NULL, 0, 4.2, 'Moovin\' Up', 'April 21st'),
-(11, NULL, 0, 3.4, 'Space Cadet', 'April 17th');
+INSERT INTO `song` (`id`, `album_name`, `no_of_plays`, `duration`, `name`, `date_created`, `Published`, `Monthly_Listeners`) VALUES
+(1, '88Glam Reloaded', 3, 3.2, 'Kitchen Witch', 'April 16th, 2021', 1, 0),
+(2, NULL, 1, 3, 'Ricardo', 'April 16th, 2021', 1, 0),
+(3, '88Glam Reloaded', 0, 3, 'Wet Dreams', 'May 5th, 2021', 1, 0),
+(4, 'New Mania', 0, 3.1, 'East to West', 'April 16th', 1, 0),
+(5, NULL, 0, 2, 'Habits', 'April 12th', 0, 0),
+(6, NULL, 0, 2.4, 'Hit', 'May 5th', 0, 0),
+(7, NULL, 0, 4.2, 'Drift Away', 'April 1st', 0, 0),
+(9, NULL, 0, 4, 'Antidote', 'April 17', 0, 0),
+(10, NULL, 0, 4.2, 'Moovin\' Up', 'April 21st', 0, 0),
+(11, NULL, 0, 3.4, 'Space Cadet', 'April 17th', 0, 0);
 
 -- --------------------------------------------------------
 

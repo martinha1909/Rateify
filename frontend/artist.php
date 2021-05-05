@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $_SESSION['status'];
 ?>
 
 <!doctype html>
@@ -61,13 +62,13 @@
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <form action="../APIs/DisplayArtistSongsConnection.php" method="post">
-                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "View My Songs">
+                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "My Songs">
                 </form>
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <form action="../APIs/DisplayArtistAlbumsConnection.php" method="post">
-                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "View My Albums">
+                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "My Albums">
                 </form>
               </div>
 

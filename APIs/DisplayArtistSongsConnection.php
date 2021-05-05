@@ -22,6 +22,7 @@
         }else{
             $_SESSION['artists_songs'] = NULL;
         }
+        // echo $_SESSION['artists_songs'][0]['Monthly_Listeners'];
         
         //echo $_SESSION['artists_songs']['name'];
         header("Location: ../frontend/ArtistViewSongs.php");

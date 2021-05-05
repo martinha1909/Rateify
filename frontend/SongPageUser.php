@@ -52,7 +52,7 @@
                     if($_SESSION['conversion_rate'] > 0)
                         echo "+";
                     echo $_SESSION['conversion_rate'];
-                    echo "%";
+                        echo "%";
                 ?>
             </p>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -74,16 +74,16 @@
                 <a href="SearchSong.php"> <-Search Artist</a>
               </div>
               
-            <div style = "position: absolute; left:130px; top: -200px;" class="col text-center">
+            <div style = "position: absolute; left:50px; top: -200px;" class="col text-center">
                     <h1>Your shares with <?php echo $_SESSION['artist'];?> </h1>
                     
                 </div>
-                <div  style = "position: absolute;left:100px; top:-100px;" class="col text-center">
+                <div  style = "position: absolute;left:30px; top:-100px;" class="col text-center">
                 <p> Don't know who to invest? </p>
                 <a href="TopInvestedArtists.php"> View top invested artist here</a>
               </div>
 
-              <table class="table">
+              <table class="table" style = "position:absolute; top: 50px;">
                     <thead>
                     <tr>
                     <th scope="col">No. shares you own</th>
@@ -102,14 +102,149 @@
                   ?>
               </tbody>
             </table>
-            <?php
-              echo '<div><a href="RatingView.php"> +Buy more shares</a>.</div>';
-              echo "<br>";
-              echo '<div><a href="SellShares.php"> -Sell your shares</a>.</div>';
-              echo "<br>";
-            ?>
+            <div style = "position: absolute; top: 170px; left: 500px;">
+                <?php
+                echo '<div><a href="RatingView.php"> +Buy more shares</a></div>';
+                echo "<br>";
+                echo '<div><a href="SellShares.php"> -Sell your shares</a></div>';
+                echo "<br>";
+                ?>
+                <a class= "nav-link page-scroll" href="#New_releases" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
+                        <!--It loss the green background, but it scrolls to the bottom of the page now (or we can make it go to the signup page automatically)-->
+                        ↓ New Releases
+                    </a>
+            </div>
             </div>
         </div>
+    </div>
+</section>
+<section class="py-5 top-right bottom-left" id="New_releases">
+<a class= "nav-link page-scroll" href="#singles" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; left: 480px; top: 725px;">
+    Singles
+</a>
+<a class= "nav-link page-scroll" href="#albums" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; left: 580px; top: 725px;">
+    Albums
+</a>
+<a class= "nav-link page-scroll" href="#posts" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; left: 680px; top: 725px;">
+    Posts
+</a>
+    <div>
+            <h2><?php echo $_SESSION['artist'];?> New Releases</h2>
+            <h3 id="singles">Latest Singles</h3>
+            <table class="table">
+                    <?php
+                        $result = searchArtistSingles($conn, $_SESSION['artist']);
+                        if(sizeof($result) > 0)
+                        {
+                            echo '
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Plays</th>
+                                <th scope="col">Duration</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>';
+                            $id = 1;
+                            for($i=0; $i<sizeof($result); $i++)
+                            {
+                                echo '<tr><th scope="row">'.$id.'</th>
+                                    <td>'.$result[$i]['name'].'</td>
+                                    <td>'.$result[$i]['no_of_plays'].'</td>
+                                    <td>'.$result[$i]['duration'].'</td>
+                                    <td>'.$result[$i]['date_created'].'</td></tr>';
+                                $id++;
+                            }
+                            echo '</tbody>';
+                        }
+                        else
+                            echo '<h6>No new releases</h6>';
+                    ?>
+            </table>
+
+            <h4 id="albums">Latest Albums</h4>
+            <table class="table">
+            <?php
+                $result = searchArtistAlbum($conn, "88Glam");
+                $latest_albums = array();
+                if($result->num_rows > 0)
+                {
+                    while($row = $result->fetch_assoc())
+                    {
+                        $result2 = searchAlbum($conn, $row['album_name']);
+                        $album_info = $result2->fetch_assoc();
+                        if($album_info['Published'] == 1)
+                            array_push($latest_albums, $album_info);
+                    }
+                }
+                if(sizeof($latest_albums) > 0)
+                {
+                    echo '
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Songs</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>';
+                    $id = 1;
+                    for($i=0; $i < sizeof($latest_albums); $i++)
+                    {
+                        $songs_in_album = array();
+                        $result2 = searchSongsInAlbum($conn, $latest_albums[$i]['name']);
+                        while($row2 = $result2->fetch_assoc())
+                        {
+                            $result3 = searchSong($conn, $row2['song_id']);
+                            while($song_name = $result3 -> fetch_assoc())
+                            {
+                                if($song_name['Published'] == 1)
+                                    array_push($songs_in_album, $song_name['name']);
+                            }
+                        }   
+                        if(sizeof($songs_in_album) > 0)
+                        {
+                            echo '<tr><th scope="row">'.$id.'</th>
+                                <td>'.$latest_albums[$i]['name'].'</td>
+                                <td><ul class="list-group">';
+                            for($j=0; $j < sizeof($songs_in_album); $j++)
+                                echo '<li class="list-group-item list-group-item-dark">'.$songs_in_album[$j].'</li>';
+                            echo '</ul></td>
+                                <td>'.$latest_albums[$i]['duration'].'</td>
+                                <td>'.$latest_albums[$i]['date_created'].'</td></tr>';
+                            $id++;
+                        }
+                        else
+                        {
+                            echo '<tr><th scope="row">'.$id.'</th>
+                                    <td>'.$latest_albums[$i]['name'].'</td>
+                                    <td></td>
+                                    <td>'.$latest_albums[$i]['duration'].'</td>
+                                    <td>'.$latest_albums[$i]['date_created'].'</td></tr>';
+                                $id++;
+                        }
+                    }
+                }
+            ?>
+            </table>
+
+            <h4 id="posts">Latest Posts</h4>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
     </div>
 </section>
 

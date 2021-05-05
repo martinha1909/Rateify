@@ -162,6 +162,22 @@
             return $result;
         }
 
+        function searchArtistSingles($conn, $artist_username)
+        {
+            $singles = array();
+            $query = searchSongByArtist($conn, $artist_username);
+            while($song = $query->fetch_assoc())
+            {
+                $result = searchSong($conn, $song['song_id']);
+                while($song_info = $result->fetch_assoc())
+                {
+                    if($song_info['album_name'] == NULL && $song_info['Published'] == 1)
+                        array_push($singles, $song_info);
+                }
+            }
+            return $singles;
+        }
+
         // function searchSongByArt
 
         //searches for all albums inside album table
@@ -548,6 +564,40 @@
             } else {
              echo "Error: " . $sql . "<br>" . $conn->error;
             }  
+        }
+
+        function publishSong($conn, $song_id)
+        {
+            $result = searchSong($conn, $song_id);
+            $published = $result->fetch_assoc();
+            if($published['Published'] == 0)
+            {
+                $sql = "UPDATE song SET Published = 1 WHERE id = '$song_id' ";
+                $conn->query($sql);
+            }
+            if($published['Published'] == 1)
+            {
+                $sql = "UPDATE song SET Published = 0 WHERE id = '$song_id' ";
+                $conn->query($sql);
+            }
+            
+        }
+
+        function publishAlbum($conn, $album_name)
+        {
+            $result = searchAlbum($conn, $album_name);
+            $published = $result->fetch_assoc();
+            if($published['Published'] == 0)
+            {
+                $sql = "UPDATE album SET Published = 1 WHERE name = '$album_name' ";
+                $conn->query($sql);
+            }
+            if($published['Published'] == 1)
+            {
+                $sql = "UPDATE album SET Published = 0 WHERE name = '$album_name' ";
+                $conn->query($sql);
+            }
+            
         }
 
         //creates a new Album and specifies the name of the album as well as the date created (no_of_songs and duration are set to 0 to begin with)

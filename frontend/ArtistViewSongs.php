@@ -1,5 +1,6 @@
 <?php
   session_start();
+
 ?>
 
 <!doctype html>
@@ -49,7 +50,7 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-              <h1> View my songs. </h1>
+              <h1> My songs. </h1>
               </div>
 
               <!-- hyperlinks -->
@@ -59,23 +60,26 @@
 
               <table class="table">
               <div  style = "top: 15px;" class="col text-center">
-                <h6>*Click on Song Name For Details*</h6>
+                <h6>*Click on Song Name to toggle publicity*</h6>
                 </div>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Song</th>
                         <th scope="col">Album</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">No_of_Plays</th>
+                        <th scope="col">Monthly Listeners</th>
+                        <th scope="col">Total Plays</th>
+                        <th scope="col">Status</th>
                     </tr>
                     </thead>
                     <tbody>
               <!-- view song form -->
 
-              <form action="../APIs/SongDisplay.php" method="post">
+              <form action="../APIs/PublishSongConnection.php" method="post">
                   <?php
-
+                    include '../APIs/logic.php';
+                    include '../APIs/connection.php';
+                    $conn = connect();
                     if(!empty($_SESSION['artists_songs']))
                     {
                         $no_of_songs = count($_SESSION['artists_songs']);
@@ -83,13 +87,24 @@
                         $id = 1;
                         while($no_of_songs > $song_no){
                             $song_name = $_SESSION['artists_songs'][$song_no]['name'];
-                            $duration = $_SESSION['artists_songs'][$song_no]['duration'];
+                            $monthly_listeners = $_SESSION['artists_songs'][$song_no]['Monthly_Listeners'];
                             $no_of_plays = $_SESSION['artists_songs'][$song_no]['no_of_plays'];
                             $album_name = $_SESSION['artists_songs'][$song_no]['album_name'];
                             $song_id = $_SESSION['artists_songs'][$song_no]['id'];
+                            $result = searchSong($conn, $song_id);
+                            $published = $result->fetch_assoc();
+                            if($published['Published'] == 0)
+                                $_SESSION['status'] = "Not Published";
+                            else
+                                $_SESSION['status'] = "Published";
                             
-                            echo '<tr><th scope="row">'.$id.'</th><td><input name = "song_id['.$song_id.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$song_name.'"></td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
-
+                            
+                            echo '<tr><th scope="row">'.$id.'</th>
+                                  <td><input name = "song_id['.$song_id.']" type = "submit" style="border:1px transparent; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$song_name.'" onclick = "window.location.href=window.location.href"></td>
+                                  <td>'.$album_name.'</td><td>'.$monthly_listeners.'</td>
+                                  <td>'.$no_of_plays.'</td>
+                                  <td>'.$_SESSION['status'].'</td></tr>';
+                            
                             $id++;
                             $song_no++;
                         }
