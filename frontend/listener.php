@@ -72,33 +72,35 @@
         <div class="row vh-md-100">
             <div class="col-12 mx-auto my-auto text-center">
               
-              <div class="col text-center">
-              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
-              <p> Username: <?php echo $_SESSION['username'] ?></p> 
-              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
+              <div style = "position: absolute;right:793px; top:-50px;" class="col text-center">
+              <h1> Hello <?php echo $_SESSION['username'] ?>!</h1>
               </div>
 
               <!-- header -->
-              <div class="col text-center">
-                <h2> Please select an action </h2>
+              <div style = "position: absolute;right:0px; top:-150px;" class="col text-center">
+                <h5>search bar➯</h5>
               </div>
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+              <div style = "position: absolute;right:-750px; top:-300px;" class="col text-center">
+                <h5>drop down menu</h5>
+              </div>
+
+              <div style = "position: absolute;right:1000px; top:50px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <a href="listenerSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
                   Invest
                 </a>
               </div>
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+              <div style = "position: absolute;right:1040px; top:0px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
               <form action="DisplayUserInvestments.php" method="post">
-              <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "Your investments">
+              <input type = "submit" class="btn btn-secondary" role="button" aria-pressed="true" value = "My investments">
               </form>
 
               </div>
 
               <!-- logout button-->
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
+              <div style = "position: absolute;right:-540px; top:-300px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                <a href="index.php" class="btn btn-danger" role="button" aria-pressed="true">
                   Logout
                 </a>
               </div>
