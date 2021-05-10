@@ -92,7 +92,7 @@
                         <p class="text-muted">Support your favourite artists and make returns!</p>
                     </div>
                     <div class="col-md-6 box">
-                        <div class="icon-box box-success">
+                        <div class="icon-box box-danger">
                             <div class="icon-box-inner">
                                 <span data-feather="edit-3" width="35" height="35"></span>
                             </div>

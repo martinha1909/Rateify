@@ -77,10 +77,7 @@
               </div>
 
               <!-- header -->
-              <div style = "position: absolute;right:0px; top:-150px;" class="col text-center">
-                <h5>search bar➯</h5>
-              </div>
-
+            
               <div style = "position: absolute;right:-750px; top:-300px;" class="col text-center">
                 <h5>drop down menu</h5>
               </div>
@@ -98,8 +95,24 @@
 
               </div>
 
+              <form action="../APIs/SearchSongsConnection.php" method="post">
+                    <!-- Search field -->
+                    <div style="position: absolute; right: 450px; top: -300px;" class="form-group">
+                      <input name = "artist_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Artist Name">
+                    </div>
+                    
+                   
+                </form>
+
+                <div style="position: absolute; right: 325px; top: -410px;" class="col-md-6 box">
+                        <div class="icon-box box-secondary">
+                            <div class="icon-box-inner">
+                                <span data-feather="search" width="35" height="35"></span>
+                            </div>
+                        </div>
+
               <!-- logout button-->
-              <div style = "position: absolute;right:-540px; top:-300px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
+              <div style = "position: absolute;right:-300px; top:-50px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <a href="index.php" class="btn btn-danger" role="button" aria-pressed="true">
                   Logout
                 </a>
