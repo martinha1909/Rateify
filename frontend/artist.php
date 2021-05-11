@@ -1,7 +1,7 @@
 <?php
   session_start();
-  $_SESSION['status'];
-?>
+  $_SESSION['status'] = 0;
+?> 
 
 <!doctype html>
 <html lang="en">
@@ -33,6 +33,32 @@
             <a class="navbar-brand heading-black" href="index.php">
                 Rateify
             </a>
+            <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Shares Distributed</p>
+            <p style = "position: absolute;right:70px; top:26px;">
+                <?php
+                    include '../APIs/logic.php';
+                    include '../APIs/connection.php';
+                    $conn = connect();
+                    $result = getArtistShares($conn, $_SESSION['username']);
+                    $_SESSION['artist_distributed'] = $result->fetch_assoc();
+                    echo $_SESSION['artist_distributed']['Share_Distributed'];
+                ?>
+            </p>
+            <div  style = "position: absolute;right:40px; top:25px;" class="col text-right">
+                <a href="../APIs/IncreaseSharesDistributed.php" onclick='window.location.reload();'>+</a>
+            </div>
+            <div  style = "position: absolute;right:75px; top:25px;" class="col text-right">
+                <a href="../APIs/DecreaseSharesDistributed.php" onclick='window.location.reload();'>-</a>
+            </div>
+            <p style = "position: absolute;right:165px; top:0px;" class="navbar-light bg-dark">Unbought Shares</p>
+            <p style = "position: absolute;right:230px; top:26px;">
+                <?php
+                   $result2 = searchArtistShares($conn, $_SESSION['username']);
+                   $artist_share = $result2->fetch_assoc();
+                   $unbought = $_SESSION['artist_distributed']['Share_Distributed'] - $artist_share['Shares'];
+                   echo $unbought;
+                ?>
+            </p>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -86,8 +112,8 @@
 
               <!-- logout button-->
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Logout
+                <a href="ArtistWritePost.php" class="btn btn-primary" role="button" aria-pressed="true">
+                  Write a post
                 </a>
               </div>
               

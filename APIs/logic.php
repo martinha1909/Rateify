@@ -32,6 +32,16 @@
             return $result;
         }
 
+        function getArtistShares($conn, $artist_username)
+        {
+            $sql = "SELECT Share_Distributed FROM account WHERE username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $artist_username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        }
+
         function getUserBalance($conn, $username)
         {
             $sql = "SELECT balance FROM account WHERE username = ?";
@@ -48,15 +58,16 @@
             $rate = 0;
             $num_of_shares = 0;
             $notify = 0;
+            $share_distributed = 0;
             $result = getMaxID($conn);
             $row = $result->fetch_assoc(); 
             $id = $row["max_id"] + 1;
             // $sql = "INSERT INTO account (username, password, account_type, id)
             //         VALUES('$username', '$password', '$type', '$id')";
-            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate)
-                    VALUES(?, ?, ?, $id, ?, ?, ?)";
+            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed)
+                    VALUES(?, ?, ?, $id, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssidd', $username, $password, $type, $num_of_shares, $balance, $rate);
+            $stmt->bind_param('sssiddi', $username, $password, $type, $num_of_shares, $balance, $rate, $share_distributed);
             if ($stmt->execute() === TRUE) {
                 $notify = 1;
             } else {
@@ -770,6 +781,18 @@
         function increaseArtistRate($conn, $artist_username)
         {
             $sql = "UPDATE account SET rate = rate + 0.013 WHERE username = '$artist_username'";
+            $conn->query($sql);
+        }
+
+        function increaseArtistDistributedShare($conn, $artist_username)
+        {
+            $sql = "UPDATE account SET Share_Distributed = Share_Distributed + 1 WHERE username = '$artist_username'";
+            $conn->query($sql);
+        }
+
+        function decreaseArtistDistributedShare($conn, $artist_username)
+        {
+            $sql = "UPDATE account SET Share_Distributed = Share_Distributed - 1 WHERE username = '$artist_username'";
             $conn->query($sql);
         }
 

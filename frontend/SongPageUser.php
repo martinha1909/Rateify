@@ -119,13 +119,13 @@
     </div>
 </section>
 <section class="py-5 top-right bottom-left" id="New_releases">
-<a class= "nav-link page-scroll" href="#singles" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; left: 480px; top: 725px;">
+<a class= "nav-link page-scroll" href="#singles" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; right: 250px; top: 725px;">
     Singles
 </a>
-<a class= "nav-link page-scroll" href="#albums" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; left: 580px; top: 725px;">
+<a class= "nav-link page-scroll" href="#albums" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; right: 150px; top: 725px;">
     Albums
 </a>
-<a class= "nav-link page-scroll" href="#posts" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; left: 680px; top: 725px;">
+<a class= "nav-link page-scroll" href="#posts" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; right: 50px; top: 725px;">
     Posts
 </a>
     <div>
@@ -167,7 +167,7 @@
             <h4 id="albums">Latest Albums</h4>
             <table class="table">
             <?php
-                $result = searchArtistAlbum($conn, "88Glam");
+                $result = searchArtistAlbum($conn, $_SESSION['artist']);
                 $latest_albums = array();
                 if($result->num_rows > 0)
                 {
@@ -229,6 +229,8 @@
                         }
                     }
                 }
+                else
+                    echo '<h6>No new releases</h6>';
             ?>
             </table>
 
