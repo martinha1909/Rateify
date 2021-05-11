@@ -411,14 +411,16 @@
         function createSong($conn, $id, $album_name, $no_of_plays, $duration, $name, $date_created, $username, $type) //done2
         {
             $notify = 0;
+            $published = 0;
+            $monthly = 0;
             if($album_name == NULL)
             {
                 // $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created)
                 //         VALUES ('$id', NULL, '$no_of_plays', '$duration', '$name', '$date_created')";
-                $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created)
-                VALUES (?, NULL, ?, ?, ?, ?)";
+                $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created, Published, Monthly_Listeners)
+                VALUES (?, NULL, ?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param('iidss', $id, $no_of_plays, $duration, $name, $date_created);
+                $stmt->bind_param('iidssii', $id, $no_of_plays, $duration, $name, $date_created, $published, $monthly);
                 if ($stmt->execute() === TRUE) {
                     $notify = 1;
                 } else {
@@ -429,10 +431,10 @@
             {
                 // $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created)
                 //         VALUES ('$id', '$album_name', '$no_of_plays', '$duration', '$name', '$date_created')";
-                $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created)
-                VALUES (?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created, Published, Monthly_Listeners)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param('isidss', $id, $album_name, $no_of_plays, $duration, $name, $date_created);
+                $stmt->bind_param('isidssii', $id, $album_name, $no_of_plays, $duration, $name, $date_created, $published, $monthly);
                 if ($stmt->execute() === TRUE) {
                     // echo "<script>alert('song created successfully');</script>";
                     $notify = 1;

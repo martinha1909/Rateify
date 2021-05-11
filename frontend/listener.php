@@ -11,7 +11,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Listener</title>
+    <title>HASSNER - INVESTOR</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -32,7 +32,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.php">
+            <a class="navbar-brand heading-black" href="#" onclick='window.location.reload();'>
                 HASSNER
             </a>
             <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Account Balance</p>
