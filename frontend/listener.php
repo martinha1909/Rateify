@@ -72,23 +72,23 @@
         <div class="row vh-md-100">
             <div class="col-12 mx-auto my-auto text-center">
               
-              <div style = "position: absolute;right:793px; top:-50px;" class="col text-center">
+              <div style = "position: absolute;right:0px; top:0px;" class="col text-center">
               <h1> Hello <?php echo $_SESSION['username'] ?>!</h1>
               </div>
 
               <!-- header -->
             
-              <div style = "position: absolute;right:-750px; top:-300px;" class="col text-center">
+              <div style = "position: absolute;right:0px; top:0px;" class="col text-center">
                 <h5>drop down menu</h5>
               </div>
 
-              <div style = "position: absolute;right:1000px; top:50px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
+              <div style = "position: absolute;right:0px; top:200px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <a href="listenerSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
                   Invest
                 </a>
               </div>
 
-              <div style = "position: absolute;right:1040px; top:0px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
+              <div style = "position: absolute;right:300px; top:0px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
               <form action="DisplayUserInvestments.php" method="post">
               <input type = "submit" class="btn btn-secondary" role="button" aria-pressed="true" value = "My investments">
               </form>
@@ -104,7 +104,7 @@
                    
                 </form>
 
-                <div style="position: absolute; right: 325px; top: -410px;" class="col-md-6 box">
+                <div style="position: absolute; right: 100px; top: 100px;" class="col-md-6 box">
                         <div class="icon-box box-secondary">
                             <div class="icon-box-inner">
                                 <span data-feather="search" width="35" height="35"></span>
@@ -112,7 +112,7 @@
                         </div>
 
               <!-- logout button-->
-              <div style = "position: absolute;right:-300px; top:-50px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
+              <div style = "position: absolute;right:0px; top:0px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <a href="index.php" class="btn btn-danger" role="button" aria-pressed="true">
                   Logout
                 </a>
