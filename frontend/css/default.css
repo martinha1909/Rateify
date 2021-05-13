@@ -3223,7 +3223,7 @@ input[type="button"].btn-block {
   height: 0;
   margin: 0.5rem 0;
   overflow: hidden;
-  border-top: 1px solid #eceff1;
+  border-top: 1px solid #f1ecec;
 }
 
 .dropdown-item {

@@ -74,7 +74,7 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-              <h1> <?php echo $_SESSION['username'];?> investments</h1>
+              <h1> <?php echo $_SESSION['username'];?>'s portfolio</h1>
               </div>
 
               <!-- hyperlinks -->

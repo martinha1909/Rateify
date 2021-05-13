@@ -29,33 +29,20 @@
 <body>
 
 <!--navigation-->
-<section class="smart-scroll">
+
+<header class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
             <a class="navbar-brand heading-black" href="#" onclick='window.location.reload();'>
                 HASSNER
             </a>
-            <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Account Balance</p>
-            <p style = "position: absolute;right:40px; top:26px;">
                 <?php
                     include '../APIs/logic.php';
                     include '../APIs/connection.php';
                     $conn = connect();
                     $result = getUserBalance($conn, $_SESSION['username']);
                     $balance = $result->fetch_assoc();
-                    echo "Coins: ";
-                    echo $balance['balance'];
                 ?>
-            </p>
-            <p style = "position: absolute;right:165px; top:0px;" class="navbar-light bg-dark">Current Rate</p>
-            <p style = "position: absolute;right:190px; top:26px;">
-                <?php
-                    if($_SESSION['conversion_rate'] > 0)
-                        echo "+";
-                    echo $_SESSION['conversion_rate'];
-                    echo "%";
-                ?>
-            </p>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -64,7 +51,8 @@
             
         </nav>
     </div>
-</section>
+</header>
+
 
 <!-- listener functionality -->
 <section class="py-7 py-md-0 bg-hero" id="login">
@@ -78,26 +66,37 @@
 
               <!-- header -->
             
-              <div style = "position: absolute;right:0px; top:0px;" class="col text-center">
-                <h5>drop down menu</h5>
-              </div>
+              <div style = "position: absolute;right:-300px; top:200px;" class="btn-group">
+                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?php echo $_SESSION['username'] ?>
+                </button>
+                <div class="dropdown-menu">
+                    <p class="dropdown-item">Coins: <?php echo $balance['balance'];?></p>
+                    <a class="dropdown-item" href="#">Buy & Sell Coins</a>
+                    <a class="dropdown-item" href="#">Account</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="login.php">Log out</a>
+                    </div>
+                </div>
+            </div>
 
-              <div style = "position: absolute;right:0px; top:200px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="listenerSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Invest
+              <div style = "position: absolute;right:-400px; top:0px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                <a href="TopInvestedArtists.php" class="btn btn-primary" role="button" aria-pressed="true">
+                  View top invested Artists
                 </a>
               </div>
 
-              <div style = "position: absolute;right:300px; top:0px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
+              <div style = "position: absolute;right:0px; top:200px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
               <form action="DisplayUserInvestments.php" method="post">
-              <input type = "submit" class="btn btn-secondary" role="button" aria-pressed="true" value = "My investments">
+              <input type = "submit" class="btn btn-secondary" role="button" aria-pressed="true" value = "My Portfolio">
               </form>
 
               </div>
 
               <form action="../APIs/SearchSongsConnection.php" method="post">
                     <!-- Search field -->
-                    <div style="position: absolute; right: 450px; top: -300px;" class="form-group">
+                    <div style="position: absolute; right: 0px; top: 500px;" class="form-group">
                       <input name = "artist_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Artist Name">
                     </div>
                     
@@ -109,15 +108,7 @@
                             <div class="icon-box-inner">
                                 <span data-feather="search" width="35" height="35"></span>
                             </div>
-                        </div>
-
-              <!-- logout button-->
-              <div style = "position: absolute;right:0px; top:0px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.php" class="btn btn-danger" role="button" aria-pressed="true">
-                  Logout
-                </a>
-              </div>
-              
+                        </div>        
             </div>
         </div>
     </div>
