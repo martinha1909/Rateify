@@ -90,24 +90,50 @@
                         <th scope="col">Artist</th>
                         <th scope="col">Current price per share</th>
                         <th scope="col">Selling profit per share</th>
+                        <th scope="col">Shares Available</th>
                     </tr>
                     </thead>
                     <tbody>
               <!-- view song form -->
               <?php
+                    $result = searchArtistUserShares($conn, $_SESSION['username'], $_SESSION['artist']);
+                    $shares_bought = 0;
+                    if($result->num_rows > 0)
+                    {
+                        $_SESSION['current_no_of_shares'] = $result->fetch_assoc();
+                        $shares_bought = $_SESSION['current_no_of_shares']['no_of_share_bought'];
+                    }
+                    else
+                        $shares_bought = 0;
+                    $result2 = getArtistShares($conn, $_SESSION['artist']);
+                    $result3 = searchArtistShares($conn, $_SESSION['artist']);
+                    $total_shares_bought = $result3->fetch_assoc();
+                    $share_distributed = $result2->fetch_assoc();
+                    $_SESSION['shares_available'] = $share_distributed['Share_Distributed'] - $total_shares_bought['Shares'];
                     $_SESSION['profit'] = $_SESSION['per_share_price'] * $_SESSION['rate'];
                     $_SESSION['profit'] = $_SESSION['profit'] + $_SESSION['per_share_price'];
                     $rate = $_SESSION['rate'] * 100;
-                    echo '<tr><th scope="row">'.$_SESSION['current_no_of_shares'].'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$_SESSION['profit'].' ('.$rate.'%)</td></tr>';
+                    echo '<tr><th scope="row">'.$shares_bought.'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$_SESSION['profit'].' ('.$rate.'%)</td><td>'.$_SESSION['shares_available'].'</td></tr>';
                   ?>
               </tbody>
             </table>
             <div style = "position: absolute; top: 170px; left: 500px;">
                 <?php
-                echo '<div><a href="RatingView.php"> +Buy more shares</a></div>';
-                echo "<br>";
-                echo '<div><a href="SellShares.php"> -Sell your shares</a></div>';
-                echo "<br>";
+                $result = searchArtistShares($conn, $_SESSION['artist']);
+                $result2 = getArtistShares($conn, $_SESSION['artist']);
+                $share_distributed = $result2->fetch_assoc();
+                $no_shares_left = $result->fetch_assoc();
+                if($no_shares_left['Shares'] != $share_distributed['Share_Distributed'])
+                {
+                    echo '<div><a href="RatingView.php"> +Buy more shares</a></div>';
+                    echo "<br>";
+                }
+                if($shares_bought > 0)
+                {
+                    echo '<div><a href="SellShares.php"> -Sell your shares</a></div>';
+                    echo "<br>";
+                }
+                
                 ?>
                 <a class= "nav-link page-scroll" href="#New_releases" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
                         <!--It loss the green background, but it scrolls to the bottom of the page now (or we can make it go to the signup page automatically)-->
@@ -236,16 +262,9 @@
 
             <h4 id="posts">Latest Posts</h4>
             <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
+                <?php
+                    echo '<h6>No new releases</h6>';
+                ?>
             </table>
     </div>
 </section>

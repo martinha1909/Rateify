@@ -50,7 +50,7 @@
             <div  style = "position: absolute;right:75px; top:25px;" class="col text-right">
                 <a href="../APIs/DecreaseSharesDistributed.php" onclick='window.location.reload();'>-</a>
             </div>
-            <p style = "position: absolute;right:165px; top:0px;" class="navbar-light bg-dark">Unbought Shares</p>
+            <p style = "position: absolute;right:165px; top:0px;" class="navbar-light bg-dark">Available Shares</p>
             <p style = "position: absolute;right:230px; top:26px;">
                 <?php
                    $result2 = searchArtistShares($conn, $_SESSION['username']);

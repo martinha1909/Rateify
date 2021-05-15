@@ -10,7 +10,11 @@
     $result = searchArtistUserShares($conn, $_SESSION['username'], $artist);
     if($result->num_rows > 0)
     {
-        $_SESSION['notify'] = sellShares($conn, $_SESSION['username'], $artist, $selling_share, $profit);
+        $no_of_shares_bought = $result->fetch_assoc();
+        if($no_of_shares_bought['no_of_share_bought'] >= $selling_share)
+            $_SESSION['notify'] = sellShares($conn, $_SESSION['username'], $artist, $selling_share, $profit);
+        else
+            $_SESSION['notify'] = 2;
         header("Location: ../frontend/SellShares.php");
     }
     else
