@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2021 at 12:44 AM
+-- Generation Time: May 18, 2021 at 12:37 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -34,31 +34,32 @@ CREATE TABLE `account` (
   `id` int(11) NOT NULL,
   `Shares` int(50) NOT NULL,
   `balance` double NOT NULL,
-  `rate` double NOT NULL
+  `rate` double NOT NULL,
+  `Share_Distributed` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`username`, `password`, `account_type`, `id`, `Shares`, `balance`, `rate`) VALUES
-('88Glam', 'artist', 'artist', 1, 34, 0, 0.04),
-('admin', 'admin', 'admin', 6, 0, 0, 0),
-('admin0', 'admin', 'admin', 17, 0, 0, 0),
-('ayush', 'test', 'user', 4, 0, 0, 0),
-('chris', 'user', 'user', 5, 0, 0, 0),
-('Drake', 'artist', 'artist', 14, 1, 0, -0.02),
-('Eminem', 'artist', 'artist', 16, 3, 0, 0.1),
-('FRVRFRIDAY', 'artist', 'artist', 15, 34, 0, 0.013),
-('Kanye West', 'artist', 'artist', 13, 0, 0, 0),
-('kep', 'admin', 'admin', 12, 0, 0, 0),
-('kepwessner', '1234', 'user', 11, 0, 0, 0),
-('martin', 'user', 'user', 3, 0, 19163.2, 0),
-('Martin Ha', '123456', 'user', 9, 0, 0, 0),
-('Metro Booming', 'producer', 'producer', 7, 0, 0, 0),
-('NAV', 'artist', 'artist', 2, 0, 0, 0),
-('Polygon', 'producer', 'producer', 8, 0, 0, 0),
-('Travis Scott', 'artist', 'artist', 10, 11, 0, -0.174);
+INSERT INTO `account` (`username`, `password`, `account_type`, `id`, `Shares`, `balance`, `rate`, `Share_Distributed`) VALUES
+('88Glam', 'artist', 'artist', 1, 11, 0, 0.105, 12),
+('admin', 'admin', 'admin', 6, 0, 0, 0, 0),
+('admin0', 'admin', 'admin', 17, 0, 0, 0, 0),
+('ayush', 'test', 'user', 4, 0, 0, 0, 0),
+('chris', 'user', 'user', 5, 0, 0, 0, 0),
+('Drake', 'artist', 'artist', 14, 0, 0, -0.02, 0),
+('Eminem', 'artist', 'artist', 16, 2, 0, 0.113, 5),
+('FRVRFRIDAY', 'artist', 'artist', 15, 0, 0, 0.013, 0),
+('Kanye West', 'artist', 'artist', 13, 0, 0, 0, 0),
+('kep', 'admin', 'admin', 12, 0, 0, 0, 0),
+('kepwessner', '1234', 'user', 11, 0, 0, 0, 0),
+('martin', 'user', 'user', 3, 0, 19619.5748, 0, 0),
+('Martin Ha', '123456', 'user', 9, 0, 0, 0, 0),
+('Metro Booming', 'producer', 'producer', 7, 0, 0, 0, 0),
+('NAV', 'artist', 'artist', 2, 0, 0, 0, 0),
+('Polygon', 'producer', 'producer', 8, 0, 0, 0, 0),
+('Travis Scott', 'artist', 'artist', 10, 0, 0, -0.174, 0);
 
 -- --------------------------------------------------------
 
@@ -143,9 +144,9 @@ CREATE TABLE `artist_per_share` (
 --
 
 INSERT INTO `artist_per_share` (`artist_username`, `price_per_share`) VALUES
-('88Glam', 20),
+('88Glam', 25.999999999999996),
 ('Drake', 1),
-('Eminem', 50),
+('Eminem', 51.2),
 ('FRVRFRIDAY', 2.2),
 ('Kanye West', 1),
 ('Metro Booming', 1),
@@ -171,6 +172,7 @@ INSERT INTO `artist_song` (`artist_username`, `song_id`) VALUES
 ('88Glam', 1),
 ('88Glam', 2),
 ('88Glam', 4),
+('88Glam', 12),
 ('NAV', 5),
 ('NAV', 6),
 ('Travis Scott', 9);
@@ -299,9 +301,10 @@ INSERT INTO `song` (`id`, `album_name`, `no_of_plays`, `duration`, `name`, `date
 (5, NULL, 0, 2, 'Habits', 'April 12th', 0, 0),
 (6, NULL, 0, 2.4, 'Hit', 'May 5th', 0, 0),
 (7, NULL, 0, 4.2, 'Drift Away', 'April 1st', 0, 0),
-(9, NULL, 0, 4, 'Antidote', 'April 17', 0, 0),
+(9, NULL, 0, 4, 'Antidote', 'April 17', 1, 0),
 (10, NULL, 0, 4.2, 'Moovin\' Up', 'April 21st', 0, 0),
-(11, NULL, 0, 3.4, 'Space Cadet', 'April 17th', 0, 0);
+(11, NULL, 0, 3.4, 'Space Cadet', 'April 17th', 0, 0),
+(12, NULL, 0, 3.4, 'Brand New', 'May 11th, 2021', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -320,14 +323,8 @@ CREATE TABLE `user_artist_share` (
 --
 
 INSERT INTO `user_artist_share` (`user_username`, `artist_username`, `no_of_share_bought`) VALUES
-('ayush', '88Glam', 10),
-('ayush', 'Drake', 1),
-('ayush', 'FRVRFRIDAY', 6),
-('chris', '88Glam', 1),
-('martin', '88Glam', 23),
-('martin', 'Eminem', 3),
-('martin', 'FRVRFRIDAY', 28),
-('martin', 'Travis Scott', 11);
+('martin', '88Glam', 11),
+('martin', 'Eminem', 2);
 
 --
 -- Indexes for dumped tables
