@@ -1,6 +1,8 @@
 <?php
   session_start();
   $_SESSION['notify'] =  0;
+  $_SESSION['display'] = 0;
+  $_SESSION['sort_type'] = 0;
 ?>
 
 <!doctype html>

@@ -6,5 +6,6 @@
     }
     else
         $_SESSION['sort_type'] = 2;
-    header("Location: ../frontend/DisplayUserInvestments.php");
+    // $_SESSION['display'] = 2;
+    header("Location: ../frontend/listener.php");
 ?>

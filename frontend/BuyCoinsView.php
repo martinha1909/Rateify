@@ -40,8 +40,8 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.php">
-                Rateify
+            <a class="navbar-brand heading-black" href="listener.php">
+                Hassner
             </a>
             <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Account Balance</p>
             <p style = "position: absolute;right:40px; top:26px;">
@@ -81,12 +81,7 @@
     <div class="container">
         <div class="row vh-md-100">
             <div class="col-12 mx-auto my-auto text-center">
-            
-
-              <!-- hyperlinks -->
-              <div style="position:absolute; right: 580px; bottom: 150px"class="col text-center">
-                <a href="DisplayUserInvestments.php"> <- Your Investments</a>
-              </div> 
+        
 
                 <form action = "../APIs/BuyCoinsConnection.php" method = "post">
                     <div class="form-group">
