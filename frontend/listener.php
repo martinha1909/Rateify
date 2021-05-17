@@ -18,11 +18,6 @@
     <!--Inter UI font-->
     <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
 
-    <!--vendors styles-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
 </head>
@@ -31,11 +26,15 @@
 <!--navigation-->
 
 <header class="smart-scroll">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="#" onclick='window.location.reload();'>
+    <div class="container-xxl">
+        <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+            <a style = "color: black;" class="navbar-brand heading-black" href="#" onclick='window.location.reload();'>
                 HASSNER
             </a>
+            <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
+                      <input class="form-control mr-sm-2" name = "artist_name" type="search" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Artist Name">
+                </form>
+
                 <?php
                     include '../APIs/logic.php';
                     include '../APIs/connection.php';
@@ -58,16 +57,15 @@
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
         <div class="row vh-md-100">
-            <div class="col-12 mx-auto my-auto text-center">
-              
-              <div style = "position: absolute;right:0px; top:0px;" class="col text-center">
+
+              <div class="col-md-12">
               <h1> Hello <?php echo $_SESSION['username'] ?>!</h1>
               </div>
 
               <!-- header -->
-            
-              <div style = "position: absolute;right:-300px; top:200px;" class="btn-group">
-                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="col-md-12">
+              <div class="btn-group">
+                <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <?php echo $_SESSION['username'] ?>
                 </button>
                 <div class="dropdown-menu">
@@ -81,29 +79,24 @@
                 </div>
             </div>
 
-              <div style = "position: absolute;right:-400px; top:0px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="TopInvestedArtists.php" class="btn btn-primary" role="button" aria-pressed="true">
+            <div class="container">
+                <div class="row">
+                 <div class="col-md-12">
+                 <a href="TopInvestedArtists.php" class="btn btn-secondary" role="button" aria-pressed="true">
                   View top invested Artists
-                </a>
+                    </a>
+                </div>
+              </div>
+            </div>
+
+              <div class="col-md-12">
+                    <a href="DisplayUserInvestments.php" class="btn btn-secondary" role="button" aria-pressed="true">
+                        My Portfolio
+                    </a>
+
               </div>
 
-              <div style = "position: absolute;right:0px; top:200px;" class="col-md-8 col-12 mx-auto pt-5 text-center">
-              <form action="DisplayUserInvestments.php" method="post">
-              <input type = "submit" class="btn btn-secondary" role="button" aria-pressed="true" value = "My Portfolio">
-              </form>
-
-              </div>
-
-              <form action="../APIs/SearchSongsConnection.php" method="post">
-                    <!-- Search field -->
-                    <div style="position: absolute; right: 0px; top: 500px;" class="form-group">
-                      <input name = "artist_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Artist Name">
-                    </div>
-                    
-                   
-                </form>
-
-                <div style="position: absolute; right: 100px; top: 100px;" class="col-md-6 box">
+                <div class="col-md-12">
                         <div class="icon-box box-secondary">
                             <div class="icon-box-inner">
                                 <span data-feather="search" width="35" height="35"></span>
