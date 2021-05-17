@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $_SESSION['notify'] = 0;
+  $_SESSION['notify'] =  0;
 ?>
 
 <!doctype html>
