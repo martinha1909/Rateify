@@ -10233,10 +10233,10 @@ footer h5 {
   line-height: 40px;
   right: -100px;
   color: #ffffff;
-  background-color: rgba(29, 233, 182, 0.5);
+  background-color: rgb(255, 145, 0);
 }
 .scroll-top:hover {
-  background-color: #1de9b6;
+  background-color: #000000;
   transition: all 0.4s ease-in-out;
 }
 .scroll-top.active {

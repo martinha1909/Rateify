@@ -26,8 +26,8 @@
 
 <header class="smart-scroll">
     <div class="container-xxl">
-        <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
-            <a style = "color: black;" class="navbar-brand heading-black" href="#" onclick='window.location.reload();'>
+        <nav class="navbar navbar-expand-md navbar-dark bg-secondary d-flex justify-content-between">
+            <a style = "color: orange;" class="navbar-brand heading-black" href="#" onclick='window.location.reload();'>
                 HASSNER
             </a>
             <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
@@ -53,7 +53,7 @@
 
 
 <!-- listener functionality -->
-<section class="py-7 py-md-0 bg-hero" id="login">
+<section class="py-7 py-md-0 bg-orange" id="login">
     <div class="container">
         <div class="row vh-md-100">
 

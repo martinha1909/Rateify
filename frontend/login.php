@@ -16,11 +16,6 @@
     <!--Inter UI font-->
     <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
 
-    <!--vendors styles-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
 </head>
@@ -29,9 +24,9 @@
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.php">
-                Rateify
+        <nav class="navbar navbar-expand-md navbar-dark bg-orange">
+            <a style = "color: white;" class="navbar-brand heading-black" href="index.php">
+                HASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
@@ -56,11 +51,11 @@
               
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="index.php"> Return to landing page</a>
+                <a style = "color: orange;" href="index.php"> Return to landing page</a>
               </div>
 
               <div class="col text-center">
-                <a href="signup.php"> Need to register for an account?</a>
+                <a style = "color: orange;" href="signup.php"> Need to register for an account?</a>
               </div>
 
                 <!-- signup form -->
@@ -68,13 +63,13 @@
 
                     <!-- username field -->
                     <div class="form-group">
-                      <label for="exampleInputEmail1" >Username</label>
+                      <h5>Username</h5>
                       <input name = "username" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
                     </div>
 
                     <!-- password field -->
                     <div class="form-group">
-                      <label for="exampleInputPassword1" >Password</label>
+                      <h5>Password</h5>
                       <input name = "password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
 
