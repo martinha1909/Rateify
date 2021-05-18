@@ -39,7 +39,7 @@
 </section>
 
 <!--signup functionality-->
-<section class="py-7 py-md-0 bg-hero" id="login">
+<section class="py-7 py-md-0 bg-dark" id="login">
     <div class="container">
         <div class="row vh-md-100">
             <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
