@@ -2,6 +2,7 @@
     session_start();
     $_SESSION['conversion_rate'] = -0.05;
     $_SESSION['coins'] = 0;
+    $_SESSION['cad'] = 0;
     ?>
 
     <!doctype html>
@@ -27,7 +28,7 @@
     <header class="smart-scroll">
         <div class="container-xxl">
             <nav class="navbar navbar-expand-md navbar-dark bg-orange d-flex justify-content-between">
-                <a id = "href-hover"class="navbar-brand" href="#" onclick='window.location.reload();'>
+                <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
                     HASSNER
                 </a>
                 <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
@@ -60,51 +61,43 @@
                 <div class="col-md-12">
                 <h1> Hello <?php echo $_SESSION['username'] ?>!</h1>
                 </div>
-                
 
-                <!-- header -->
-                <div class="col-md-12">
-                <div class="btn-group">
-                    <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?php echo $_SESSION['username'] ?>
-                    </button>
-                    <div class="dropdown-menu">
-                        <p class="dropdown-item">Coins: <?php echo $balance['balance'];?></p>
-                        <a class="dropdown-item" href="BuyCoinsView.php">Buy Coins</a>
-                        <a class="dropdown-item" href="SellCoinsView.php">Sell Coins</a>
+                <ul class="list-group col-2" style="position: absolute; left:0px; top: 94px;">
+                    <li class="list-group-item">
+                        <a class="dropdown-item" href="BuyCoinsView.php">Buy Siliqas</a>
+                    </li>
+                    <li class="list-group-item ">
+                        <a class="dropdown-item" href="SellCoinsView.php">Sell Siliqas</a>
+                    </li>
+                    <li class="list-group-item ">
                         <a class="dropdown-item" href="#">Account</a>
+                    </li>
+                    <li class="list-group-item ">
                         <a class="dropdown-item" href="#">Settings</a>
+                    </li>
+                    <li class="list-group-item ">
                         <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="login.php">Log out</a>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                    
 
-                <div class="container">
-                    <div class="row">
-                    <div class="col-md-12">    
-                        <form action = "../APIs/DisplaySwitch.php" method = "post">
-                            <input name = "display_type" type = "submit" class = "btn btn-secondary" role="button" aria-pressed="true" value = "Top Invested Artists" onclick='window.location.reload();'></td>
-                        </form>
-                    </div>
-                </div>
-                </div>
-                <div class="col-md-12">
-                        <form action = "../APIs/DisplaySwitch.php" method = "post">
-                            <input name = "display_type" type = "submit" class = "btn btn-secondary" role="button" aria-pressed="true" value = "My Portfolio" onclick='window.location.reload();'></td>
-                        </form>
+                </ul>
 
-                </div>
+                
+
+                <!-- header -->
+                
                 <?php
                 if($_SESSION['display'] == 1)
-                echo '<table class="table table-sm table-warning">
-                        <thead class="thead-dark">
+                echo '<table class="table">
+                        <thead class="thead-orange">
                         <tr>
-                            <th scope="col" style="color:white;">#</th>
-                            <th scope="col" style="color:white;">Artist Name</th>
-                            <th scope="col" style="color:white;">Total shares bought</th>
-                            <th scope="col" style="color:white;">Price per share (Coins)</th>
-                            <th scope="col" style="color:white;">Rate</th>
+                            <th scope="col" class="bg-orange" style="color: white">#</th>
+                            <th scope="col" class="bg-orange" style="color: white">Artist Name</th>
+                            <th scope="col" class="bg-orange" style="color: white">Total shares bought</th>
+                            <th scope="col" class="bg-orange" style="color: white">Price per share (q̶)</th>
+                            <th scope="col" class="bg-orange" style="color: white">Rate</th>
                         </tr>
                         </thead>
                         <tbody>';
@@ -162,14 +155,14 @@
                                     //             <td>'.$all_shares[$i].'</td>
                                     //             <td>'.$row2['price_per_share'].'</td>
                                     //             <td>'.$rate['rate'].'%</td></tr>';
-                                    echo '<tr><th scope="row" style="color:black;">'.$id.'</th>
+                                    echo '<tr><th scope="row">'.$id.'</th>
                                                 <td><input name = "artist_name['.$users[$i].']" type = "submit" id="abc" style="border:1px transparent; background-color: transparent;" role="button" aria-pressed="true" value = "'.$users[$i].'"></td></td>
-                                                <td style="color:black;">'.$all_shares[$i].'</td>
-                                                <td style="color:black;">'.$row2['price_per_share'].'</td>';
+                                                <td style="color: white">'.$all_shares[$i].'</td>
+                                                <td style="color: white">'.$row2['price_per_share'].'</td>';
                                     if($rate['rate'] > 0)
-                                        echo '<td style="color:black;">+'.$rate['rate'].'%</td></tr>';
+                                        echo '<td style="color:white;">+'.$rate['rate'].'%</td></tr>';
                                     else
-                                        echo '<td style="color:black;">'.$rate['rate'].'%</td></tr>';
+                                        echo '<td style="color:white;">'.$rate['rate'].'%</td></tr>';
                                                 
                                     $id++;
                                 }
@@ -182,9 +175,9 @@
                             echo '<table class="table">
                             <thead>
                             <tr>
-                            <th scope="col">#</th>
+                            <th scope="col" class="bg-orange">#</th>
                             <form action="../APIs/SortArtists.php">
-                                <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Artist" onclick="window.location.reload();">';
+                                <th scope="col" class="bg-orange"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Artist" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 1)
                                 echo "↑";
                             else if($_SESSION['sort_type'] == 4)
@@ -194,7 +187,7 @@
                             echo '</th>
                                 </form>
                                 <form action="../APIs/SortShares.php">
-                                    <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Shares bought" onclick="window.location.reload();">';
+                                    <th scope="col" class="bg-orange"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Shares bought" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 2)
                                 echo "↑";
                             else if($_SESSION['sort_type'] == 5)
@@ -204,7 +197,7 @@
                             echo '</th>
                                 </form>
                                 <form action = "../APIs/SortPricePerShare.php">
-                                    <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Price per share (Coins)" onclick="window.location.reload();">';
+                                    <th scope="col" class="bg-orange"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Price per share (q̶)" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 3)
                                 echo "↑";
                             else if($_SESSION['sort_type'] == 6)
@@ -215,7 +208,7 @@
                             echo '</th>
                                 </form>
                                 <form action = "../APIs/SortRates.php">
-                                    <th scope="col"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Rate" onclick="window.location.reload();">';
+                                    <th scope="col" class="bg-orange"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Rate" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 0)
                                 echo "↑";
                             else if($_SESSION['sort_type'] == 7)
@@ -492,14 +485,6 @@
                     
                 </tbody>
                 </table>
-
-                    <div class="col-md-12">
-                            <div class="icon-box box-secondary">
-                                <div class="icon-box-inner">
-                                    <span data-feather="search" width="35" height="35"></span>
-                                </div>
-                            </div>        
-                </div>
             </div>
         </div>
     </section>

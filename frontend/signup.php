@@ -16,11 +16,6 @@
     <!--Inter UI font-->
     <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
 
-    <!--vendors styles-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
 </head>
@@ -29,8 +24,8 @@
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.php">
+        <nav class="navbar navbar-expand-md navbar-dark bg-orange">
+            <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
                 HASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -51,7 +46,7 @@
 ?>
 
 <!--signup functionality-->
-<section class="py-7 py-md-0 bg-hero" id="login">
+<section class="py-7 py-md-0 bg-dark" id="login">
     <div class="container">
         <div class="row vh-md-100">
             <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
@@ -63,15 +58,15 @@
               
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="index.php"> Return to front page</a>
+                <a style = "color: orange;" href="index.php"> Return to front page</a>
               </div>
 
               <div class="col text-center">
-                <a href="login.php"> Already have an account?</a>
+                <a style = "color: orange;" href="login.php"> Already have an account?</a>
               </div>
 
               <div class="col text-center">
-                <a href="AdminSignUp.php"> Want to become an admin?</a>
+                <a style = "color: orange;" href="AdminSignUp.php"> Want to become an admin?</a>
               </div>
 
                 <!-- signup form -->
@@ -90,7 +85,7 @@
                     </div>
 
                     <!-- account type -->
-                    <h5>Account Type</h5>
+                    <h6 style = "color: orange;">Account Type</h6>
                     <div>
                       <input type="radio" name="account_type" value="user"
                              checked>

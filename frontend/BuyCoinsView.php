@@ -18,11 +18,6 @@
     <!--Inter UI font-->
     <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
 
-    <!--vendors styles-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
 </head>
@@ -39,33 +34,10 @@
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="listener.php">
+        <nav class="navbar navbar-expand-md navbar-dark bg-orange">
+            <a class="navbar-brand heading-black" href="listener.php" style = "color: white;">
                 Hassner
             </a>
-            <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Account Balance</p>
-            <p style = "position: absolute;right:40px; top:26px;">
-                <?php
-                    include '../APIs/logic.php';
-                    include '../APIs/connection.php';
-                    $conn = connect();
-                    $result = getUserBalance($conn, $_SESSION['username']);
-                    $balance = $result->fetch_assoc();
-                    echo "Coins: ";
-                    echo number_format((float)$balance['balance'], 2, '.', '');
-                ?>
-            </p>
-            <p style = "position: absolute;right:165px; top:0px;" class="navbar-light bg-dark">Current Rate</p>
-            <p style = "position: absolute;right:190px; top:26px;">
-                <?php
-                    if($_SESSION['conversion_rate'] > 0)
-                        echo "+";
-                    // else if($_SESSION['conversion_rate'] < 0)
-                    //     echo "-";
-                    echo $_SESSION['conversion_rate'];
-                    echo "%";
-                ?>
-            </p>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -77,23 +49,45 @@
 </section>
 
 <!-- listener functionality -->
-<section class="py-7 py-md-0 bg-hero" id="login">
+<section class="py-7 py-md-0 bg-dark" id="login">
     <div class="container">
         <div class="row vh-md-100">
             <div class="col-12 mx-auto my-auto text-center">
-        
+            <p class="navbar-light">Account Balance</p>
+            <p>
+                <?php
+                    include '../APIs/logic.php';
+                    include '../APIs/connection.php';
+                    $conn = connect();
+                    $result = getUserBalance($conn, $_SESSION['username']);
+                    $balance = $result->fetch_assoc();
+                    echo "Siliqas: ";
+                    echo number_format((float)$balance['balance'], 2, '.', '');
+                ?>
+            </p>
+            <p class="navbar-light">Current Rate</p>
+            <p>
+                <?php
+                    if($_SESSION['conversion_rate'] > 0)
+                        echo "+";
+                    // else if($_SESSION['conversion_rate'] < 0)
+                    //     echo "-";
+                    echo $_SESSION['conversion_rate'];
+                    echo "%";
+                ?>
+            </p>
 
                 <form action = "../APIs/BuyCoinsConnection.php" method = "post">
                     <div class="form-group">
                         <h5>Enter Amount in Canadian Dollars</h5>
                         <input type="text" name = "cad" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter cad">
                         </div>
-                    <div style = "position: absolute;right: 450px; top:100px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
                             <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Check Conversion" onclick='window.location.reload();'>
                         
                     </div>
                 </form>
-                <p style = "position: absolute;right:510px; top:180px;" class="navbar navbar-expand-lg navbar-light bg-dark">Coins: 
+                <p class="navbar navbar-expand-lg navbar-light bg-dark">Siliqas (q̶): 
                     <?php
                         if($_SESSION['coins']!=0)
                         {
@@ -101,7 +95,7 @@
                         }
                         else
                         {
-                            echo "$ ";
+                            echo " ";
                             echo 0;
                         }
                         
@@ -109,7 +103,7 @@
                 </p>
                 </form>
                 <form action = "CardVerificationView.php" method = "post">
-                    <div style = "position: absolute;right: 450px; top:300px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
                             <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy this amount!" onclick='window.location.reload();'>
                         
                     </div>

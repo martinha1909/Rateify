@@ -186,13 +186,13 @@ sup {
 }
 
 a {
-  color: #1de9b6;
+  color: #ff9100;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 a:hover {
-  color: #0e9271;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -2415,6 +2415,7 @@ select.form-control-lg:not([size]):not([multiple]),
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
+  box-shadow: none;
   /* display: inline-block;
   font-weight: 500;
   text-align: center;
@@ -2444,6 +2445,7 @@ select.form-control-lg:not([size]):not([multiple]),
 .btn:active:focus,
 .btn.active:focus {
   outline: 0 none;
+  box-shadow: none;
 }
 /* .btn:focus,
 .btn.focus {
@@ -2456,6 +2458,7 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 .btn:not(:disabled):not(.disabled) {
   cursor: pointer;
+  box-shadow: none;
 }
 .btn:not(:disabled):not(.disabled):active,
 .btn:not(:disabled):not(.disabled).active {
@@ -2479,7 +2482,9 @@ fieldset:disabled a.btn {
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-  background: #afafaf;
+  background: #11171a;
+  color: #ffffff;
+  box-shadow: none !important;
 }
 
 .btn-primary:active,
@@ -2494,13 +2499,14 @@ fieldset:disabled a.btn {
 } */
 .btn-primary:focus,
 .btn-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(29, 233, 182, 0.5);
+  box-shadow: none;
 }
 .btn-primary.disabled,
 .btn-primary:disabled {
-  color: #11171a;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #11171a;
   border-color: #ffffff;
+  box-shadow: none;
 }
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
@@ -2508,15 +2514,16 @@ fieldset:disabled a.btn {
   color: #ffffff;
   background-color: #888888;
   border-color: #000000;
+  box-shadow: none;
 }
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+  box-shadow: none;
 }
 
 .btn-secondary {
-  background: #000000;
+  background: #11171a;
   color: #ffffff;
 }
 
@@ -2525,7 +2532,7 @@ fieldset:disabled a.btn {
 .btn-secondary:active,
 .btn-secondary.active,
 .open > .dropdown-toggle.btn-secondary {
-  background: #818181;
+  background: #ffffff;
 }
 /* .btn-secondary:hover {
   color: #11171a;
@@ -2534,7 +2541,7 @@ fieldset:disabled a.btn {
 } */
 .btn-secondary:focus,
 .btn-secondary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgb(255, 255, 255);
 }
 .btn-secondary.disabled,
 .btn-secondary:disabled {
@@ -2552,7 +2559,7 @@ fieldset:disabled a.btn {
 .btn-secondary:not(:disabled):not(.disabled):active:focus,
 .btn-secondary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-secondary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgb(255, 255, 255);
 }
 
 .btn-success {
@@ -5139,7 +5146,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1.25rem;
   margin-bottom: -2px;
   background-color: #ffffff;
-  border: 2px solid rgba(0, 0, 0, 0.125);
+  border: 20px solid white;
 }
 .list-group-item:first-child {
   border-top-left-radius: 0.3rem;
@@ -5157,12 +5164,12 @@ input[type="button"].btn-block {
 }
 .list-group-item.disabled,
 .list-group-item:disabled {
-  color: #90a4ae;
+  color: #11171a;
   background-color: #ffffff;
 }
 .list-group-item.active {
   z-index: 2;
-  color: #ffffff;
+  color: #11171a;
   background-color: #1de9b6;
   border-color: #1de9b6;
 }
@@ -9845,9 +9852,11 @@ body {
 }
 .btn.btn-secondary:hover {
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.35);
+  color: #000000;
 }
 .btn.btn-secondary:active {
   box-shadow: none !important;
+  color: #000000;
 }
 .btn.btn-success {
   box-shadow: 0 8px 16px rgba(0, 230, 118, 0.3);
@@ -10417,22 +10426,34 @@ footer h5 {
 
 input#abc {
   background-color: #4c9ed9;
-  color: #000000;
+  color: #ffffff;
   padding: 0px 0px;
 }
 
 input#abc:hover {
   cursor: pointer;
-  color: #ffffff;
+  color: orange;
+  transform: scale(1.05);
+}
+
+input#menu-style {
+  background-color: #4c9ed9;
+  color: #11171a;
+  padding: 0px 0px;
+}
+
+input#menu-style:hover {
+  cursor: pointer;
+  color: orange;
+  transform: scale(1.05);
 }
 
 a#href-hover {
-  background-color: black;
   color: #ffffff;
   padding: 0px 0px;
 }
 
 a#href-hover:hover {
   cursor: pointer;
-  color: #000000;
+  color: #11171a;
 }

@@ -25,8 +25,8 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark bg-orange">
-            <a style = "color: white;" class="navbar-brand heading-black" href="index.php">
-                HASSNER
+            <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="index.php" onclick='window.location.reload();'>
+              ⒽASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
@@ -51,11 +51,11 @@
               
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a style = "color: orange;" href="index.php"> Return to landing page</a>
+                <a href="index.php"> Return to landing page</a>
               </div>
 
               <div class="col text-center">
-                <a style = "color: orange;" href="signup.php"> Need to register for an account?</a>
+                <a href="signup.php"> Need to register for an account?</a>
               </div>
 
                 <!-- signup form -->
@@ -77,7 +77,7 @@
                     <!-- login button -->
                     <!-- TODO: login button functionality-->
                     <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                      <input type = "submit" class="btn btn-secondary" role="button" aria-pressed="true" name = "button" value = "Login">
+                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Login">
                     </div>
                 </form>
 

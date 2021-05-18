@@ -29,8 +29,8 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark bg-orange">
-            <a class="navbar-brand heading-black" href="index.php" style = "color: white;">
-                HASSNER
+            <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
+                ⒽASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
@@ -58,7 +58,7 @@
             <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
                 <h1 class="heading-black">Making&nbspmoney&nbspis music&nbspto&nbspour&nbspears</h1>
                 <h5 class="lead">Hassner creates opportunities for both listeners and artists. Sign&nbspup&nbspfor&nbspfree.</h5>
-                <a class= "nav-link page-scroll" href="#signup" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "color: orange;">
+                <a class= "nav-link page-scroll" href="#signup" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
                     <!--It loss the green background, but it scrolls to the bottom of the page now (or we can make it go to the signup page automatically)-->
                     Get started now
                 </a>
@@ -108,10 +108,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <h3 style = "color: black;">Create a Hassner account</h3>
-                <a href="signup.php" class="btn btn-secondary" role="button" aria-pressed="true">
-                    Sign up!
-                </a>
+                <h3 style = "color: #11171a;">Create a Hassner account</h3>
+                <form action="signup.php">
+                    <input type="submit" role="button" value="Sign up!" class = "btn btn-secondary" aria-pressed="true">
+                </form>
             </div>
         </div>
     </div>
@@ -121,11 +121,11 @@
 <section class="py-5 bg-white top-right bottom-left" id="login">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <h3 style = "color: black;">Sign in to your account</h3>
-                <a href="login.php" class="btn btn-secondary" role="button" aria-pressed="true">
-                    Log in
-                </a>
+            <div class="col-md-8 col-12 mx-auto text-center py-5">
+                <h3 style = "color: #11171a;">Sign in to your account</h3>
+                <form action="login.php">
+                    <input class ="btn btn-secondary" role="button" type = "submit" aria-pressed="true" value="Log in">
+                </form>
             </div>
         </div>
     </div>
