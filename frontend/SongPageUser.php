@@ -73,15 +73,12 @@
             <div  class="col text-left">
                 <a href="listener.php"> <-Your page</a>
               </div>
+
               
             <div style = "position: absolute; left:50px; top: -200px;" class="col text-center">
                     <h1>Your shares with <?php echo $_SESSION['artist'];?> </h1>
                     
                 </div>
-                <div  style = "position: absolute;left:30px; top:-100px;" class="col text-center">
-                <p> Don't know who to invest? </p>
-                <a href="TopInvestedArtists.php"> View top invested artist here</a>
-              </div>
 
               <table class="table" style = "position:absolute; top: 50px;">
                     <thead>

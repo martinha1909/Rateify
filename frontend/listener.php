@@ -31,9 +31,6 @@
                 <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
                     HASSNER
                 </a>
-                <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
-                        <input class="form-control mr-sm-2" name = "artist_name" type="search" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Artist Name">
-                    </form>
 
                     <?php
                         include '../APIs/logic.php';
@@ -57,28 +54,39 @@
     <section class="py-7 py-md-0 bg-dark" id="login">
         <div class="container">
             <div class="row vh-md-100">
-
-                <div class="col-md-12">
-                <h1> Hello <?php echo $_SESSION['username'] ?>!</h1>
-                </div>
-
-                <ul class="list-group col-2" style="position: absolute; left:0px; top: 94px;">
+                <ul class="list-group col-2" style="position: absolute; left:0px; top: 68px;">
+                    <li class="list-group-item" id="search-bar">
+                        <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
+                            <div class="search-box">
+                                <input class="search-txt" name = "artist_name" type="search" aria-describedby="SearchSongHelp" placeholder="Enter Artist Name">
+                                <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
+                            </div>
+                        </form>
+                    </li>
                     <li class="list-group-item">
-                        <a class="dropdown-item" href="BuyCoinsView.php">Buy Siliqas</a>
+                        <form action="../APIs/DisplaySwitch.php" method="post">
+                            <input name="display_type" type="submit" id="menu-style" style="border:1px transparent; background-color: transparent;" value="Top Invested Artists">
+                        </form>
+                    </li>
+                    <li class="list-group-item">
+                        <form action="../APIs/DisplaySwitch.php" method="post">
+                            <input name="display_type" type="submit" style="border:1px transparent; background-color: transparent;" id="menu-style" value="My Portfolio">
+                        </form>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="dropdown-item" id="dashboard-hover" href="BuyCoinsView.php">Buy Siliqas</a>
                     </li>
                     <li class="list-group-item ">
-                        <a class="dropdown-item" href="SellCoinsView.php">Sell Siliqas</a>
+                        <a class="dropdown-item" id="dashboard-hover" href="SellCoinsView.php">Sell Siliqas</a>
                     </li>
                     <li class="list-group-item ">
-                        <a class="dropdown-item" href="#">Account</a>
+                        <a class="dropdown-item" id="dashboard-hover" href="#">Account</a>
                     </li>
                     <li class="list-group-item ">
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" id="dashboard-hover" href="#">Settings</a>
                     </li>
                     <li class="list-group-item ">
-                        <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="login.php">Log out</a>
-                        </div>
+                            <a class="dropdown-item" id="dashboard-hover" href="login.php">Log out</a>
                     </li>
                     
 
@@ -93,11 +101,11 @@
                 echo '<table class="table">
                         <thead class="thead-orange">
                         <tr>
-                            <th scope="col" class="bg-orange" style="color: white">#</th>
-                            <th scope="col" class="bg-orange" style="color: white">Artist Name</th>
-                            <th scope="col" class="bg-orange" style="color: white">Total shares bought</th>
-                            <th scope="col" class="bg-orange" style="color: white">Price per share (q̶)</th>
-                            <th scope="col" class="bg-orange" style="color: white">Rate</th>
+                            <th scope="col" class="bg-orange" id="href-hover" style="color: white">#</th>
+                            <th scope="col" class="bg-orange" id="href-hover" style="color: white">Artist Name</th>
+                            <th scope="col" class="bg-orange" id="href-hover" style="color: white">Total shares bought</th>
+                            <th scope="col" class="bg-orange" id="href-hover" style="color: white">Price per share (q̶)</th>
+                            <th scope="col" class="bg-orange" id="href-hover" style="color: white">Rate</th>
                         </tr>
                         </thead>
                         <tbody>';
@@ -160,10 +168,11 @@
                                                 <td style="color: white">'.$all_shares[$i].'</td>
                                                 <td style="color: white">'.$row2['price_per_share'].'</td>';
                                     if($rate['rate'] > 0)
-                                        echo '<td style="color:white;">+'.$rate['rate'].'%</td></tr>';
+                                        echo '<td class="increase">+'.$rate['rate'].'%</td></tr>';
+                                    else if($rate['rate'] == 0)
+                                        echo '<td>'.$rate['rate'].'%</td></tr>';
                                     else
-                                        echo '<td style="color:white;">'.$rate['rate'].'%</td></tr>';
-                                                
+                                        echo '<td class="decrease">'.$rate['rate'].'%</td></tr>';       
                                     $id++;
                                 }
                                 
@@ -177,7 +186,7 @@
                             <tr>
                             <th scope="col" class="bg-orange">#</th>
                             <form action="../APIs/SortArtists.php">
-                                <th scope="col" class="bg-orange"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Artist" onclick="window.location.reload();">';
+                                <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Artist" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 1)
                                 echo "↑";
                             else if($_SESSION['sort_type'] == 4)
@@ -187,7 +196,7 @@
                             echo '</th>
                                 </form>
                                 <form action="../APIs/SortShares.php">
-                                    <th scope="col" class="bg-orange"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Shares bought" onclick="window.location.reload();">';
+                                    <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Shares bought" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 2)
                                 echo "↑";
                             else if($_SESSION['sort_type'] == 5)
@@ -197,7 +206,7 @@
                             echo '</th>
                                 </form>
                                 <form action = "../APIs/SortPricePerShare.php">
-                                    <th scope="col" class="bg-orange"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Price per share (q̶)" onclick="window.location.reload();">';
+                                    <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Price per share (q̶)" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 3)
                                 echo "↑";
                             else if($_SESSION['sort_type'] == 6)
@@ -208,7 +217,7 @@
                             echo '</th>
                                 </form>
                                 <form action = "../APIs/SortRates.php">
-                                    <th scope="col" class="bg-orange"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Rate" onclick="window.location.reload();">';
+                                    <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Rate" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 0)
                                 echo "↑";
                             else if($_SESSION['sort_type'] == 7)
@@ -467,15 +476,19 @@
                                     }
                                 }
                                 $id = 1;
+                                echo '<form action="../APIs/SongDisplayUser.php" method="post">';
                                 for($i=0; $i<sizeof($all_artists); $i++)
                                 {
-                                    echo '<tr><th scope="row">'.$id.'</th><td>'.$all_artists[$i].'</td><td>'.$all_shares_bought[$i].'</td><td>'.$all_price_per_share[$i].'</td>';
+                                    echo '<tr><th scope="row">'.$id.'</th><td><input name = "artist_name['.$all_artists[$i].']" type = "submit" id="abc" style="border:1px transparent; background-color: transparent;" role="button" aria-pressed="true" value = "'.$all_artists[$i].'"></td><td>'.$all_shares_bought[$i].'</td><td>'.$all_price_per_share[$i].'</td>';
                                     if($all_rates[$i] > 0)
-                                        echo '<td>+'.$all_rates[$i].'%</td></tr>';
-                                    else
+                                        echo '<td class="increase">+'.$all_rates[$i].'%</td></tr>';
+                                    else if($all_rates[$i] == 0)
                                         echo '<td>'.$all_rates[$i].'%</td></tr>';
+                                    else
+                                        echo '<td class="decrease">'.$all_rates[$i].'%</td></tr>';
                                     $id++;
                                 }
+                                echo '</form>';
                             }
                             echo '</tbody>
                                 </table>';
@@ -505,6 +518,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="js/scripts.js"></script>
     </body>
     </html>

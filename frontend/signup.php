@@ -25,7 +25,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark bg-orange">
-            <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
+            <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="index.php" onclick='window.location.reload();'>
                 HASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -58,15 +58,15 @@
               
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a style = "color: orange;" href="index.php"> Return to front page</a>
+                <a  href="index.php"> Return to front page</a>
               </div>
 
               <div class="col text-center">
-                <a style = "color: orange;" href="login.php"> Already have an account?</a>
+                <a href="login.php"> Already have an account?</a>
               </div>
 
               <div class="col text-center">
-                <a style = "color: orange;" href="AdminSignUp.php"> Want to become an admin?</a>
+                <a href="AdminSignUp.php"> Want to become an admin?</a>
               </div>
 
                 <!-- signup form -->
