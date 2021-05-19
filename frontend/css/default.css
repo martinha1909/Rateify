@@ -10435,7 +10435,8 @@ li#search-bar{
 }
 
 li#search-bar:hover{
-  background-color: white;
+  background-color: white ;
+  border-color: orange;
 }
 
 input#abc {

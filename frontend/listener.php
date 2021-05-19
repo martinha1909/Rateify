@@ -54,7 +54,7 @@
     <section class="py-7 py-md-0 bg-dark" id="login">
         <div class="container">
             <div class="row vh-md-100">
-                <ul class="list-group col-2" style="position: absolute; left:0px; top: 68px;">
+                <ul class="list-group col-2" style="position: absolute; left:0%; top: 68px;">
                     <li class="list-group-item" id="search-bar">
                         <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
                             <div class="search-box">
@@ -101,11 +101,11 @@
                 echo '<table class="table">
                         <thead class="thead-orange">
                         <tr>
-                            <th scope="col" class="bg-orange" id="href-hover" style="color: white">#</th>
-                            <th scope="col" class="bg-orange" id="href-hover" style="color: white">Artist Name</th>
-                            <th scope="col" class="bg-orange" id="href-hover" style="color: white">Total shares bought</th>
-                            <th scope="col" class="bg-orange" id="href-hover" style="color: white">Price per share (q̶)</th>
-                            <th scope="col" class="bg-orange" id="href-hover" style="color: white">Rate</th>
+                            <th scope="col" class="bg-orange" id="href-hover" style="color: white;">#</th>
+                            <th scope="col" class="bg-orange" id="href-hover" style="color: white;">Artist Name</th>
+                            <th scope="col" class="bg-orange" id="href-hover" style="color: white;">Total shares bought</th>
+                            <th scope="col" class="bg-orange" id="href-hover" style="color: white;">Price per share (q̶)</th>
+                            <th scope="col" class="bg-orange" id="href-hover" style="color: white;">Rate</th>
                         </tr>
                         </thead>
                         <tbody>';
