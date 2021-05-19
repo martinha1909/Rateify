@@ -71,7 +71,7 @@
             else
             {
                 $_SESSION['notify'] = 2;
-                header("Location: ../frontend/SearchSong.php");
+                header("Location: ../frontend/listener.php");
             }
 
         }
