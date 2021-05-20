@@ -20,6 +20,7 @@
         <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
 
         <!-- Bootstrap CSS / Color Scheme -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="css/default.css" id="theme-color">
     </head>
     <body>
@@ -129,14 +130,40 @@
                                     echo '</form>';
                                     echo '</li>';
                                 }
+                                if($_SESSION['display'] == 5)
+                                {
+                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Account ->">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                else
+                                {
+                                    echo '<li class="list-group-item">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Account">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                if($_SESSION['display'] == 6)
+                                {
+                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Settings ->">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                else
+                                {
+                                    echo '<li class="list-group-item">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Settings">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
                                 
                             ?>
-                    <li class="list-group-item ">
-                        <a class="dropdown-item" id="dashboard-hover" href="#">Account</a>
-                    </li>
-                    <li class="list-group-item ">
-                        <a class="dropdown-item" id="dashboard-hover" href="#">Settings</a>
-                    </li>
                     
                     <li class="list-group-item ">
                             <a class="dropdown-item" id="dashboard-hover" href="login.php">Log out</a>
@@ -673,6 +700,31 @@
                                                 
                                             </div>
                                             </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>';
+                        }
+                        else if($_SESSION['display'] == 5)
+                        {
+                            if($_SESSION['notify'] == 3)
+                                echo "<script>alert('Incorrect Password');</script>";
+                            $_SESSION['notify'] = 0;
+                            echo '<section class="py-7 py-md-0 bg-dark" id="login">
+                            <div class="container">
+                                <div class="row vh-md-100">
+                                    <div class="col-12 mx-auto my-auto text-center">
+                                        <h3 style="color: orange;">Verify your password to access personal page</h3>
+                                        <form action="../APIs/PersonalPageConnection.php" method="post">
+                                        <div class="form-group">
+                                            <h5>Password</h5>
+                                            <input name = "verify_password" type="password" style="border-color: white;" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="Password">
+                                        </div>
+                                        <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Verify" onclick="window.location.reload();">
+                                        </div>
+                                        </div>
+                                        </form>
                                         </div>
                                     </div>
                                 </div>

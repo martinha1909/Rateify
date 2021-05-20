@@ -5,6 +5,7 @@
   $_SESSION['display'] = 0;
   $_SESSION['sort_type'] = 0;
   $_SESSION['cad'] = 0;
+  $_SESSION['edit'] = 0;
 ?>
 
 <!doctype html>

@@ -1,6 +1,7 @@
 <?php
   session_start();
   $_SESSION['notify'];
+  $_SESSION['display'] = 0;
 ?>
 
 <!doctype html>
@@ -73,6 +74,12 @@
                 <form action = "../APIs/SignUpConnection.php" method = "post">
 
                     <!-- username field -->
+
+                    <div class="form-group">
+                    <h5>Email Address</h5>
+                      <input type="text" name = "email" class="form-control" style="border-color: white;" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter email address">
+                    </div>
+
                     <div class="form-group">
                     <h5>Username</h5>
                       <input type="text" name = "username" class="form-control" style="border-color: white;" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">

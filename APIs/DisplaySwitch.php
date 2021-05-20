@@ -10,6 +10,10 @@
         $_SESSION['display'] = 3;
     else if($type == "Sell Siliqas")
         $_SESSION['display'] = 4;
+    else if($type == "Account")
+        $_SESSION['display'] = 5;   
+    else if($type == "Settings")
+        $_SESSION['display'] = 6; 
     // echo $_SESSION['display'];
     header("Location: ../frontend/listener.php");
     

@@ -52,7 +52,7 @@
             return $result;
         }
 
-        function signup($conn, $username, $password, $type) //done2
+        function signup($conn, $username, $password, $type, $email) //done2
         {
             $balance = 0;
             $rate = 0;
@@ -64,10 +64,10 @@
             $id = $row["max_id"] + 1;
             // $sql = "INSERT INTO account (username, password, account_type, id)
             //         VALUES('$username', '$password', '$type', '$id')";
-            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed)
-                    VALUES(?, ?, ?, $id, ?, ?, ?, ?)";
+            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed, email)
+                    VALUES(?, ?, ?, $id, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssiddi', $username, $password, $type, $num_of_shares, $balance, $rate, $share_distributed);
+            $stmt->bind_param('sssiddis', $username, $password, $type, $num_of_shares, $balance, $rate, $share_distributed, $email);
             if ($stmt->execute() === TRUE) {
                 $notify = 1;
             } else {
@@ -833,6 +833,30 @@
         {
             $sql = "UPDATE account SET Shares = $shares_bought WHERE username = '$artist_username'";
             $conn->query($sql);
+        }
+
+        function editPassword($conn, $username, $new_password)
+        {
+            $notify = 0;
+            $sql = "UPDATE account SET password = '$new_password' WHERE username = '$username'";
+            if ($conn->query($sql) === TRUE) {
+                $notify = 1;
+            } else {
+                $notify = 2;
+            }  
+            return $notify;
+        }
+
+        function editEmail($conn, $username, $new_email)
+        {
+            $notify = 0;
+            $sql = "UPDATE account SET email = '$new_email' WHERE username = '$username'";
+            if ($conn->query($sql) === TRUE) {
+                $notify = 1;
+            } else {
+                $notify = 2;
+            }  
+            return $notify;
         }
 
         function sellShares($conn, $user_username, $artist_username, $selling_share, $profit)
