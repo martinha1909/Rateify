@@ -75,13 +75,13 @@
                     <!-- username field -->
                     <div class="form-group">
                     <h5>Username</h5>
-                      <input type="text" name = "username" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
+                      <input type="text" name = "username" class="form-control" style="border-color: white;" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
                     </div>
 
                     <!-- password field -->
                     <div class="form-group">
                     <h5>Password</h5>
-                      <input type="password" name = "password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <input type="password" name = "password" class="form-control" style="border-color: white;" id="exampleInputPassword1" placeholder="Password">
                     </div>
 
                     <!-- account type -->

@@ -127,6 +127,18 @@
             return $result;
         }
 
+        function verifyArtist($conn, $artist_username)
+        {
+            $account_type = 'artist';
+            $sql = "SELECT * FROM account WHERE username = ? AND account_type = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ss', $artist_username, $account_type);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            return $result;
+        }
+
         function searchArtistUserShares($conn, $user_username, $artist_username)
         {
             $sql = "SELECT * FROM user_artist_share WHERE user_username = ? AND artist_username = ?";

@@ -64,13 +64,13 @@
                     <!-- username field -->
                     <div class="form-group">
                       <h5>Username</h5>
-                      <input name = "username" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
+                      <input name = "username" type="text" style="border-color: white;" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
                     </div>
 
                     <!-- password field -->
                     <div class="form-group">
                       <h5>Password</h5>
-                      <input name = "password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <input name = "password" type="password" style="border-color: white;" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
 
 

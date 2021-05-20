@@ -52,9 +52,9 @@
 
     <!-- listener functionality -->
     <section class="py-7 py-md-0 bg-dark" id="login">
-        <div class="container">
-            <div class="row vh-md-100">
-                <ul class="list-group col-2" style="position: absolute; left:0%; top: 68px;">
+    <div class="container-fluid py-6 p-auto" style = "position:relative; left:0px; bottom:28px;">
+            <div class="row vh-md-50">
+                <ul class="list-group col-2">
                     <li class="list-group-item" id="search-bar">
                         <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
                             <div class="search-box">
@@ -63,16 +63,41 @@
                             </div>
                         </form>
                     </li>
-                    <li class="list-group-item">
-                        <form action="../APIs/DisplaySwitch.php" method="post">
-                            <input name="display_type" type="submit" id="menu-style" style="border:1px transparent; background-color: transparent;" value="Top Invested Artists">
-                        </form>
-                    </li>
-                    <li class="list-group-item">
-                        <form action="../APIs/DisplaySwitch.php" method="post">
-                            <input name="display_type" type="submit" style="border:1px transparent; background-color: transparent;" id="menu-style" value="My Portfolio">
-                        </form>
-                    </li>
+                            <?php
+                                if($_SESSION['display'] == 2 || $_SESSION['display'] == 0)
+                                {
+                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="My Portfolio ->"';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                else
+                                {
+                                    echo '<li class="list-group-item">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px transparent; background-color: transparent;" value="My Portfolio">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                if($_SESSION['display'] == 1)
+                                {
+                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Top Invested Artists ->">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                else
+                                {
+                                    echo '<li class="list-group-item">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px transparent; background-color: transparent;" value="Top Invested Artists">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                
+                            ?>
                     <li class="list-group-item">
                         <a class="dropdown-item" id="dashboard-hover" href="BuyCoinsView.php">Buy Siliqas</a>
                     </li>
@@ -85,17 +110,23 @@
                     <li class="list-group-item ">
                         <a class="dropdown-item" id="dashboard-hover" href="#">Settings</a>
                     </li>
+                    
                     <li class="list-group-item ">
                             <a class="dropdown-item" id="dashboard-hover" href="login.php">Log out</a>
                     </li>
                     
 
                 </ul>
-
+                            </div>
+            </div>
+        </section>
                 
 
                 <!-- header -->
-                
+        <section class="py-7 py-md-0 bg-dark" id="login">
+            <div class="container" style = "position:relative; left:80px; bottom:670px;">
+                <div class="row vh-md-100">
+                <ul class="list-group col-12">
                 <?php
                 if($_SESSION['display'] == 1)
                 echo '<table class="table">

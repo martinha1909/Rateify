@@ -25,9 +25,9 @@
 
 <?php
   if($_SESSION['notify'] == 1)
-    echo "<script>alert('Coins sold successfully');</script>";
+    echo "<script>alert('Siliqas sold successfully');</script>";
   if($_SESSION['notify'] == 2)
-    echo "<script>alert('Failed to sell coins');</script>";
+    echo "<script>alert('Failed to sell Siliqas');</script>";
   $_SESSION['notify'] = 0;
 ?>
 
@@ -35,30 +35,9 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark bg-orange">
-            <a class="navbar-brand heading-black" href="listener.php" style = "color: white;">
+            <a id="href-hover"class="navbar-brand heading-black" href="listener.php">
                 Hassner
             </a>
-            <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Account Balance</p>
-            <p style = "position: absolute;right:40px; top:26px;">
-                <?php
-                    include '../APIs/logic.php';
-                    include '../APIs/connection.php';
-                    $conn = connect();
-                    $result = getUserBalance($conn, $_SESSION['username']);
-                    $balance = $result->fetch_assoc();
-                    echo "Coins: ";
-                    echo $balance['balance'];
-                ?>
-            </p>
-            <p style = "position: absolute;right:165px; top:0px;" class="navbar-light bg-dark">Current Rate</p>
-            <p style = "position: absolute;right:190px; top:26px;">
-                <?php
-                    if($_SESSION['conversion_rate'] > 0)
-                        echo "+";
-                    echo $_SESSION['conversion_rate'];
-                    echo "%";
-                ?>
-            </p>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -70,24 +49,45 @@
 </section>
 
 <!-- listener functionality -->
-<section class="py-7 py-md-0 bg-hero" id="login">
+<section class="py-7 py-md-0 bg-dark" id="login">
     <div class="container">
         <div class="row vh-md-100">
             <div class="col-12 mx-auto my-auto text-center">
+            <p class="navbar-light bg-dark">Account Balance</p>
+            <p>
+                <?php
+                    include '../APIs/logic.php';
+                    include '../APIs/connection.php';
+                    $conn = connect();
+                    $result = getUserBalance($conn, $_SESSION['username']);
+                    $balance = $result->fetch_assoc();
+                    echo "Siliqas: ";
+                    echo $balance['balance'];
+                ?>
+            </p>
+            <p class="navbar-light bg-dark">Current Rate</p>
+            <p>
+                <?php
+                    if($_SESSION['conversion_rate'] > 0)
+                        echo "+";
+                    echo $_SESSION['conversion_rate'];
+                    echo "%";
+                ?>
+            </p>
               
 
               <!-- hyperlinks -->
                 <form action = "../APIs/SellCoinsConnection.php" method = "post">
                     <div class="form-group">
-                        <h5>How many coins are you selling?</h5>
-                        <input type="text" name = "coins" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter coins">
+                        <h5>How many Siliqas are you exchanging?</h5>
+                        <input type="text" name = "Siliqas" style="border-color: white;" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter Siliqas">
                         </div>
-                    <div style = "position: absolute;right: 450px; top:100px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
                             <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Check Conversion" onclick='window.location.reload();'>
                         
                     </div>
                 </form>
-                <p style = "position: absolute;right:510px; top:180px;" class="navbar navbar-expand-lg navbar-light bg-dark">CAD: 
+                <p class="navbar navbar-expand-lg navbar-light bg-dark">CAD: 
                     <?php
                         if($_SESSION['cad']!=0)
                         {
@@ -106,7 +106,7 @@
                 </p>
                 </form>
                 <form action = "../APIs/WithdrawCoinsConnection.php" method = "post">
-                    <div style = "position: absolute;right: 450px; top:300px;" class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
                             <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell this amount!" onclick='window.location.reload();'>
                         
                     </div>

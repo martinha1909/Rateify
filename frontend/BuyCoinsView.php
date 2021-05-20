@@ -25,7 +25,7 @@
 
 <?php
   if($_SESSION['notify'] == 1)
-    echo "<script>alert('Coins bought successfully');</script>";
+    echo "<script>alert('Siliqas bought successfully');</script>";
   if($_SESSION['notify'] == 2)
     echo "<script>alert('Card verfication failed');</script>";
   $_SESSION['notify'] = 0;
@@ -35,7 +35,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark bg-orange">
-            <a class="navbar-brand heading-black" href="listener.php" style = "color: white;">
+            <a id="href-hover" class="navbar-brand heading-black" href="listener.php">
                 Hassner
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -80,7 +80,7 @@
                 <form action = "../APIs/BuyCoinsConnection.php" method = "post">
                     <div class="form-group">
                         <h5>Enter Amount in Canadian Dollars</h5>
-                        <input type="text" name = "cad" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter cad">
+                        <input type="text" name = "cad" style="border-color: white;" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter cad">
                         </div>
                     <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
                             <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Check Conversion" onclick='window.location.reload();'>

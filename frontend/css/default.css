@@ -1912,7 +1912,7 @@ pre code {
 .form-control:focus {
   color: #546e7a;
   background-color: #ffffff;
-  border-color: #1de9b6;
+  border-color: #000000;
   outline: 0;
   box-shadow: none;
 }
@@ -10424,18 +10424,23 @@ footer h5 {
   }
 }
 
-li:hover{
+input#li-bg {
   background-color: orange;
   border-color: orange;
 }
 
-li#search-bar{
+li:hover {
+  background-color: orange;
+  border-color: orange;
+}
+
+li#search-bar {
   background-color: white;
   border-color: white;
 }
 
-li#search-bar:hover{
-  background-color: white ;
+li#search-bar:hover {
+  background-color: white;
   border-color: orange;
 }
 
@@ -10490,28 +10495,28 @@ a#dashboard-hover {
   font-weight: 500;
   color: #11171a;
   padding: 0px 0px;
-  border:1px transparent; 
+  border: 1px transparent;
   background-color: transparent;
 }
 
 a#dashboard-hover:hover {
   cursor: pointer;
   color: white;
-  border:1px transparent; 
+  border: 1px transparent;
   font-weight: bold;
   background-color: transparent;
   transform: scale(1.05);
 }
 
-.decrease{
+.decrease {
   color: rgb(255, 0, 0);
 }
 
-.increase{
+.increase {
   color: rgb(0, 255, 0);
 }
 
-.search-box{
+.search-box {
   position: absolute;
   top: 10%;
   left: 50%;
@@ -10521,7 +10526,7 @@ a#dashboard-hover:hover {
   padding: 10px;
 }
 
-.search-btn{
+.search-btn {
   color: black;
   float: right;
   width: 40px;
@@ -10533,17 +10538,17 @@ a#dashboard-hover:hover {
   align-items: center;
 }
 
-.search-box:hover > .search-txt{
+.search-box:hover > .search-txt {
   color: white;
   width: 210px;
   padding: 0 6px;
 }
 
-.search-box:hover > .search-btn{
+.search-box:hover > .search-btn {
   background-color: white;
 }
 
-.search-txt{
+.search-txt {
   color: white;
   border: none;
   background: none;
