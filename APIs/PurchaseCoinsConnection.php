@@ -12,6 +12,7 @@
     if($card_number == 123456789 && $cvv == 111)
     {
         $_SESSION['notify'] = purchaseCoins($conn, $_SESSION['username'], $_SESSION['coins']);
+        $_SESSION['cad'] = 0;
         $_SESSION['coins'] = 0;
     }
     else
@@ -20,5 +21,5 @@
     }
 
     // echo $_SESSION['notify'];
-    header("Location: ../frontend/BuyCoinsView.php");
+    header("Location: ../frontend/listener.php");
 ?>

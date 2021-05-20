@@ -1,8 +1,9 @@
     <?php
     session_start();
     $_SESSION['conversion_rate'] = -0.05;
-    $_SESSION['coins'] = 0;
-    $_SESSION['cad'] = 0;
+    $_SESSION['coins'];
+    $_SESSION['notify'];
+    $_SESSION['cad'];
     ?>
 
     <!doctype html>
@@ -96,14 +97,40 @@
                                     echo '</form>';
                                     echo '</li>';
                                 }
+                                if($_SESSION['display'] == 3)
+                                {
+                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Buy Siliqas ->">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                else
+                                {
+                                    echo '<li class="list-group-item">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Buy Siliqas">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                if($_SESSION['display'] == 4)
+                                {
+                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Sell Siliqas ->">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                else
+                                {
+                                    echo '<li class="list-group-item">
+                                        <form action="../APIs/DisplaySwitch.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Sell Siliqas">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
                                 
                             ?>
-                    <li class="list-group-item">
-                        <a class="dropdown-item" id="dashboard-hover" href="BuyCoinsView.php">Buy Siliqas</a>
-                    </li>
-                    <li class="list-group-item ">
-                        <a class="dropdown-item" id="dashboard-hover" href="SellCoinsView.php">Sell Siliqas</a>
-                    </li>
                     <li class="list-group-item ">
                         <a class="dropdown-item" id="dashboard-hover" href="#">Account</a>
                     </li>
@@ -210,7 +237,7 @@
                             }
                             echo '</form>';
                         }
-                        else
+                        else if($_SESSION['display'] == 2 || $_SESSION['display'] == 0)
                         {
                             echo '<table class="table">
                             <thead>
@@ -524,11 +551,135 @@
                             echo '</tbody>
                                 </table>';
                         }
+                        else if($_SESSION['display'] == 3)
+                        {
+                            if($_SESSION['notify'] == 1)
+                                echo "<script>alert('Siliqas bought successfully');</script>";
+                            if($_SESSION['notify'] == 2)
+                                echo "<script>alert('Card verfication failed');</script>";
+                            $_SESSION['notify'] = 0;
+                            echo '<section class="py-7 py-md-0 bg-dark" id="login">
+                            <div class="container">
+                                <div class="row vh-md-100">
+                                    <div class="col-12 mx-auto my-auto text-center">
+                                    <p class="navbar-light">Account Balance</p>
+                                    <p>';
+                            $conn = connect();
+                            $result = getUserBalance($conn, $_SESSION['username']);
+                            $balance = $result->fetch_assoc();
+                            echo "Siliqas: ";
+                            echo number_format((float)$balance['balance'], 2, '.', '');
+                            echo '</p>
+                            <p class="navbar-light">Current Rate</p>
+                            <p>';
+                                if($_SESSION['conversion_rate'] > 0)
+                                    echo "+";
+                                // else if($_SESSION['conversion_rate'] < 0)
+                                //     echo "-";
+                                echo $_SESSION['conversion_rate'];
+                                echo "%";
+                            echo '</p>
+
+                                <form action = "../APIs/BuyCoinsConnection.php" method = "post">
+                                    <div class="form-group">
+                                        <h5>Enter Amount in Canadian Dollars</h5>
+                                        <input type="text" name = "cad" style="border-color: white;" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter cad">
+                                        </div>
+                                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Check Conversion" onclick="window.location.reload();">
+                                        
+                                    </div>
+                                </form>
+                                <p class="navbar navbar-expand-lg navbar-light bg-dark">Siliqas (q̶):'; 
+                                    if($_SESSION['coins']!=0)
+                                    {
+                                        echo $_SESSION['coins'];
+                                    }
+                                    else
+                                    {
+                                        echo " ";
+                                        echo 0;
+                                    }
+                                echo '</p>
+                                </form>
+                                <form action = "CardVerificationView.php" method = "post">
+                                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy this amount!" onclick="window.location.reload();">
+                                        
+                                    </div>
+                                    </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>';
+                        }
+                        else if($_SESSION['display'] == 4)
+                        {
+                            if($_SESSION['notify'] == 1)
+                                echo "<script>alert('Siliqas sold successfully');</script>";
+                            if($_SESSION['notify'] == 2)
+                                echo "<script>alert('Failed to sell Siliqas');</script>";
+                            $_SESSION['notify'] = 0;
+                            echo '<section class="py-7 py-md-0 bg-dark" id="login">
+                            <div class="container">
+                                <div class="row vh-md-100">
+                                    <div class="col-12 mx-auto my-auto text-center">
+                                    <p class="navbar-light bg-dark">Account Balance</p>
+                                    <p>';
+                                    $conn = connect();
+                                    $result = getUserBalance($conn, $_SESSION['username']);
+                                    $balance = $result->fetch_assoc();
+                                    echo "Siliqas: ";
+                                    echo $balance['balance'];
+                                    echo '</p>
+                                    <p class="navbar-light bg-dark">Current Rate</p>
+                                    <p>';
+                                    if($_SESSION['conversion_rate'] > 0)
+                                        echo "+";
+                                    echo $_SESSION['conversion_rate'];
+                                    echo "%";
+                                    echo '</p>
+                                    
+
+                                    <!-- hyperlinks -->
+                                        <form action = "../APIs/SellCoinsConnection.php" method = "post">
+                                            <div class="form-group">
+                                                <h5>How many Siliqas are you exchanging?</h5>
+                                                <input type="text" name = "coins" style="border-color: white;" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter Siliqas">
+                                                </div>
+                                            <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                                                    <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Check Conversion" onclick="window.location.reload();">
+                                                
+                                            </div>
+                                        </form>
+                                        <p class="navbar navbar-expand-lg navbar-light bg-dark">CAD:'; 
+                                        if($_SESSION['cad']!=0)
+                                        {
+                                            echo "$";
+                                            echo " ";
+                                            echo $_SESSION['cad'];
+                                        }
+                                        else
+                                        {
+                                            echo "$";
+                                            echo " ";
+                                            echo 0;
+                                        }
+                                        echo '</p>
+                                        </form>
+                                        <form action = "../APIs/WithdrawCoinsConnection.php" method = "post">
+                                            <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                                                    <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell this amount!" onclick="window.location.reload();">
+                                                
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>';
+                        }
                         
                     ?> 
-                    
-                </tbody>
-                </table>
             </div>
         </div>
     </section>
@@ -537,10 +688,6 @@
     <div class="scroll-top">
         <i class="fa fa-angle-up" aria-hidden="true"></i>
     </div>
-
-    <?php
-        $_SESSION['display'] = 0;
-    ?>
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

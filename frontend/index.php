@@ -1,8 +1,10 @@
 <?php
   session_start();
+  $_SESSION['coins'] = 0;
   $_SESSION['notify'] =  0;
   $_SESSION['display'] = 0;
   $_SESSION['sort_type'] = 0;
+  $_SESSION['cad'] = 0;
 ?>
 
 <!doctype html>
