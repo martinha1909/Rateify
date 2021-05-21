@@ -804,6 +804,10 @@
         <i class="fa fa-angle-up" aria-hidden="true"></i>
     </div>
 
+    <?php
+        $_SESSION['display'] = 0;
+    ?>
+
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
