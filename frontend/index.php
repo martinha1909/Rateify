@@ -32,8 +32,8 @@
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-dark bg-orange">
-            <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a id = "href-hover-orange" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
                 ⒽASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"

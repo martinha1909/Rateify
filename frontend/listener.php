@@ -805,7 +805,8 @@
     </div>
 
     <?php
-        $_SESSION['display'] = 0;
+    // if($_SESSION['currency'] == 0)
+    //     $_SESSION['display'] = 0;
     ?>
 
 

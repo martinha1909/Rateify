@@ -10424,8 +10424,6 @@ footer h5 {
   }
 }
 
-
-
 input#li-bg {
   background-color: orange;
   border-color: orange;
@@ -10491,6 +10489,16 @@ a#href-hover {
 a#href-hover:hover {
   cursor: pointer;
   color: #11171a;
+}
+
+a#href-hover-orange {
+  color: #ffffff;
+  padding: 0px 0px;
+}
+
+a#href-hover-orange:hover {
+  cursor: pointer;
+  color: #ff9100;
 }
 
 a#dashboard-hover {
@@ -10563,5 +10571,3 @@ a#dashboard-hover:hover {
   line-height: 40px;
   width: 0px;
 }
-
-
