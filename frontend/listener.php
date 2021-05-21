@@ -22,6 +22,7 @@
         <!-- Bootstrap CSS / Color Scheme -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="css/default.css" id="theme-color">
+        <link rel="stylesheet" href="css/menu.css" id="theme-color">
     </head>
     <body>
 
@@ -606,39 +607,68 @@
                                 echo $_SESSION['conversion_rate'];
                                 echo "%";
                             echo '</p>
-
+                                <form action="../APIs/CurrencyConnection.php" method="post">';
+                                if($_SESSION['currency']==0)
+                                {
+                                    echo'
+                                    <div class="select">
+                                    <select name="currency" id="slct" onchange="this.form.submit()">
+                                        <option selected disabled>Currency</option>
+                                        <option value="USD">USD</option>
+                                        <option value="CAD">CAD</option>
+                                        <option value="EURO">EURO</option>
+                                    </select>
+                                    </div>';
+                                }
+                                else
+                                {
+                                    echo '<div class="select">
+                                    <select name="currency" id="slct" onchange="this.form.submit()">
+                                        <option selected disabled>'.$_SESSION['currency'].'</option>
+                                        <option value="USD">USD</option>
+                                        <option value="CAD">CAD</option>
+                                        <option value="EURO">EURO</option>
+                                    </select>
+                                    </div>';
+                                }
+                                echo '</form>
                                 <form action = "../APIs/BuyCoinsConnection.php" method = "post">
-                                    <div class="form-group">
-                                        <h5>Enter Amount in Canadian Dollars</h5>
-                                        <input type="text" name = "cad" style="border-color: white;" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter cad">
-                                        </div>
-                                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
-                                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Check Conversion" onclick="window.location.reload();">
-                                        
-                                    </div>
-                                </form>
-                                <p class="navbar navbar-expand-lg navbar-light bg-dark">Siliqas (q̶):'; 
-                                    if($_SESSION['coins']!=0)
-                                    {
-                                        echo $_SESSION['coins'];
-                                    }
-                                    else
-                                    {
-                                        echo " ";
-                                        echo 0;
-                                    }
-                                echo '</p>
-                                </form>
-                                <form action = "CardVerificationView.php" method = "post">
-                                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
-                                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy this amount!" onclick="window.location.reload();">
-                                        
-                                    </div>
-                                    </form>
+                                    <div class="form-group">';
+                                        if($_SESSION['currency'] == 0)
+                                            echo '<h5> Please choose a currency</h5>';
+                                        else
+                                        {
+                                            echo '<h5>Enter Amount in '.$_SESSION['currency'].'</h5>
+                                            <input type="text" name = "currency" style="border-color: white;" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter amount">
                                             </div>
-                                        </div>
-                                    </div>
-                                </section>';
+                                                <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                                                        <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Check Conversion" onclick="window.location.reload();">
+                                                    
+                                                </div>
+                                            </form>
+                                            <p class="navbar navbar-expand-lg navbar-light bg-dark">Siliqas (q̶):';
+                                                if($_SESSION['coins']!=0)
+                                                {
+                                                    echo $_SESSION['coins'];
+                                                }
+                                                else
+                                                {
+                                                    echo " ";
+                                                    echo 0;
+                                                }
+                                            echo '</p>
+                                            </form>
+                                            <form action = "CardVerificationView.php" method = "post">
+                                                <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                                                        <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy this amount!" onclick="window.location.reload();">
+                                                    
+                                                </div>
+                                                </form>';
+                                            }
+                                            echo'            </div>
+                                                    </div>
+                                                </div>
+                                            </section>';
                         }
                         else if($_SESSION['display'] == 4)
                         {
@@ -666,6 +696,31 @@
                                     echo $_SESSION['conversion_rate'];
                                     echo "%";
                                     echo '</p>
+                                    <form action="../APIs/CurrencyConnection.php" method="post">';
+                                    if($_SESSION['currency']==0)
+                                    {
+                                        echo'
+                                        <div class="select">
+                                        <select name="currency" id="slct" onchange="this.form.submit()">
+                                            <option selected disabled>Currency</option>
+                                            <option value="USD">USD</option>
+                                            <option value="CAD">CAD</option>
+                                            <option value="EURO">EURO</option>
+                                        </select>
+                                        </div>';
+                                    }
+                                    else
+                                    {
+                                        echo '<div class="select">
+                                        <select name="currency" id="slct" onchange="this.form.submit()">
+                                            <option selected disabled>'.$_SESSION['currency'].'</option>
+                                            <option value="USD">USD</option>
+                                            <option value="CAD">CAD</option>
+                                            <option value="EURO">EURO</option>
+                                        </select>
+                                        </div>';
+                                    }
+                                    echo '</form>
                                     
 
                                     <!-- hyperlinks -->
@@ -679,7 +734,7 @@
                                                 
                                             </div>
                                         </form>
-                                        <p class="navbar navbar-expand-lg navbar-light bg-dark">CAD:'; 
+                                        <p class="navbar navbar-expand-lg navbar-light bg-dark">'.$_SESSION['currency'].':'; 
                                         if($_SESSION['cad']!=0)
                                         {
                                             echo "$";

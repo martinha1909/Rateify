@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2021 at 12:37 AM
+-- Generation Time: May 21, 2021 at 09:43 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -29,37 +29,38 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `account_type` varchar(50) NOT NULL,
   `id` int(11) NOT NULL,
   `Shares` int(50) NOT NULL,
   `balance` double NOT NULL,
   `rate` double NOT NULL,
-  `Share_Distributed` int(50) NOT NULL
+  `Share_Distributed` int(50) NOT NULL,
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`username`, `password`, `account_type`, `id`, `Shares`, `balance`, `rate`, `Share_Distributed`) VALUES
-('88Glam', 'artist', 'artist', 1, 11, 0, 0.105, 12),
-('admin', 'admin', 'admin', 6, 0, 0, 0, 0),
-('admin0', 'admin', 'admin', 17, 0, 0, 0, 0),
-('ayush', 'test', 'user', 4, 0, 0, 0, 0),
-('chris', 'user', 'user', 5, 0, 0, 0, 0),
-('Drake', 'artist', 'artist', 14, 0, 0, -0.02, 0),
-('Eminem', 'artist', 'artist', 16, 2, 0, 0.113, 5),
-('FRVRFRIDAY', 'artist', 'artist', 15, 0, 0, 0.013, 0),
-('Kanye West', 'artist', 'artist', 13, 0, 0, 0, 0),
-('kep', 'admin', 'admin', 12, 0, 0, 0, 0),
-('kepwessner', '1234', 'user', 11, 0, 0, 0, 0),
-('martin', 'user', 'user', 3, 0, 19619.5748, 0, 0),
-('Martin Ha', '123456', 'user', 9, 0, 0, 0, 0),
-('Metro Booming', 'producer', 'producer', 7, 0, 0, 0, 0),
-('NAV', 'artist', 'artist', 2, 0, 0, 0, 0),
-('Polygon', 'producer', 'producer', 8, 0, 0, 0, 0),
-('Travis Scott', 'artist', 'artist', 10, 0, 0, -0.174, 0);
+INSERT INTO `account` (`username`, `password`, `account_type`, `id`, `Shares`, `balance`, `rate`, `Share_Distributed`, `email`) VALUES
+('88Glam', 'artist', 'artist', 1, 11, 0, 0.105, 12, ''),
+('admin', 'admin', 'admin', 6, 0, 0, 0, 0, ''),
+('admin0', 'admin', 'admin', 17, 0, 0, 0, 0, ''),
+('ayush', 'test', 'user', 4, 0, 0, 0, 0, ''),
+('chris', 'user', 'user', 5, 0, 0, 0, 0, ''),
+('Drake', 'artist', 'artist', 14, 0, 0, -0.02, 0, ''),
+('Eminem', 'artist', 'artist', 16, 2, 0, 0.113, 5, ''),
+('FRVRFRIDAY', 'artist', 'artist', 15, 0, 0, 0.013, 0, ''),
+('Kanye West', 'artist', 'artist', 13, 0, 0, 0, 0, ''),
+('kep', 'admin', 'admin', 12, 0, 0, 0, 0, ''),
+('kepwessner', '1234', 'user', 11, 0, 0, 0, 0, ''),
+('martin', '1234', 'user', 3, 0, 19587.8248, 0, 0, '1234@gmail.com'),
+('Martin Ha', '123456', 'user', 9, 0, 0, 0, 0, ''),
+('Metro Booming', 'producer', 'producer', 7, 0, 0, 0, 0, ''),
+('NAV', 'artist', 'artist', 2, 0, 0, 0, 0, ''),
+('Polygon', 'producer', 'producer', 8, 0, 0, 0, 0, ''),
+('Travis Scott', 'artist', 'artist', 10, 0, 0, -0.174, 0, '');
 
 -- --------------------------------------------------------
 

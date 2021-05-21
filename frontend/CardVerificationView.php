@@ -54,7 +54,7 @@
                 <h2>Card Information</h2>
               </div>
               <div style="position:absolute; right: 580px; bottom: 150px"class="col text-center">
-                <a href="BuyCoinsView.php"> <- Buy Coins</a>
+                <a href="listener.php"> <- Your page</a>
               </div> 
               
 

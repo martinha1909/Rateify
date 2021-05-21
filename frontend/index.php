@@ -6,6 +6,7 @@
   $_SESSION['sort_type'] = 0;
   $_SESSION['cad'] = 0;
   $_SESSION['edit'] = 0;
+  $_SESSION['currency'] = 0;
 ?>
 
 <!doctype html>
