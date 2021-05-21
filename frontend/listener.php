@@ -720,45 +720,47 @@
                                         </select>
                                         </div>';
                                     }
-                                    echo '</form>
-                                    
-
-                                    <!-- hyperlinks -->
-                                        <form action = "../APIs/SellCoinsConnection.php" method = "post">
-                                            <div class="form-group">
-                                                <h5>How many Siliqas are you exchanging?</h5>
-                                                <input type="text" name = "coins" style="border-color: white;" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter Siliqas">
+                                    echo '</form>';
+                                    if($_SESSION['currency'] == 0)
+                                        echo '<h5>Please choose a currency</h5>';
+                                    else
+                                    {
+                                                echo'<form action = "../APIs/SellCoinsConnection.php" method = "post">
+                                                    <div class="form-group">
+                                                        <h5>How many Siliqas are you exchanging?</h5>
+                                                        <input type="text" name = "coins" style="border-color: white;" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter Siliqas">
+                                                        </div>
+                                                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                                                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Check Conversion" onclick="window.location.reload();">
+                                                        
+                                                    </div>
+                                                </form>
+                                                <p class="navbar navbar-expand-lg navbar-light bg-dark">'.$_SESSION['currency'].':'; 
+                                                if($_SESSION['cad']!=0)
+                                                {
+                                                    echo "$";
+                                                    echo " ";
+                                                    echo $_SESSION['cad'];
+                                                }
+                                                else
+                                                {
+                                                    echo "$";
+                                                    echo " ";
+                                                    echo 0;
+                                                }
+                                                echo '</p>
+                                                </form>
+                                                <form action = "../APIs/WithdrawCoinsConnection.php" method = "post">
+                                                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
+                                                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell this amount!" onclick="window.location.reload();">
+                                                        
+                                                    </div>
+                                                    </form>
                                                 </div>
-                                            <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
-                                                    <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Check Conversion" onclick="window.location.reload();">
-                                                
                                             </div>
-                                        </form>
-                                        <p class="navbar navbar-expand-lg navbar-light bg-dark">'.$_SESSION['currency'].':'; 
-                                        if($_SESSION['cad']!=0)
-                                        {
-                                            echo "$";
-                                            echo " ";
-                                            echo $_SESSION['cad'];
-                                        }
-                                        else
-                                        {
-                                            echo "$";
-                                            echo " ";
-                                            echo 0;
-                                        }
-                                        echo '</p>
-                                        </form>
-                                        <form action = "../APIs/WithdrawCoinsConnection.php" method = "post">
-                                            <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
-                                                    <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell this amount!" onclick="window.location.reload();">
-                                                
-                                            </div>
-                                            </form>
                                         </div>
-                                    </div>
-                                </div>
-                            </section>';
+                                    </section>';
+                                    }
                         }
                         else if($_SESSION['display'] == 5)
                         {
