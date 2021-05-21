@@ -738,13 +738,19 @@
                                                 <p class="navbar navbar-expand-lg navbar-light bg-dark">'.$_SESSION['currency'].':'; 
                                                 if($_SESSION['cad']!=0)
                                                 {
-                                                    echo "$";
+                                                    if($_SESSION['currency'] == "EURO")
+                                                        echo "€";
+                                                    else
+                                                        echo "$";
                                                     echo " ";
                                                     echo $_SESSION['cad'];
                                                 }
                                                 else
                                                 {
-                                                    echo "$";
+                                                    if($_SESSION['currency'] == "EURO")
+                                                        echo "€";
+                                                    else
+                                                        echo "$";
                                                     echo " ";
                                                     echo 0;
                                                 }
