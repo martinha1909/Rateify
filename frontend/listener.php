@@ -54,9 +54,9 @@
 
 
     <!-- listener functionality -->
-    <section class="py-7 py-md-0 bg-dark" id="login">
-    <div class="container-fluid py-6 p-auto" style = "position:relative; left:0px; bottom:28px;">
-            <div class="row vh-md-50">
+    <section class="py-8 bg-dark" id="login">
+    <div class="container-fluid">
+        <div class="row">
                 <ul class="list-group col-2">
                     <li class="list-group-item" id="search-bar">
                         <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
@@ -172,16 +172,9 @@
                     
 
                 </ul>
-                            </div>
-            </div>
-        </section>
-                
 
                 <!-- header -->
-        <section class="py-7 py-md-0 bg-dark" id="login">
-            <div class="container" style = "position:relative; left:80px; bottom:670px;">
-                <div class="row vh-md-100">
-                <ul class="list-group col-12">
+                <ul class="list-group col">
                 <?php
                 if($_SESSION['display'] == 1)
                 echo '<table class="table">
@@ -586,9 +579,9 @@
                             if($_SESSION['notify'] == 2)
                                 echo "<script>alert('Card verfication failed');</script>";
                             $_SESSION['notify'] = 0;
-                            echo '<section class="py-7 py-md-0 bg-dark" id="login">
+                            echo '<section id="login">
                             <div class="container">
-                                <div class="row vh-md-100">
+                                <div>
                                     <div class="col-12 mx-auto my-auto text-center">
                                     <p class="navbar-light">Account Balance</p>
                                     <p>';
@@ -677,9 +670,9 @@
                             if($_SESSION['notify'] == 2)
                                 echo "<script>alert('Failed to sell Siliqas');</script>";
                             $_SESSION['notify'] = 0;
-                            echo '<section class="py-7 py-md-0 bg-dark" id="login">
+                            echo '<section id="login">
                             <div class="container">
-                                <div class="row vh-md-100">
+                                <div>
                                     <div class="col-12 mx-auto my-auto text-center">
                                     <p class="navbar-light bg-dark">Account Balance</p>
                                     <p>';
@@ -773,9 +766,9 @@
                             if($_SESSION['notify'] == 3)
                                 echo "<script>alert('Incorrect Password');</script>";
                             $_SESSION['notify'] = 0;
-                            echo '<section class="py-7 py-md-0 bg-dark" id="login">
+                            echo '<section id="login">
                             <div class="container">
-                                <div class="row vh-md-100">
+                                <div">
                                     <div class="col-12 mx-auto my-auto text-center">
                                         <h3 style="color: orange;">Verify your password to access personal page</h3>
                                         <form action="../APIs/PersonalPageConnection.php" method="post">
@@ -795,8 +788,8 @@
                         }
                         
                     ?> 
+                </div>
             </div>
-        </div>
     </section>
 
     <!--scroll to top-->

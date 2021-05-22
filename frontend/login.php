@@ -32,7 +32,7 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark bg-orange">
             <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="index.php" onclick='window.location.reload();'>
-              ⒽASSNER
+              HASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"

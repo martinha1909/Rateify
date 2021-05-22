@@ -17,11 +17,6 @@
     <!--Inter UI font-->
     <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
 
-    <!--vendors styles-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
 </head>
@@ -30,12 +25,12 @@
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.php">
-                Rateify
+        <nav class="navbar navbar-expand-md navbar-dark bg-orange">
+            <a id="href-hover" class="navbar-brand heading-black" href="index.php">
+                HASSNER
             </a>
-            <p style = "position: absolute;right:0px; top:0px;" class="navbar-light bg-dark">Account Balance</p>
-            <p style = "position: absolute;right:20px; top:26px;">
+            <p class="navbar-light">Account Balance</p>
+            <p>
                 <?php
                     include '../APIs/logic.php';
                     include '../APIs/connection.php';
@@ -46,8 +41,8 @@
                     echo $balance['balance'];
                 ?>
             </p>
-            <p style = "position: absolute;right:165px; top:0px;" class="navbar-light bg-dark">Current Rate</p>
-            <p style = "position: absolute;right:190px; top:26px;">
+            <p class="navbar-light">Current Rate</p>
+            <p>
                 <?php
                     if($_SESSION['conversion_rate'] > 0)
                         echo "+";
@@ -66,12 +61,12 @@
 </section>
 
 <!-- listener functionality -->
-<section class="py-7 py-md-0 bg-hero" id="login">
+<section class="py-7 py-md-0 bg-dark" id="login">
     <div class="container">
         <div class="row vh-md-100">
             <div class="col-12 mx-auto my-auto text-center">
             <div  class="col text-left">
-                <a href="listener.php"> <-Your page</a>
+                <a href="listener.php"> <- Front page</a>
               </div>
 
               
@@ -110,7 +105,7 @@
                     $_SESSION['profit'] = $_SESSION['per_share_price'] * $_SESSION['rate'];
                     $_SESSION['profit'] = $_SESSION['profit'] + $_SESSION['per_share_price'];
                     $rate = $_SESSION['rate'] * 100;
-                    echo '<tr><th scope="row">'.$shares_bought.'</th><td>'.$_SESSION['artist'].'</td><td>Coins: '.$_SESSION['per_share_price'].'</td><td>Coins: '.$_SESSION['profit'].' ('.$rate.'%)</td><td>'.$_SESSION['shares_available'].'</td></tr>';
+                    echo '<tr><th scope="row">'.$shares_bought.'</th><td>'.$_SESSION['artist'].'</td><td>Siliqas: '.$_SESSION['per_share_price'].'</td><td>Siliqas: '.$_SESSION['profit'].' ('.$rate.'%)</td><td>'.$_SESSION['shares_available'].'</td></tr>';
                   ?>
               </tbody>
             </table>
@@ -141,7 +136,7 @@
         </div>
     </div>
 </section>
-<section class="py-5 top-right bottom-left" id="New_releases">
+<section class="py-5 top-right bottom-left bg-dark" id="New_releases">
 <a class= "nav-link page-scroll" href="#singles" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; right: 250px; top: 725px;">
     Singles
 </a>

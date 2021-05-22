@@ -32,9 +32,9 @@
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-dark">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <a id = "href-hover-orange" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
-                ⒽASSNER
+                HASSNER
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
@@ -61,7 +61,7 @@
         <div class="row vh-md-100">
             <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
                 <h1 class="heading-black">Making&nbspmoney&nbspis music&nbspto&nbspour&nbspears</h1>
-                <h5 class="lead">Hassner creates opportunities for both listeners and artists. Sign&nbspup&nbspfor&nbspfree.</h5>
+                <h5 class="lead">Hassner is creating new opportunities for both listeners and artists. Sign&nbspup&nbspfor&nbspfree.</h5>
                 <a class= "nav-link page-scroll" href="#signup" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
                     <!--It loss the green background, but it scrolls to the bottom of the page now (or we can make it go to the signup page automatically)-->
                     Get started now
@@ -108,13 +108,13 @@
 </section>
 
 <!--signup section-->
-<section class="py-5 bg-white top-right bottom-left" id="signup">
+<section class="py-5 bg-dark top-right bottom-left" id="signup">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <h3 style = "color: #11171a;">Create a Hassner account</h3>
+                <h3 style = "color: white;">Create a Hassner account</h3>
                 <form action="signup.php">
-                    <input type="submit" role="button" value="Sign up!" class = "btn btn-secondary" aria-pressed="true">
+                    <input type="submit" role="button" value="Sign up!" class = "btn btn-primary" aria-pressed="true">
                 </form>
             </div>
         </div>
@@ -122,13 +122,13 @@
 </section>
 
 <!--login section-->
-<section class="py-5 bg-white top-right bottom-left" id="login">
+<section class="py-5 bg-dark top-right bottom-left" id="login">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-12 mx-auto text-center py-5">
-                <h3 style = "color: #11171a;">Sign in to your account</h3>
+                <h3 style = "color: white;">Sign in to your account</h3>
                 <form action="login.php">
-                    <input class ="btn btn-secondary" role="button" type = "submit" aria-pressed="true" value="Log in">
+                    <input class ="btn btn-primary" role="button" type = "submit" aria-pressed="true" value="Log in">
                 </form>
             </div>
         </div>

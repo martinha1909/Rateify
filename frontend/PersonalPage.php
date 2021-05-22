@@ -32,7 +32,7 @@
 
     <section class="middle-card">
       <h1 class="fade-in-text" id="h1-sm">About</h1>
-      <p>Write Something.</p>
+      <p>Write Something. Year-long growth. Most invested artists.</p>
     </section>
     <section class="middle-card">
       <h1 class="fade-in-text" id="h1-sm">Email Address</h1>
