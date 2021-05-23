@@ -167,7 +167,7 @@
                                 
                             ?>
                     
-                    <li class="list-group-item ">
+                    <li class="list-group-item">
                             <a class="dropdown-item" id="dashboard-hover" href="login.php">Log out</a>
                     </li>
                     
@@ -604,9 +604,10 @@
                                 <form action="../APIs/CurrencyConnection.php" method="post">';
                                 if($_SESSION['currency']==0)
                                 {
+                                    
                                     echo'
-                                    <div class="select">
-                                    <select name="currency" id="slct" onchange="this.form.submit()">
+                                    <div class="select-dark">
+                                    <select name="currency" id="dark" onchange="this.form.submit()">
                                         <option selected disabled>Currency</option>
                                         <option value="USD">USD</option>
                                         <option value="CAD">CAD</option>
@@ -616,8 +617,8 @@
                                 }
                                 else
                                 {
-                                    echo '<div class="select">
-                                    <select name="currency" id="slct" onchange="this.form.submit()">
+                                    echo '<div class="select-dark">
+                                    <select name="currency" id="dark" onchange="this.form.submit()">
                                         <option selected disabled>'.$_SESSION['currency'].'</option>
                                         <option value="USD">USD</option>
                                         <option value="CAD">CAD</option>
@@ -698,8 +699,8 @@
                                     if($_SESSION['currency']==0)
                                     {
                                         echo'
-                                        <div class="select">
-                                        <select name="currency" id="slct" onchange="this.form.submit()">
+                                        <div class="select-dark">
+                                        <select name="currency" id="dark" onchange="this.form.submit()">
                                             <option selected disabled>Currency</option>
                                             <option value="USD">USD</option>
                                             <option value="CAD">CAD</option>
@@ -709,8 +710,8 @@
                                     }
                                     else
                                     {
-                                        echo '<div class="select">
-                                        <select name="currency" id="slct" onchange="this.form.submit()">
+                                        echo '<div class="select-dark">
+                                        <select name="currency" id="dark" onchange="this.form.submit()">
                                             <option selected disabled>'.$_SESSION['currency'].'</option>
                                             <option value="USD">USD</option>
                                             <option value="CAD">CAD</option>

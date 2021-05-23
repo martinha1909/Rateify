@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="css/checkout.css" type="text/css">
   <link rel="stylesheet" href="css/default.css" type="text/css">
+  <link rel="stylesheet" href="css/menu.css" type="text/css">
 </head>
 
 <?php
@@ -119,26 +120,78 @@
             ?>
             <label for="expmonth">Exp Month</label>
             <?php
-                if($_SESSION['saved'] == 1)
-                  echo '<input type="text" id="expmonth" name="expmonth" value='.$account_info['Expiry_month'].'>';
-                else if($_SESSION['saved'] == 0)
-                  echo '<input type="text" id="expmonth" name="expmonth" placeholder="September">';
+                if($_SESSION['saved'] == 0)
+                {
+                  echo '<div class="select-dark">
+                          <select name="expmonth" id="dark">
+                              <option selected disabled>Month</option>
+                              <option value="1">01</option>
+                              <option value="2">02</option>
+                              <option value="3">03</option>
+                              <option value="4">04</option>
+                              <option value="5">05</option>
+                              <option value="6">06</option>
+                              <option value="7">07</option>
+                              <option value="8">08</option>
+                              <option value="9">09</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                          </select>
+                      </div>';
+                }
+                else if($_SESSION['saved'] == 1)
+                {
+                  echo '<div class="select-dark">
+                          <select name="expmonth" id="dark">
+                              <option selected disabled>'.$account_info['Expiry_month'].'</option>
+                              <option value="1">01</option>
+                              <option value="2">02</option>
+                              <option value="3">03</option>
+                              <option value="4">04</option>
+                              <option value="5">05</option>
+                              <option value="6">06</option>
+                              <option value="7">07</option>
+                              <option value="8">08</option>
+                              <option value="9">09</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                          </select>
+                      </div>';
+                }
             ?>
-            
             <div class="row">
               <div class="col-50">
                 <label for="expyear">Exp Year</label>
                 <?php
-                if($_SESSION['saved'] == 1)
-                  echo '<input type="text" id="expyear" name="expyear" value='.$account_info['Expiry_year'].'>';
-                else if($_SESSION['saved'] == 0)
-                  echo '<input type="text" id="expyear" name="expyear" placeholder="2018">';
+                if($_SESSION['saved'] == 0)
+                {
+                  echo '<div class="select-dark">
+                          <select name="expyear" id="dark">
+                              <option selected disabled>Year</option>';
+                  for($i=2021; $i<2031; $i++)
+                      echo '<option value='.$i.'>'.$i.'</option>';
+                  echo '</select>
+                        </div>';            
+                }
+                else if($_SESSION['saved'] == 1)
+                {
+                  echo '<div class="select-dark">
+                          <select name="expyear" id="dark">
+                              <option selected disabled>'.$account_info['Expiry_year'].'</option>';
+                  for($i=2021; $i<2031; $i++)
+                      echo '<option value='.$i.'>'.$i.'</option>';
+                  echo '</select>
+                        </div>'; 
+                }
             ?>
                 
               </div>
-              <div class="col-50">
+
+              <div class="col-4">
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv">
+                <input type="text" id="cvv" name="cvv" placeholder="111">
               </div>
             </div>
           </div>
@@ -149,6 +202,8 @@
             // if($_SESSION['saved'] == 0)
           if($_SESSION['saved'] == 0 || ((empty($account_info['Full_name']) || $account_info['Full_name'] == 0) && empty($account_info['email']) && empty($account_info['billing_address']) && empty($account_info['City']) && empty($account_info['State']) && empty($account_info['ZIP']) && empty($account_info['Card_number']) && empty($account_info['Expiry_month']) && empty($account_info['Expiry_year'])))
               echo '<input type="checkbox" name="save_info" value="Yes" checked> Save information for later payments';
+          else
+            echo '<input type="checkbox" name="save_info" value="Yes" checked> Update billing information';
         ?>
         </label>
         <input type="submit" value="Continue to checkout" class="btn btn-primary">

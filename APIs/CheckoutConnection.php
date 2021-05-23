@@ -19,6 +19,7 @@
             $expmonth = $_POST['expmonth'];
             $expyear = $_POST['expyear'];
             $cvv = $_POST['cvv'];
+            echo $expmonth;
             if(!empty($full_name) && !empty($email) && !empty($address) && !empty($city) && !empty($state) && !empty($zip) && !empty($card_name) && !empty($card_number) && !empty($expmonth) && !empty($expyear) && !empty($cvv))
                 saveUserPaymentInfo($conn, $_SESSION['username'], $full_name, $email, $address, $city, $state, $zip, $card_name, $card_number, $expmonth, $expyear);
             else
@@ -37,6 +38,7 @@
             $expmonth = $_POST['expmonth'];
             $expyear = $_POST['expyear'];
             $cvv = $_POST['cvv'];
+            echo $expmonth;
             if(!empty($full_name) && !empty($email) && !empty($address) && !empty($city) && !empty($state) && !empty($zip) && !empty($card_name) && !empty($card_number) && !empty($expmonth) && !empty($expyear) && !empty($cvv))
             {
                 $_SESSION['notify'] = purchaseCoins($conn, $_SESSION['username'], $_SESSION['coins']);
@@ -60,6 +62,7 @@
             $expmonth = $_POST['expmonth'];
             $expyear = $_POST['expyear'];
             $cvv = $_POST['cvv'];
+            echo $expmonth;
             if(!empty($full_name) && !empty($email) && !empty($address) && !empty($city) && !empty($state) && !empty($zip) && !empty($card_name) && !empty($card_number) && !empty($expmonth) && !empty($expyear) && !empty($cvv))
             {
                 $_SESSION['notify'] = purchaseCoins($conn, $_SESSION['username'], $_SESSION['coins']);

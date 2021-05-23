@@ -137,6 +137,8 @@
 
     <section class="middle-card">
     <p><i style="color: white;" class="fa fa-user"></i> Expiry Date: <?php
+        if($account_info['Expiry_month'] < 10)
+          echo "0";
         echo $account_info['Expiry_month'];
         echo "/";
         echo $account_info['Expiry_year'];
