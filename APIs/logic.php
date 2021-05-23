@@ -54,6 +54,14 @@
 
         function signup($conn, $username, $password, $type, $email) //done2
         {
+            $billing_address = "";
+            $full_name = "";
+            $city = "";
+            $state= "";
+            $zip = "";
+            $card_number="";
+            $expmonth = "";
+            $expyear = "";
             $balance = 0;
             $rate = 0;
             $num_of_shares = 0;
@@ -64,10 +72,10 @@
             $id = $row["max_id"] + 1;
             // $sql = "INSERT INTO account (username, password, account_type, id)
             //         VALUES('$username', '$password', '$type', '$id')";
-            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed, email)
-                    VALUES(?, ?, ?, $id, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed, email, billing_address, Full_name, City, State, ZIP, Card_number, Expiry_month, Expiry_year)
+                    VALUES(?, ?, ?, $id, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssiddis', $username, $password, $type, $num_of_shares, $balance, $rate, $share_distributed, $email);
+            $stmt->bind_param('sssiddisssssssss', $username, $password, $type, $num_of_shares, $balance, $rate, $share_distributed, $email, $billing_address, $full_name, $city, $state, $zip, $card_number, $expmonth, $expyear);
             if ($stmt->execute() === TRUE) {
                 $notify = 1;
             } else {
@@ -675,6 +683,8 @@
             return $notify;
         }
 
+        
+
         // function that is called whenever a new song is added to a Album which edits the no_of_songs and duration of the playlist
         function makeChangestoAlbum($conn, $a_name, $songId) // done2
         {
@@ -778,6 +788,12 @@
             $sql = "UPDATE account SET balance = $new_balance WHERE username = '$user_username'";
             $conn->query($sql);
             return $notify;
+        }
+
+        function saveUserPaymentInfo($conn, $username, $full_name, $email, $address, $city, $state, $zip, $card_name, $card_number, $expmonth, $expyear)
+        {
+            $sql = "UPDATE account SET Full_name = '$full_name', email='$email', billing_address='$address', City = '$city', State='$state', ZIP = '$zip', Card_number='$card_number', Expiry_month='$expmonth', Expiry_year='$expyear' WHERE username='$username'";
+            $conn->query($sql);
         }
 
         function purchaseCoins($conn, $username, $coins)

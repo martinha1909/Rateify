@@ -109,6 +109,76 @@
       ?>
     </section>
 
+    <section class="middle-card">
+      <h1 class="fade-in-text" id="h1-sm">Payment info</h1>
+      <p> Name on card: <?php
+        $result = searchAccount($conn, $_SESSION['username']);
+        $account_info = $result->fetch_assoc();
+        echo $account_info['Full_name'];
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+    <p><i style="color: white;" class="fa fa-user"></i> Card number: <?php
+    $chars = str_split($account_info['Card_number']);
+    echo '<p>';
+    $i = 0;
+    foreach($chars as $char)
+    {
+      if($char=="-" || $i == sizeof($chars)-1 || $i == sizeof($chars)-2 || $i == sizeof($chars) -3 || $i == sizeof($chars) -4)
+        echo $char;
+      else
+        echo "*";
+      $i++;
+    }
+    echo '</p>';
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+    <p><i style="color: white;" class="fa fa-user"></i> Expiry Date: <?php
+        echo $account_info['Expiry_month'];
+        echo "/";
+        echo $account_info['Expiry_year'];
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+    <p><i style="color: white;" class="fa fa-user"></i> Full Name: <?php
+        echo $account_info['Full_name'];
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+      <p><i style="color: white;" class="fas fa-map-marker-alt"></i> Billing Address: <?php
+        echo $account_info['billing_address'];
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+      <p><i style="color: white;" class="fa fa-envelope"></i> Email: <?php
+        echo $account_info['email'];
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+      <p><i style="color: white;" class="fas fa-location-arrow"></i> City: <?php
+        echo $account_info['City'];
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+      <p><i style="color: white;" class="fas fa-archway"></i> State: <?php
+        echo $account_info['State'];
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+      <p><i style="color: white;" class="fas fa-align-justify"></i> Zip: <?php
+        echo $account_info['ZIP'];
+      ?></p>
+    </section>
+
     <footer>
       <h1 class="fade-in-text" id="h1-sm">Contact</h1>
       <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>

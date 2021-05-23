@@ -8,6 +8,7 @@
   $_SESSION['edit'] = 0;
   $_SESSION['currency'] = 0;
   $_SESSION['btn_show'] = 0;
+  $_SESSION['saved'] = 0;
 ?>
 
 <!doctype html>
