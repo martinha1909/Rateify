@@ -8,6 +8,7 @@
             $_SESSION['coins'] = $_SESSION['coins'] * 0.83;
         else if($_SESSION['currency'] == "EURO")
             $_SESSION['coins'] = $_SESSION['coins'] * 0.68;
+        $_SESSION['btn_show'] = 1;
         // echo $_SESSION['coins'];
         
     }

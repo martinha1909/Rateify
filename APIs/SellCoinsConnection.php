@@ -8,6 +8,7 @@
             $_SESSION['cad'] = $_SESSION['cad'] * 0.83;
         else if($_SESSION['currency'] == "EURO")
             $_SESSION['cad'] = $_SESSION['cad'] * 0.68;
+        $_SESSION['btn_show'] = 1;
     }
     header("Location: ../frontend/listener.php");
 ?>

@@ -4,6 +4,7 @@
     $_SESSION['coins'];
     $_SESSION['notify'];
     $_SESSION['cad'];
+    $_SESSION['btn_show'];
     ?>
 
     <!doctype html>
@@ -652,8 +653,10 @@
                                             echo '</p>
                                             </form>
                                             <form action = "CheckoutView.php" method = "post">
-                                                <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
-                                                        <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy this amount!" onclick="window.location.reload();">
+                                                <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">';
+                                            if($_SESSION['btn_show'] == 1)
+                                            {
+                                                        echo '<input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy this amount!" onclick="window.location.reload();">
                                                     
                                                 </div>
                                                 </form>';
@@ -662,6 +665,8 @@
                                                     </div>
                                                 </div>
                                             </section>';
+                                            $_SESSION['btn_show'] = 0;
+                                        }
                         }
                         else if($_SESSION['display'] == 4)
                         {
@@ -750,15 +755,18 @@
                                                 echo '</p>
                                                 </form>
                                                 <form action = "../APIs/WithdrawCoinsConnection.php" method = "post">
-                                                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
-                                                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell this amount!" onclick="window.location.reload();">
-                                                        
-                                                    </div>
+                                                    <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">';
+                                                if($_SESSION['btn_show'] == 1)
+                                                {
+                                                        echo'    <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell this amount!" onclick="window.location.reload();">';
+                                                }        
+                                                echo'    </div>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </section>';
+                                    $_SESSION['btn_show'] = 0;
                                     }
                         }
                         else if($_SESSION['display'] == 5)
