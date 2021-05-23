@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="css/default.css" id="theme-color">
         <link rel="stylesheet" href="css/menu.css" id="theme-color">
     </head>
-    <body>
+    <body class="bg-dark">
 
     <!--navigation-->
 
@@ -54,7 +54,7 @@
 
 
     <!-- listener functionality -->
-    <section class="py-8 bg-dark" id="login">
+    <section class="py-8" id="login">
     <div class="container-fluid">
         <div class="row">
                 <ul class="list-group col-2">
@@ -651,7 +651,7 @@
                                                 }
                                             echo '</p>
                                             </form>
-                                            <form action = "CardVerificationView.php" method = "post">
+                                            <form action = "CheckoutView.php" method = "post">
                                                 <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
                                                         <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Buy this amount!" onclick="window.location.reload();">
                                                     
