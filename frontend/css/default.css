@@ -1622,14 +1622,14 @@ pre code {
 .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border-top: 2px solid #eceff1;
+  border-top: 0px solid #ffffff;
 }
 .table thead th {
   vertical-align: bottom;
-  border-bottom: 4px solid #eceff1;
+  border-bottom: 2px solid #ffffff;
 }
 .table tbody + tbody {
-  border-top: 4px solid #eceff1;
+  border-top: 4px solid #ffffff;
 }
 .table .table {
   background-color: #000000;
@@ -1641,11 +1641,11 @@ pre code {
 }
 
 .table-bordered {
-  border: 2px solid #eceff1;
+  border: 2px solid #ffffff;
 }
 .table-bordered th,
 .table-bordered td {
-  border: 2px solid #eceff1;
+  border: 2px solid #ffffff;
 }
 .table-bordered thead th,
 .table-bordered thead td {
@@ -1678,7 +1678,7 @@ pre code {
 }
 .table-hover .table-primary:hover > td,
 .table-hover .table-primary:hover > th {
-  background-color: #a9f7e4;
+  background-color: #ffffff;
 }
 
 .table-secondary,
@@ -1692,7 +1692,7 @@ pre code {
 }
 .table-hover .table-secondary:hover > td,
 .table-hover .table-secondary:hover > th {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
 }
 
 .table-success,
@@ -1706,7 +1706,7 @@ pre code {
 }
 .table-hover .table-success:hover > td,
 .table-hover .table-success:hover > th {
-  background-color: #a1f6cd;
+  background-color: #ffffff;
 }
 
 .table-info,
@@ -1720,7 +1720,7 @@ pre code {
 }
 .table-hover .table-info:hover > td,
 .table-hover .table-info:hover > th {
-  background-color: #9ff5ff;
+  background-color: #ffffff;
 }
 
 .table-warning,
@@ -1758,25 +1758,25 @@ pre code {
 }
 
 .table-hover .table-light:hover {
-  background-color: #ecf0f0;
+  background-color: #ffffff;
 }
 .table-hover .table-light:hover > td,
 .table-hover .table-light:hover > th {
-  background-color: #ecf0f0;
+  background-color: #ffffff;
 }
 
 .table-dark,
 .table-dark > th,
 .table-dark > td {
-  background-color: #bcbebf;
+  background-color: #ffffff;
 }
 
 .table-hover .table-dark:hover {
-  background-color: #afb1b3;
+  background-color: #ffffff;
 }
 .table-hover .table-dark:hover > td,
 .table-hover .table-dark:hover > th {
-  background-color: #afb1b3;
+  background-color: #ffffff;
 }
 
 .table-active,
@@ -1801,8 +1801,8 @@ pre code {
 
 .table .thead-light th {
   color: #546e7a;
-  background-color: #eceff1;
-  border-color: #eceff1;
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 
 .table-dark {
@@ -5144,9 +5144,10 @@ input[type="button"].btn-block {
 .list-group-item {
   position: relative;
   display: block;
-  padding: 0.75rem 1.25rem;
+  padding: 1.5rem;
   background-color: #ffffff;
-  border: 15.5px solid white;
+  border: 5px solid white;
+  min-width: 250px;
 }
 .list-group-item:first-child {
   border-top-left-radius: 0.3rem;
@@ -10004,12 +10005,13 @@ body {
 
 /*smart scrolling*/
 .smart-scroll {
-  position: fixed;
+  position: static;
   top: 0;
   z-index: 1020;
   width: 100%;
   transition: all 0.3s ease-out;
 }
+
 .smart-scroll.scrolling {
   -webkit-transform: translateY(-100%);
   transform: translateY(-100%);
@@ -10425,13 +10427,13 @@ footer h5 {
 }
 
 input#li-bg {
-  background-color: orange;
-  border-color: orange;
+  background-color: #ff9100;
+  border-color: #ff9100;
 }
 
 li:hover {
-  background-color: orange;
-  border-color: orange;
+  background-color: #e0e0e0;
+  border-color: #e0e0e0;
 }
 
 li#search-bar {
@@ -10451,8 +10453,8 @@ input#abc {
 
 input#abc:hover {
   cursor: pointer;
-  color: orange;
-  transform: scale(1.05);
+  color: #ff9100;
+  transform: scale(1.01);
   text-decoration: underline;
 }
 
@@ -10464,10 +10466,8 @@ input#menu-style {
 }
 
 input#menu-style:hover {
-  font-weight: bold;
   cursor: pointer;
   color: white;
-  transform: scale(1.05);
 }
 
 input#href-hover {
@@ -10565,7 +10565,7 @@ a#dashboard-hover:hover {
   outline: none;
   float: left;
   padding: 0;
-  background-color: orange;
+  background-color: #ff9100;
   font-size: 16px;
   transition: 0.4s;
   line-height: 40px;

@@ -31,7 +31,7 @@
 
     <header class="smart-scroll">
         <div class="container-xxl">
-            <nav class="navbar navbar-expand-md navbar-dark bg-orange d-flex justify-content-between">
+            <nav class="navbar navbar-expand-md navbar-dark bg-orange">
                 <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
                     HASSNER
                 </a>
@@ -48,17 +48,25 @@
                         aria-label="Toggle navigation">
                     <span data-feather="grid"></span>
                 </button>
-                
+<!-- ACCOUNT BALANCE -->
+                <?php
+        echo ' <div style="color: #ffffff; class="justify-content-between">
+                            <p>';
+                            echo "Account Balance (q̶): ";
+                            echo $balance['balance'];
+                            echo '</p>
+                        </div>';
+    ?>
             </nav>
         </div>
     </header>
 
-
     <!-- listener functionality -->
-    <section class="py-8" id="login">
+    
+    <section class="py-0" id="login">
     <div class="container-fluid">
         <div class="row">
-                <ul class="list-group col-2">
+                <ul class="list-group bg-white">
                     <li class="list-group-item" id="search-bar">
                         <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
                             <div class="search-box">
@@ -70,9 +78,9 @@
                             <?php
                                 if($_SESSION['display'] == 2 || $_SESSION['display'] == 0)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="My Portfolio ->"';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px white; background-color: transparent;" value="My Portfolio ->"';
                                     echo '</form>';
                                     echo '</li>';
                                 }
@@ -86,7 +94,7 @@
                                 }
                                 if($_SESSION['display'] == 1)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Top Invested Artists ->">';
                                     echo '</form>';
@@ -102,7 +110,7 @@
                                 }
                                 if($_SESSION['display'] == 3)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Buy Siliqas ->">';
                                     echo '</form>';
@@ -118,7 +126,7 @@
                                 }
                                 if($_SESSION['display'] == 4)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Sell Siliqas ->">';
                                     echo '</form>';
@@ -134,7 +142,7 @@
                                 }
                                 if($_SESSION['display'] == 5)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Account ->">';
                                     echo '</form>';
@@ -150,7 +158,7 @@
                                 }
                                 if($_SESSION['display'] == 6)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: orange; background-color: orange;">
+                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Settings ->">';
                                     echo '</form>';
@@ -167,7 +175,7 @@
                                 
                             ?>
                     
-                    <li class="list-group-item">
+                    <li style="position:relative; margin-top:100%;" class="list-group-item">
                             <a class="dropdown-item" id="dashboard-hover" href="login.php">Log out</a>
                     </li>
                     
@@ -181,11 +189,11 @@
                 echo '<table class="table">
                         <thead class="thead-orange">
                         <tr>
-                            <th scope="col" class="bg-orange" id="href-hover" style="color: white;">#</th>
-                            <th scope="col" class="bg-orange" id="href-hover" style="color: white;">Artist Name</th>
-                            <th scope="col" class="bg-orange" id="href-hover" style="color: white;">Total shares bought</th>
-                            <th scope="col" class="bg-orange" id="href-hover" style="color: white;">Price per share (q̶)</th>
-                            <th scope="col" class="bg-orange" id="href-hover" style="color: white;">Rate</th>
+                            <th scope="col" class="bg-orange" id="href-hover";">#</th>
+                            <th scope="col" class="bg-orange" id="href-hover";">Artist Name</th>
+                            <th scope="col" class="bg-orange" id="href-hover";">Total shares bought</th>
+                            <th scope="col" class="bg-orange" id="href-hover";">Price per share (q̶)</th>
+                            <th scope="col" class="bg-orange" id="href-hover";">Rate</th>
                         </tr>
                         </thead>
                         <tbody>';
@@ -264,13 +272,13 @@
                             echo '<table class="table">
                             <thead>
                             <tr>
-                            <th scope="col" class="bg-orange">#</th>
+                            <th scope="col" style="color: white;" class="bg-orange">#</th>
                             <form action="../APIs/SortArtists.php">
                                 <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Artist" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 1)
-                                echo "↑";
+                                echo " ↑";
                             else if($_SESSION['sort_type'] == 4)
-                                echo "↓";
+                                echo " ↓";
                             else
                                 echo "";
                             echo '</th>
@@ -278,9 +286,9 @@
                                 <form action="../APIs/SortShares.php">
                                     <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Shares bought" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 2)
-                                echo "↑";
+                                echo " ↑";
                             else if($_SESSION['sort_type'] == 5)
-                                echo "↓";
+                                echo " ↓";
                             else
                                 echo "";
                             echo '</th>
@@ -288,9 +296,9 @@
                                 <form action = "../APIs/SortPricePerShare.php">
                                     <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Price per share (q̶)" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 3)
-                                echo "↑";
+                                echo " ↑";
                             else if($_SESSION['sort_type'] == 6)
-                                echo "↓";
+                                echo " ↓";
                             else
                                 echo "";
 
@@ -299,9 +307,9 @@
                                 <form action = "../APIs/SortRates.php">
                                     <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Rate" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 0)
-                                echo "↑";
+                                echo " ↑";
                             else if($_SESSION['sort_type'] == 7)
-                                echo "↓";
+                                echo " ↓";
                             else
                                 echo "";
                             echo '</th>
@@ -575,38 +583,23 @@
                         }
                         else if($_SESSION['display'] == 3)
                         {
+                            $conn = connect();
+                            $result = getUserBalance($conn, $_SESSION['username']);
+                            $balance = $result->fetch_assoc();
                             if($_SESSION['notify'] == 1)
                                 echo "<script>alert('Siliqas bought successfully');</script>";
                             if($_SESSION['notify'] == 2)
                                 echo "<script>alert('Card verfication failed');</script>";
                             $_SESSION['notify'] = 0;
-                            echo '<section id="login">
-                            <div class="container">
-                                <div>
-                                    <div class="col-12 mx-auto my-auto text-center">
-                                    <p class="navbar-light">Account Balance</p>
-                                    <p>';
-                            $conn = connect();
-                            $result = getUserBalance($conn, $_SESSION['username']);
-                            $balance = $result->fetch_assoc();
-                            echo "Siliqas: ";
-                            echo number_format((float)$balance['balance'], 2, '.', '');
-                            echo '</p>
-                            <p class="navbar-light">Current Rate</p>
-                            <p>';
-                                if($_SESSION['conversion_rate'] > 0)
-                                    echo "+";
-                                // else if($_SESSION['conversion_rate'] < 0)
-                                //     echo "-";
-                                echo $_SESSION['conversion_rate'];
-                                echo "%";
-                            echo '</p>
-                                <form action="../APIs/CurrencyConnection.php" method="post">';
+                            echo '<section id="login" class="py-5";>';
+                            echo '<div class="container">';
+                                    
+                            echo '<div class="col-12 mx-auto my-auto text-center">';
+                            echo'    <form action="../APIs/CurrencyConnection.php" method="post">';
                                 if($_SESSION['currency']==0)
                                 {
                                     
-                                    echo'
-                                    <div class="select-dark">
+                                    echo'<div style="float:none;margin:auto;" class="select-dark">
                                     <select name="currency" id="dark" onchange="this.form.submit()">
                                         <option selected disabled>Currency</option>
                                         <option value="USD">USD</option>
@@ -617,7 +610,7 @@
                                 }
                                 else
                                 {
-                                    echo '<div class="select-dark">
+                                    echo '<div style="float:none;margin:auto;" class="select-dark">
                                     <select name="currency" id="dark" onchange="this.form.submit()">
                                         <option selected disabled>'.$_SESSION['currency'].'</option>
                                         <option value="USD">USD</option>
@@ -630,10 +623,10 @@
                                 <form action = "../APIs/BuyCoinsConnection.php" method = "post">
                                     <div class="form-group">';
                                         if($_SESSION['currency'] == 0)
-                                            echo '<h5> Please choose a currency</h5>';
+                                            echo '<h5 style="padding-top:150px;"> Please choose a currency</h5>';
                                         else
                                         {
-                                            echo '<h5>Enter Amount in '.$_SESSION['currency'].'</h5>
+                                            echo '<h5 style="padding-top:150px;">Enter Amount in '.$_SESSION['currency'].'</h5>
                                             <input type="text" name = "currency" style="border-color: white;" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter amount">
                                             </div>
                                                 <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
@@ -671,35 +664,23 @@
                         }
                         else if($_SESSION['display'] == 4)
                         {
+                            $conn = connect();
+                            $result = getUserBalance($conn, $_SESSION['username']);
+                            $balance = $result->fetch_assoc();
                             if($_SESSION['notify'] == 1)
                                 echo "<script>alert('Siliqas sold successfully');</script>";
                             if($_SESSION['notify'] == 2)
                                 echo "<script>alert('Failed to sell Siliqas');</script>";
                             $_SESSION['notify'] = 0;
-                            echo '<section id="login">
-                            <div class="container">
-                                <div>
-                                    <div class="col-12 mx-auto my-auto text-center">
-                                    <p class="navbar-light bg-dark">Account Balance</p>
-                                    <p>';
-                                    $conn = connect();
-                                    $result = getUserBalance($conn, $_SESSION['username']);
-                                    $balance = $result->fetch_assoc();
-                                    echo "Siliqas: ";
-                                    echo $balance['balance'];
-                                    echo '</p>
-                                    <p class="navbar-light bg-dark">Current Rate</p>
-                                    <p>';
-                                    if($_SESSION['conversion_rate'] > 0)
-                                        echo "+";
-                                    echo $_SESSION['conversion_rate'];
-                                    echo "%";
-                                    echo '</p>
+                            echo '<section id="login" class="py-5">
+                            <div class="container">';
+                                    
+                                    echo '<div class="col-12 mx-auto my-auto text-center">
                                     <form action="../APIs/CurrencyConnection.php" method="post">';
                                     if($_SESSION['currency']==0)
                                     {
                                         echo'
-                                        <div class="select-dark">
+                                        <div style="float:none;margin:auto;" class="select-dark">
                                         <select name="currency" id="dark" onchange="this.form.submit()">
                                             <option selected disabled>Currency</option>
                                             <option value="USD">USD</option>
@@ -710,7 +691,7 @@
                                     }
                                     else
                                     {
-                                        echo '<div class="select-dark">
+                                        echo '<div style="float:none;margin:auto;" class="select-dark">
                                         <select name="currency" id="dark" onchange="this.form.submit()">
                                             <option selected disabled>'.$_SESSION['currency'].'</option>
                                             <option value="USD">USD</option>
@@ -721,12 +702,12 @@
                                     }
                                     echo '</form>';
                                     if($_SESSION['currency'] == 0)
-                                        echo '<h5>Please choose a currency</h5>';
+                                        echo '<h5 style="padding-top:150px;">Please choose a currency</h5>';
                                     else
                                     {
                                                 echo'<form action = "../APIs/SellCoinsConnection.php" method = "post">
                                                     <div class="form-group">
-                                                        <h5>How many Siliqas are you exchanging?</h5>
+                                                        <h5 style="padding-top:150px;">How many Siliqas are you exchanging?</h5>
                                                         <input type="text" name = "coins" style="border-color: white;" class="form-control form-control-sm" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter Siliqas">
                                                         </div>
                                                     <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">
@@ -779,7 +760,7 @@
                             <div class="container">
                                 <div">
                                     <div class="col-12 mx-auto my-auto text-center">
-                                        <h3 style="color: orange;">Verify your password to access personal page</h3>
+                                        <h3 style="color: orange;padding-top:150px;">Verify your password to access personal page</h3>
                                         <form action="../APIs/PersonalPageConnection.php" method="post">
                                         <div class="form-group">
                                             <h5>Password</h5>

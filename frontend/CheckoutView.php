@@ -32,8 +32,7 @@
                 </a>
         </div>
     </header>
-    <h1>Responsive Checkout Form</h1>
-<div class="row">
+<div style="padding-top:50px;" class="row">
   <div class="col-75">
     <div class="container">
       <form action="../APIs/CheckoutConnection.php" method="post">
