@@ -47,12 +47,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+                    <menu class="nav-item">
                         <a class="nav-link page-scroll" href="#login">Log In</a>
-                    </li>
-                    <li class="nav-item">
+                    </menu>
+                    <menu class="nav-item">
                         <a class="nav-link page-scroll" href="#signup">Sign Up</a>
-                    </li>
+                    </menu>
                 </ul>
             </div>
         </nav>
@@ -60,11 +60,11 @@
 </section>
 
 <!--hero header-->
-<section class="py-7 py-md-0 bg-hero" id="home">
+<section class="py-md-0 bg-dark" id="home">
     <div class="container">
         <div class="row vh-md-100">
             <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
-                <h1 class="heading-black">Investing&nbspis music&nbspto&nbspour&nbspears</h1>
+                <h1 style="color:#ff9100;" class="heading-black">Investing&nbspis music&nbspto&nbspour&nbspears</h1>
                 <h5 class="lead">Hassner is creating new opportunities for both listeners and artists. Sign&nbspup&nbspfor&nbspfree.</h5>
                 <a class= "nav-link page-scroll" href="#signup" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
                     <!--It loss the green background, but it scrolls to the bottom of the page now (or we can make it go to the signup page automatically)-->

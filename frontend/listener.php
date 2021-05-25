@@ -30,10 +30,10 @@
 
     <!--navigation-->
 
-    <header class="smart-scroll">
+    <section class="smart-scroll">
         <div class="container-xxl">
             <nav class="navbar navbar-expand-md navbar-dark bg-orange justify-content-between">
-                <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
+                <a id = "href-hover" class="navbar-brand heading-black" href="#" onclick='window.location.reload();'>
                     HASSNER
                 </a>
 
@@ -72,7 +72,7 @@
     ?>
             </nav>
         </div>
-    </header>
+</section>
 
     <!-- listener functionality -->
     

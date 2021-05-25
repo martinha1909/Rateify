@@ -27,32 +27,21 @@
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-dark bg-orange">
+        <nav class="navbar navbar-expand-md navbar-dark bg-orange justify-content-between">
             <a id="href-hover" class="navbar-brand heading-black" href="listener.php">
                 HASSNER
             </a>
-            <p>
-                <?php
-                    include '../APIs/logic.php';
-                    include '../APIs/connection.php';
-                    $conn = connect();
-                    $result = getUserBalance($conn, $_SESSION['username']);
-                    $balance = $result->fetch_assoc();
-                    // echo "Coins: ";
-                    // echo $balance['balance'];
-                ?>
-            </p>
-            <p>
-                <?php
-                    // if($_SESSION['conversion_rate'] > 0)
-                    //     echo "+";
-                    // echo $_SESSION['conversion_rate'];
-                    //     echo "%";
-                ?>
-            </p>
-            <div class="wrapper-searchbar">
+            <?php
+                        include '../APIs/logic.php';
+                        include '../APIs/connection.php';
+                        $conn = connect();
+                        $result = getUserBalance($conn, $_SESSION['username']);
+                        $balance = $result->fetch_assoc();
+                    ?>
+                    <div class="wrapper-searchbar">
                             <div class="container-searchbar">
                                     <label>
+                                        <span class="screen-reader-text">Search for...</span>
                                         <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
                                             <input type="search" class="search-field" placeholder="Search for Artist(s)" value="" name="artist_name" />
                                         </form>
@@ -66,7 +55,14 @@
                     aria-label="Toggle navigation">
                 <span data-feather="grid"></span>
             </button>
-            
+            <?php
+        echo ' <div style="color: #11171a; font-weight: bold; background-color:white; border-left: 4px solid #11171a; border-right: 10px solid white;">';
+                            echo "&nbsp;(q̶): ";
+                            echo round($balance['balance'], 2);
+                            echo '<br>
+                            &nbsp;&nbsp;Δ%: +50.3
+                        </div>';
+    ?>
         </nav>
     </div>
 </section>
@@ -75,25 +71,20 @@
 <section class="py-7 py-md-0 bg-dark" id="login">
     <div class="container">
         <div class="row vh-md-100">
-            <div class="col-12 mx-auto my-auto text-center">
-            <div  class="col text-left">
-                <a href="listener.php"> <- Front page</a>
-              </div>
-
-              
-            <div style = "position: absolute; left:50px; top: -200px;" class="col text-center">
-                    <h1>Your shares with <?php echo $_SESSION['artist'];?> </h1>
+            <div class="col-12 mx-auto my-auto text-center">             
+            <div class="py-4 col text-center">
+                    <h2>Your shares with <?php echo $_SESSION['artist'];?> </h2>
                     
                 </div>
 
-              <table class="table" style = "position:absolute; top: 50px;">
+              <table class="table">
                     <thead>
                     <tr>
-                    <th scope="col">No. shares you own</th>
+                    <th scope="col">Owned Shares</th>
                         <th scope="col">Artist</th>
-                        <th scope="col">Current price per share</th>
-                        <th scope="col">Selling profit per share</th>
-                        <th scope="col">Shares Available</th>
+                        <th scope="col">Current price per share (q̶)</th>
+                        <th scope="col">Selling profit per share (q̶)</th>
+                        <th scope="col">Available Shares</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -120,7 +111,7 @@
                   ?>
               </tbody>
             </table>
-            <div style = "position: absolute; top: 170px; left: 500px;">
+            <div>
                 <?php
                 $result = searchArtistShares($conn, $_SESSION['artist']);
                 $result2 = getArtistShares($conn, $_SESSION['artist']);
@@ -144,7 +135,7 @@
                 if($_SESSION['buy_sell'] == "BUY")
                 {
                     
-                    echo '<h6>How many are you buying?</h6>
+                    echo '<h6 class="text-left">How many shares are you buying?</h6>
                     <div class="wrapper-searchbar">
                                 <div class="container-searchbar">
                                         <label>
@@ -161,7 +152,7 @@
                 else if($_SESSION['buy_sell'] == "SELL")
                 {
                     
-                    echo '<h6>How many are you selling?</h6>
+                    echo '<h6 class="text-left">How many shares are you selling?</h6>
                     <div class="wrapper-searchbar">
                                 <div class="container-searchbar">
                                         <label>
@@ -176,24 +167,25 @@
                     $_SESSION['buy_sell'] = 0;
                 }
                 ?>
-                
-                <a class= "nav-link page-scroll" href="#New_releases" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
-                        <!--It loss the green background, but it scrolls to the bottom of the page now (or we can make it go to the signup page automatically)-->
-                        ↓ New Releases
-                    </a>
             </div>
             </div>
+            
         </div>
     </div>
+    <div class="container">
+        <a class= "py-2 nav-link page-scroll btn btn-primary d-inline-flex" href="#New_releases" role="button" aria-pressed="true">
+                        ↓ New Releases ↓
+                    </a>
+    </div>                
 </section>
 <section class="py-5 top-right bottom-left bg-dark" id="New_releases">
-<a class= "nav-link page-scroll" href="#singles" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; right: 250px; top: 725px;">
+<a class= "nav-link page-scroll" href="#singles" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
     Singles
 </a>
-<a class= "nav-link page-scroll" href="#albums" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; right: 150px; top: 725px;">
+<a class= "nav-link page-scroll" href="#albums" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
     Albums
 </a>
-<a class= "nav-link page-scroll" href="#posts" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true" style = "position:absolute; right: 50px; top: 725px;">
+<a class= "nav-link page-scroll" href="#posts" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
     Posts
 </a>
     <div>

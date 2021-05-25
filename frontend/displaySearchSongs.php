@@ -17,43 +17,49 @@
 
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
+    <link rel="stylesheet" href="css/searchbar.css" id="theme-color">
 </head>
-<body>
+<body class="bg-dark">
 
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-dark bg-orange">
+        <nav class="navbar navbar-expand-md navbar-dark bg-orange justify-content-between">
             <a id="href-hover" class="navbar-brand heading-black" href="listener.php">
                 HASSNER
             </a>
-            <p class="navbar-light">Account Balance</p>
-            <p>
-                <?php
-                    include '../APIs/logic.php';
-                    include '../APIs/connection.php';
-                    $conn = connect();
-                    $result = getUserBalance($conn, $_SESSION['username']);
-                    $balance = $result->fetch_assoc();
-                    echo "Coins: ";
-                    echo $balance['balance'];
-                ?>
-            </p>
-            <p class="navbar-light">Current Rate</p>
-            <p>
-                <?php
-                    if($_SESSION['conversion_rate'] > 0)
-                        echo "+";
-                    echo $_SESSION['conversion_rate'];
-                    echo "%";
-                ?>
-            </p>
+            <?php
+                        include '../APIs/logic.php';
+                        include '../APIs/connection.php';
+                        $conn = connect();
+                        $result = getUserBalance($conn, $_SESSION['username']);
+                        $balance = $result->fetch_assoc();
+                    ?>
+                    <div class="wrapper-searchbar">
+                            <div class="container-searchbar">
+                                    <label>
+                                        <span class="screen-reader-text">Search for...</span>
+                                        <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
+                                            <input type="search" class="search-field" placeholder="Search for Artist(s)" value="" name="artist_name" />
+                                        </form>
+                                    </label>
+                                    <!-- <input type="submit" class="search-submit button" value="&#xf002" /> -->
+                                    
+                            </div>
+                        </div>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
                 <span data-feather="grid"></span>
             </button>
-            
+            <?php
+        echo ' <div style="color: #11171a; font-weight: bold; background-color:white; border-left: 4px solid #11171a; border-right: 10px solid white;">';
+                            echo "&nbsp;(q̶): ";
+                            echo round($balance['balance'], 2);
+                            echo '<br>
+                            &nbsp;&nbsp;Δ%: +50.3
+                        </div>';
+    ?>    
         </nav>
     </div>
 </section>
@@ -64,15 +70,11 @@
         <div class="row vh-md-100">
             <div class="col-12 mx-auto my-auto text-center">
               
-              <div class="col text-center">
-              <h1> Search Results for <?php echo $_SESSION['searchedArtistName'];?> </h1>
+              <div class="py-4 col text-center">
+              <h2> Search Results for <?php echo $_SESSION['searchedArtistName'];?> </h2>
               </div>
 
               <!-- hyperlinks -->
-              <div class="col text-left">
-                <a href="listener.php"> <- Front page</a>
-              </div>
-
               <table class="table">
               <div  style = "top: 15px;" class="col text-center">
                 </div>

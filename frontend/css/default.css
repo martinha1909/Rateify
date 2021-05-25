@@ -5146,7 +5146,7 @@ input[type="button"].btn-block {
 .list-group-item {
   position: relative;
   display: block;
-  padding: 1.5rem;
+  padding: 1rem;
   background-color: #11171a;
   border-right: 2px solid white;
   /* border: 0px solid white; */
@@ -10296,7 +10296,7 @@ footer h5 {
   background-color: rgb(255, 145, 0);
 }
 .scroll-top:hover {
-  background-color: #000000;
+  background-color: #11171a;
   transition: all 0.4s ease-in-out;
 }
 .scroll-top.active {
