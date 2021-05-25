@@ -15,12 +15,12 @@
             $_SESSION['notify'] = sellShares($conn, $_SESSION['username'], $artist, $selling_share, $profit);
         else
             $_SESSION['notify'] = 2;
-        header("Location: ../frontend/SellShares.php");
+        header("Location: ../frontend/SongPageUser.php");
     }
     else
     {
         $_SESSION['notify'] = 2;
-        header("Location: ../frontend/SellShares.php");
+        header("Location: ../frontend/SongPageUser.php");
     }
     // $_SESSION['notify'] = sellShares($conn, $_SESSION['username'], $_SESSION[''])
 

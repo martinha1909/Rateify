@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/app.css" type="text/css">
   <link rel="stylesheet" href="css/default.css" type="text/css">
 </head>
-<body>
+<body class="bg-dark">
     <header class="smart-scroll">
         <div class="container-xxl">
             <nav class="navbar navbar-expand-md navbar-dark bg-orange d-flex justify-content-between">
@@ -19,18 +19,18 @@
         </div>
     </header>
   <main>
-    <section class="top-card">
+    <!-- <section class="top-card">
       <img src="Images/account.png" alt="user picture">
       <div class="menu-icon">
         <div class="menu item1"></div>
         <div class="menu item2"></div>
       </div>
-      <div class="name">
-        <p><?php echo $_SESSION['username'];?></p>
-      </div>
-    </section>
+    </section> -->
 
     <section class="middle-card">
+    <div class="name">
+        <h1><?php echo $_SESSION['username'];?></h1>
+      </div>
       <h1 class="fade-in-text" id="h1-sm">About</h1>
       <p>Write Something. Year-long growth. Most invested artists.</p>
     </section>

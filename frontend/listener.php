@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="css/default.css" id="theme-color">
         <link rel="stylesheet" href="css/menu.css" id="theme-color">
+        <link rel="stylesheet" href="css/searchbar.css" id="theme-color">
     </head>
     <body class="bg-dark">
 
@@ -31,7 +32,7 @@
 
     <header class="smart-scroll">
         <div class="container-xxl">
-            <nav class="navbar navbar-expand-md navbar-dark bg-orange">
+            <nav class="navbar navbar-expand-md navbar-dark bg-orange justify-content-between">
                 <a id = "href-hover" style = "background: transparent;" class="navbar-brand" href="#" onclick='window.location.reload();'>
                     HASSNER
                 </a>
@@ -43,6 +44,18 @@
                         $result = getUserBalance($conn, $_SESSION['username']);
                         $balance = $result->fetch_assoc();
                     ?>
+                    <div class="wrapper-searchbar">
+                            <div class="container-searchbar">
+                                    <label>
+                                        <span class="screen-reader-text">Search for...</span>
+                                        <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
+                                            <input type="search" class="search-field" placeholder="Search for Artist(s)" value="" name="artist_name" />
+                                        </form>
+                                    </label>
+                                    <!-- <input type="submit" class="search-submit button" value="&#xf002" /> -->
+                                    
+                            </div>
+                        </div>
                 <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                         data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -50,11 +63,11 @@
                 </button>
 <!-- ACCOUNT BALANCE -->
                 <?php
-        echo ' <div style="color: #ffffff; class="justify-content-between">
-                            <p>';
-                            echo "Account Balance (q̶): ";
-                            echo $balance['balance'];
-                            echo '</p>
+        echo ' <div style="color: #11171a; font-weight: bold; background-color:white; border-left: 4px solid #11171a; border-right: 10px solid white;">';
+                            echo "&nbsp;(q̶): ";
+                            echo round($balance['balance'], 2);
+                            echo '<br>
+                            &nbsp;&nbsp;Δ%: +50.3
                         </div>';
     ?>
             </nav>
@@ -66,118 +79,123 @@
     <section class="py-0" id="login">
     <div class="container-fluid">
         <div class="row">
-                <ul class="list-group bg-white">
-                    <li class="list-group-item" id="search-bar">
-                        <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
-                            <div class="search-box">
-                                <input class="search-txt" name = "artist_name" type="search" aria-describedby="SearchSongHelp" placeholder="Enter Artist Name">
-                                <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
-                            </div>
-                        </form>
-                    </li>
+                <ul class="list-group bg-dark">
                             <?php
                                 if($_SESSION['display'] == 2 || $_SESSION['display'] == 0)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px white; background-color: transparent;" value="My Portfolio ->"';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px white; background-color: transparent; color: #ff9100;" value="My Portfolio ->"';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 else
                                 {
-                                    echo '<li class="list-group-item">
+                                    echo '<li class="list-group-item-no-hover">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px transparent; background-color: transparent;" value="My Portfolio">';
+                                    echo '<input name="display_type" type="submit" id="abc-no-underline" style="font-weight: bold; border:1px transparent; background-color: transparent;" value="My Portfolio">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 if($_SESSION['display'] == 1)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Top Invested Artists ->">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Top Invested Artists ->">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 else
                                 {
-                                    echo '<li class="list-group-item">
+                                    echo '<li class="list-group-item-no-hover">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px transparent; background-color: transparent;" value="Top Invested Artists">';
+                                    echo '<input name="display_type" type="submit" id="abc-no-underline" style="font-weight: bold; border:1px transparent; background-color: transparent;" value="Top Invested Artists">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 if($_SESSION['display'] == 3)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Buy Siliqas ->">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Buy Siliqas ->">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 else
                                 {
-                                    echo '<li class="list-group-item">
+                                    echo '<li class="list-group-item-no-hover">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Buy Siliqas">';
+                                    echo '<input name="display_type" type="submit" id="abc-no-underline" style="font-weight: bold;border:1px orange; background-color: transparent;" value="Buy Siliqas">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 if($_SESSION['display'] == 4)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Sell Siliqas ->">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Sell Siliqas ->">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 else
                                 {
-                                    echo '<li class="list-group-item">
+                                    echo '<li class="list-group-item-no-hover">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Sell Siliqas">';
+                                    echo '<input name="display_type" type="submit" id="abc-no-underline" style="font-weight: bold; border:1px orange; background-color: transparent;" value="Sell Siliqas">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 if($_SESSION['display'] == 5)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Account ->">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Account ->">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 else
                                 {
-                                    echo '<li class="list-group-item">
+                                    echo '<li class="list-group-item-no-hover">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Account">';
+                                    echo '<input name="display_type" type="submit" id="abc-no-underline" style="font-weight: bold; border:1px orange; background-color: transparent;" value="Account">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 if($_SESSION['display'] == 6)
                                 {
-                                    echo '<li class="list-group-item" style="border-color: #ff9100; background-color: #ff9100;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Settings ->">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Settings ->">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
                                 else
                                 {
-                                    echo '<li class="list-group-item">
+                                    echo '<li class="list-group-item-no-hover">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
-                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent;" value="Settings">';
+                                    echo '<input name="display_type" type="submit" id="abc-no-underline" style="font-weight: bold; border:1px orange; background-color: transparent;" value="Settings">';
                                     echo '</form>';
                                     echo '</li>';
                                 }
-                                
+                                echo '<li class="list-group-item-no-hover">';
+                                    echo '</li>';
+                                echo '<li class="list-group-item-no-hover">';
+                                    echo '</li>';
+                                    echo '<li class="list-group-item-no-hover">';
+                                    echo '</li>';
+                                    echo '<li class="list-group-item-no-hover">';
+                                    echo '</li>';
+                                    echo '<li class="list-group-item-no-hover">';
+                                    echo '</li>';
+                                    echo '<li class="list-group-item-no-hover">';
+                                    echo '</li>';
+                                    echo '<li class="list-group-item-no-hover" style="padding-top: 52px;">';
+                                    echo '</li>';
+                                    echo '<li class="list-group-item-no-hover" style="border-bottom: 2px solid white;">';
+                                    echo    '<a class="dropdown-item" id="dashboard-hover" style="background-color: transparent;" href="login.php">Log out</a>';
+                                    echo '</li>';
+                                    
                             ?>
-                    
-                    <li style="position:relative; margin-top:100%;" class="list-group-item">
-                            <a class="dropdown-item" id="dashboard-hover" href="login.php">Log out</a>
-                    </li>
                     
 
                 </ul>
@@ -189,11 +207,11 @@
                 echo '<table class="table">
                         <thead class="thead-orange">
                         <tr>
-                            <th scope="col" class="bg-orange" id="href-hover";">#</th>
-                            <th scope="col" class="bg-orange" id="href-hover";">Artist Name</th>
-                            <th scope="col" class="bg-orange" id="href-hover";">Total shares bought</th>
-                            <th scope="col" class="bg-orange" id="href-hover";">Price per share (q̶)</th>
-                            <th scope="col" class="bg-orange" id="href-hover";">Rate</th>
+                            <th scope="col" class="bg-dark" id="href-hover";"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white; font-weight: bold;" aria-pressed="true" value = "#"></th>
+                            <th scope="col" class="bg-dark" id="href-hover";"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white; font-weight: bold;" aria-pressed="true" value = "Artist"></th>
+                            <th scope="col" class="bg-dark" id="href-hover";"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white; font-weight: bold;" aria-pressed="true" value = "Shares bought"></th>
+                            <th scope="col" class="bg-dark" id="href-hover";"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white; font-weight: bold;" aria-pressed="true" value = "Price per share (q̶)"></th>
+                            <th scope="col" class="bg-dark" id="href-hover";"><input type = "submit" style="border:1px transparent; background-color: transparent; color: white; font-weight: bold;" aria-pressed="true" value = "Rate"></th>
                         </tr>
                         </thead>
                         <tbody>';
@@ -272,9 +290,9 @@
                             echo '<table class="table">
                             <thead>
                             <tr>
-                            <th scope="col" style="color: white;" class="bg-orange">#</th>
+                            <th scope="col" style="color: white;" class="bg-dark">#</th>
                             <form action="../APIs/SortArtists.php">
-                                <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Artist" onclick="window.location.reload();">';
+                                <th scope="col" class="bg-dark"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white; font-weight: bold;" role="button" aria-pressed="true" value = "Artist" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 1)
                                 echo " ↑";
                             else if($_SESSION['sort_type'] == 4)
@@ -284,7 +302,7 @@
                             echo '</th>
                                 </form>
                                 <form action="../APIs/SortShares.php">
-                                    <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Shares bought" onclick="window.location.reload();">';
+                                    <th scope="col" class="bg-dark"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white; font-weight: bold;" role="button" aria-pressed="true" value = "Shares bought" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 2)
                                 echo " ↑";
                             else if($_SESSION['sort_type'] == 5)
@@ -294,7 +312,7 @@
                             echo '</th>
                                 </form>
                                 <form action = "../APIs/SortPricePerShare.php">
-                                    <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Price per share (q̶)" onclick="window.location.reload();">';
+                                    <th scope="col" class="bg-dark"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white; font-weight: bold;" role="button" aria-pressed="true" value = "Price per share (q̶)" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 3)
                                 echo " ↑";
                             else if($_SESSION['sort_type'] == 6)
@@ -305,9 +323,9 @@
                             echo '</th>
                                 </form>
                                 <form action = "../APIs/SortRates.php">
-                                    <th scope="col" class="bg-orange"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white;" role="button" aria-pressed="true" value = "Rate" onclick="window.location.reload();">';
+                                    <th scope="col" class="bg-dark"><input type = "submit" id="href-hover" style="border:1px transparent; background-color: transparent; color: white; font-weight: bold;" role="button" aria-pressed="true" value = "Rate" onclick="window.location.reload();">';
                             if($_SESSION['sort_type'] == 0)
-                                echo " ↑";
+                                echo ' ↑';
                             else if($_SESSION['sort_type'] == 7)
                                 echo " ↓";
                             else
@@ -567,14 +585,17 @@
                                 echo '<form action="../APIs/SongDisplayUser.php" method="post">';
                                 for($i=0; $i<sizeof($all_artists); $i++)
                                 {
-                                    echo '<tr><th scope="row">'.$id.'</th><td><input name = "artist_name['.$all_artists[$i].']" type = "submit" id="abc" style="border:1px transparent; background-color: transparent;" role="button" aria-pressed="true" value = "'.$all_artists[$i].'"></td><td>'.$all_shares_bought[$i].'</td><td>'.$all_price_per_share[$i].'</td>';
-                                    if($all_rates[$i] > 0)
-                                        echo '<td class="increase">+'.$all_rates[$i].'%</td></tr>';
-                                    else if($all_rates[$i] == 0)
-                                        echo '<td>'.$all_rates[$i].'%</td></tr>';
-                                    else
-                                        echo '<td class="decrease">'.$all_rates[$i].'%</td></tr>';
-                                    $id++;
+                                    if($all_shares_bought[$i] != 0)
+                                    {
+                                        echo '<tr><th scope="row">'.$id.'</th><td><input name = "artist_name['.$all_artists[$i].']" type = "submit" id="abc" style="border:1px transparent; background-color: transparent;" role="button" aria-pressed="true" value = "'.$all_artists[$i].'"></td><td>'.$all_shares_bought[$i].'</td><td>'.$all_price_per_share[$i].'</td>';
+                                        if($all_rates[$i] > 0)
+                                            echo '<td class="increase">+'.$all_rates[$i].'%</td></tr>';
+                                        else if($all_rates[$i] == 0)
+                                            echo '<td>'.$all_rates[$i].'%</td></tr>';
+                                        else
+                                            echo '<td class="decrease">'.$all_rates[$i].'%</td></tr>';
+                                        $id++;
+                                    }
                                 }
                                 echo '</form>';
                             }

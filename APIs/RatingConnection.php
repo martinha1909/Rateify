@@ -51,7 +51,7 @@
         }
     }
     // echo $_SESSION['notify'];
-    header("Location: ../frontend/RatingView.php");
+    header("Location: ../frontend/SongPageUser.php");
 ?>
 
  

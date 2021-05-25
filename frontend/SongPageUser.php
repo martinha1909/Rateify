@@ -2,6 +2,7 @@
   session_start();
   $_SESSION['conversion_rate'];
   $_SESSION['coins'] = 0;
+  $_SESSION['notify'];
 ?>
 
 <!doctype html>
@@ -19,6 +20,7 @@
 
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
+    <link rel="stylesheet" href="css/searchbar.css" id="theme-color">
 </head>
 <body>
 
@@ -26,10 +28,9 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark bg-orange">
-            <a id="href-hover" class="navbar-brand heading-black" href="index.php">
+            <a id="href-hover" class="navbar-brand heading-black" href="listener.php">
                 HASSNER
             </a>
-            <p class="navbar-light">Account Balance</p>
             <p>
                 <?php
                     include '../APIs/logic.php';
@@ -37,19 +38,29 @@
                     $conn = connect();
                     $result = getUserBalance($conn, $_SESSION['username']);
                     $balance = $result->fetch_assoc();
-                    echo "Coins: ";
-                    echo $balance['balance'];
+                    // echo "Coins: ";
+                    // echo $balance['balance'];
                 ?>
             </p>
-            <p class="navbar-light">Current Rate</p>
             <p>
                 <?php
-                    if($_SESSION['conversion_rate'] > 0)
-                        echo "+";
-                    echo $_SESSION['conversion_rate'];
-                        echo "%";
+                    // if($_SESSION['conversion_rate'] > 0)
+                    //     echo "+";
+                    // echo $_SESSION['conversion_rate'];
+                    //     echo "%";
                 ?>
             </p>
+            <div class="wrapper-searchbar">
+                            <div class="container-searchbar">
+                                    <label>
+                                        <form class="form-inline" action="../APIs/SearchSongsConnection.php" method="post">
+                                            <input type="search" class="search-field" placeholder="Search for Artist(s)" value="" name="artist_name" />
+                                        </form>
+                                    </label>
+                                    <!-- <input type="submit" class="search-submit button" value="&#xf002" /> -->
+                                    
+                            </div>
+                        </div>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -105,7 +116,7 @@
                     $_SESSION['profit'] = $_SESSION['per_share_price'] * $_SESSION['rate'];
                     $_SESSION['profit'] = $_SESSION['profit'] + $_SESSION['per_share_price'];
                     $rate = $_SESSION['rate'] * 100;
-                    echo '<tr><th scope="row">'.$shares_bought.'</th><td>'.$_SESSION['artist'].'</td><td>Siliqas: '.$_SESSION['per_share_price'].'</td><td>Siliqas: '.$_SESSION['profit'].' ('.$rate.'%)</td><td>'.$_SESSION['shares_available'].'</td></tr>';
+                    echo '<tr><th scope="row">'.$shares_bought.'</th><td>'.$_SESSION['artist'].'</td><td>Siliqas: '.round($_SESSION['per_share_price'],2).'</td><td>Siliqas: '.round($_SESSION['profit'],2).' ('.$rate.'%)</td><td>'.$_SESSION['shares_available'].'</td></tr>';
                   ?>
               </tbody>
             </table>
@@ -117,16 +128,55 @@
                 $no_shares_left = $result->fetch_assoc();
                 if($no_shares_left['Shares'] != $share_distributed['Share_Distributed'])
                 {
-                    echo '<div><a href="RatingView.php"> +Buy more shares</a></div>';
+                    echo '<form action="../APIs/BuySellConnection.php" method="post">
+                          <input name="buy_sell" type="submit" id="menu-style-invert" style=" border:1px orange; background-color: transparent;" value="+Buy more shares">
+                          </form>';
+                    // echo '<div><a href="RatingView.php"> +Buy more shares</a></div>';
                     echo "<br>";
                 }
                 if($shares_bought > 0)
                 {
-                    echo '<div><a href="SellShares.php"> -Sell your shares</a></div>';
+                    echo '<form action="../APIs/BuySellConnection.php" method="post">
+                            <input name="buy_sell" type="submit" id="menu-style-invert" style=" border:1px orange; background-color: transparent;" value="-Sell your shares">
+                        </form>';
                     echo "<br>";
                 }
-                
+                if($_SESSION['buy_sell'] == "BUY")
+                {
+                    
+                    echo '<h6>How many are you buying?</h6>
+                    <div class="wrapper-searchbar">
+                                <div class="container-searchbar">
+                                        <label>
+                                            <form action="../APIs/RatingConnection.php" method="post">
+                                                <input type="search" class="search-field" placeholder="Enter share amount" name="share" />
+                                            </form>
+                                        </label>
+                                        <!-- <input type="submit" class="search-submit button" value="&#xf002" /> -->
+                                        
+                                </div>
+                            </div>';
+                    $_SESSION['buy_sell'] = 0;
+                }
+                else if($_SESSION['buy_sell'] == "SELL")
+                {
+                    
+                    echo '<h6>How many are you selling?</h6>
+                    <div class="wrapper-searchbar">
+                                <div class="container-searchbar">
+                                        <label>
+                                            <form action="../APIs/ShareSellConnection.php" method="post">
+                                                <input type="search" class="search-field" placeholder="Enter share amount" name="share" />
+                                            </form>
+                                        </label>
+                                        <!-- <input type="submit" class="search-submit button" value="&#xf002" /> -->
+                                        
+                                </div>
+                            </div>';
+                    $_SESSION['buy_sell'] = 0;
+                }
                 ?>
+                
                 <a class= "nav-link page-scroll" href="#New_releases" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
                         <!--It loss the green background, but it scrolls to the bottom of the page now (or we can make it go to the signup page automatically)-->
                         ↓ New Releases
@@ -147,7 +197,7 @@
     Posts
 </a>
     <div>
-            <h2><?php echo $_SESSION['artist'];?> New Releases</h2>
+            <h2 style="color: #ff9100; font-weight: bold;"><?php echo $_SESSION['artist'];?> New Releases</h2>
             <h3 id="singles">Latest Singles</h3>
             <table class="table">
                     <?php
@@ -157,11 +207,11 @@
                             echo '
                             <thead class="thead-light">
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Plays</th>
-                                <th scope="col">Duration</th>
-                                <th scope="col">Date</th>
+                                <th scope="col" style="background-color: #ff9100; border-color: #ff9100; color: #11171a;">#</th>
+                                <th scope="col" style="background-color: #ff9100; border-color: #ff9100; color: #11171a;">Name</th>
+                                <th scope="col" style="background-color: #ff9100; border-color: #ff9100; color: #11171a;">Plays</th>
+                                <th scope="col" style="background-color: #ff9100; border-color: #ff9100; color: #11171a;">Duration</th>
+                                <th scope="col" style="background-color: #ff9100; border-color: #ff9100; color: #11171a;">Date</th>
                             </tr>
                             </thead>
                             <tbody>';
@@ -202,11 +252,11 @@
                     echo '
                         <thead class="thead-light">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Songs</th>
-                            <th scope="col">Duration</th>
-                            <th scope="col">Date</th>
+                            <th scope="col" style="background-color: #ff9100; border-color: #ff9100; color: #11171a;">#</th>
+                            <th scope="col" style="background-color: #ff9100; border-color: #ff9100; color: #11171a;">Name</th>
+                            <th scope="col" style="background-color: #ff9100; border-color: #ff9100; color: #11171a;">Songs</th>
+                            <th scope="col" style="background-color: #ff9100; border-color: #ff9100; color: #11171a;">Duration</th>
+                            <th scope="col" style="background-color: #ff9100; border-color: #ff9100; color: #11171a;">Date</th>
                         </tr>
                         </thead>
                         <tbody>';
@@ -230,7 +280,7 @@
                                 <td>'.$latest_albums[$i]['name'].'</td>
                                 <td><ul class="list-group">';
                             for($j=0; $j < sizeof($songs_in_album); $j++)
-                                echo '<li class="list-group-item list-group-item-dark">'.$songs_in_album[$j].'</li>';
+                                echo '<li class="new-releases">'.$songs_in_album[$j].'</li>';
                             echo '</ul></td>
                                 <td>'.$latest_albums[$i]['duration'].'</td>
                                 <td>'.$latest_albums[$i]['date_created'].'</td></tr>';
@@ -261,10 +311,7 @@
     </div>
 </section>
 
-<!--scroll to top-->
-<div class="scroll-top">
-    <i class="fa fa-angle-up" aria-hidden="true"></i>
-</div>
+
 
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
