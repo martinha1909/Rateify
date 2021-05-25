@@ -31,11 +31,11 @@
     <div class="name">
         <h1><?php echo $_SESSION['username'];?></h1>
       </div>
-      <h1 class="fade-in-text" id="h1-sm">About</h1>
+      <h1 id="h1-sm">About</h1>
       <p>Write Something. Year-long growth. Most invested artists.</p>
     </section>
     <section class="middle-card">
-      <h1 class="fade-in-text" id="h1-sm">Email Address</h1>
+      <h1 id="h1-sm">Email Address</h1>
       <p style="color: #ff9100"><?php 
         include '../APIs/logic.php';
         include '../APIs/connection.php';
@@ -70,15 +70,15 @@
       ?>
     </section>
     <section class="middle-card">
-      <h1 class="fade-in-text" id="h1-sm">Country/Region</h1>
+      <h1 id="h1-sm">Country/Region</h1>
       <p>Canada</p>
     </section>
     <section class="middle-card">
-      <h1 class="fade-in-text" id="h1-sm">Username</h1>
+      <h1 id="h1-sm">Username</h1>
       <p><?php echo $_SESSION['username'];?></p>
     </section>
     <section class="middle-card">
-      <h1 class="fade-in-text" id="h1-sm">Password</h1>
+      <h1 id="h1-sm">Password</h1>
       <p><?php 
         $chars = str_split($account_info['password']);
         echo '<p>';
@@ -110,7 +110,7 @@
     </section>
 
     <section class="middle-card">
-      <h1 class="fade-in-text" id="h1-sm">Payment info</h1>
+      <h1 id="h1-sm">Payment info</h1>
       <p> Name on card: <?php
         $result = searchAccount($conn, $_SESSION['username']);
         $account_info = $result->fetch_assoc();
@@ -181,19 +181,6 @@
       ?></p>
     </section>
 
-    <footer>
-      <h1 class="fade-in-text" id="h1-sm">Contact</h1>
-      <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="social-icon google"><i class="fab fa-google"></i></a>
-      <a href="#" class="social-icon github"><i class="fab fa-github"></i></a>
-      <a href="#" class="social-icon linkedin"><i class="fab fa-linkedin"></i></a>
-
-      <section class="links">
-        <address>By: <a href="https://github.com/Jean-carje" target="_blank">Jean Estevez</a></address>
-        <address>Image by: <a href="https://pixabay.com/es/users/pexels-2286921/">Pexels</a></address>
-      </section>
-    </footer>
   </main>
 <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 </body>
