@@ -1,24 +1,19 @@
 <?php
     include 'connection.php';
-    include 'logic.php';
+    // include 'logic.php';
     
+
     $conn = connect();
-    $result = searchArtistAlbum($conn, "88Glam");
-    $latest_albums = array();
-    if($result->num_rows > 0)
-    {
-        while($row = $result->fetch_assoc())
-        {
-            $result2 = searchAlbum($conn, $row['album_name']);
-            $album_info = $result2->fetch_assoc();
-            if($album_info['Published'] == 1)
-                array_push($latest_albums, $album_info);
-        }
-    }
-    for($i=0; $i < sizeof($latest_albums); $i++)
-    {
-        echo "name: " . $latest_albums[$i]["name"]. "<br>";
-    }
+    $_SESSION['username'] = "martin";
+    $full_name = "Vu Minh Ha";
+    $email = "123@gmail.com";
+    $address = "2240 Uxbridge Dr NW";
+    $city = "Calgary";
+    $state = "AB";
+    $zip = "T2N3Z4";
+    $card_name = "Vu Minh Ha";
+    $card_number = "1111-2222-3333-4444";
+    saveUserPaymentInfo($conn, $_SESSION['username'], $full_name, $email, $address, $city, $state, $zip, $card_name, $card_number);
     // increaseArtistRate($conn, 'Travis Scott');
         
         

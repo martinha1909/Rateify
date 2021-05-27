@@ -60,8 +60,6 @@
             $state= "";
             $zip = "";
             $card_number="";
-            $expmonth = "";
-            $expyear = "";
             $balance = 0;
             $rate = 0;
             $num_of_shares = 0;
@@ -72,10 +70,10 @@
             $id = $row["max_id"] + 1;
             // $sql = "INSERT INTO account (username, password, account_type, id)
             //         VALUES('$username', '$password', '$type', '$id')";
-            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed, email, billing_address, Full_name, City, State, ZIP, Card_number, Expiry_month, Expiry_year)
-                    VALUES(?, ?, ?, $id, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed, email, billing_address, Full_name, City, State, ZIP, Card_number)
+                    VALUES(?, ?, ?, $id, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssiddisssssssss', $username, $password, $type, $num_of_shares, $balance, $rate, $share_distributed, $email, $billing_address, $full_name, $city, $state, $zip, $card_number, $expmonth, $expyear);
+            $stmt->bind_param('sssiddisssssssss', $username, $password, $type, $num_of_shares, $balance, $rate, $share_distributed, $email, $billing_address, $full_name, $city, $state, $zip, $card_number);
             if ($stmt->execute() === TRUE) {
                 $notify = 1;
             } else {
@@ -790,9 +788,9 @@
             return $notify;
         }
 
-        function saveUserPaymentInfo($conn, $username, $full_name, $email, $address, $city, $state, $zip, $card_name, $card_number, $expmonth, $expyear)
+        function saveUserPaymentInfo($conn, $username, $full_name, $email, $address, $city, $state, $zip, $card_name, $card_number)
         {
-            $sql = "UPDATE account SET Full_name = '$full_name', email='$email', billing_address='$address', City = '$city', State='$state', ZIP = '$zip', Card_number='$card_number', Expiry_month='$expmonth', Expiry_year='$expyear' WHERE username='$username'";
+            $sql = "UPDATE account SET Full_name = '$full_name', email='$email', billing_address='$address', City = '$city', State='$state', ZIP = '$zip', Card_number='$card_number' WHERE username='$username'";
             $conn->query($sql);
         }
 

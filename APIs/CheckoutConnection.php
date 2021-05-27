@@ -6,8 +6,11 @@
     if($_SESSION['saved'] == 0)
     {
         $save_info = $_POST['save_info'];
+        echo "1";
         if($save_info == "Yes")
         {
+            echo "2";
+            // echo $_SESSION['saved'];
             $full_name = $_POST['firstname'];
             $email = $_POST['email'];
             $address=$_POST['address'];
@@ -21,12 +24,16 @@
             $cvv = $_POST['cvv'];
             echo $expmonth;
             if(!empty($full_name) && !empty($email) && !empty($address) && !empty($city) && !empty($state) && !empty($zip) && !empty($card_name) && !empty($card_number) && !empty($expmonth) && !empty($expyear) && !empty($cvv))
-                saveUserPaymentInfo($conn, $_SESSION['username'], $full_name, $email, $address, $city, $state, $zip, $card_name, $card_number, $expmonth, $expyear);
+            {
+                saveUserPaymentInfo($conn, $_SESSION['username'], $full_name, $email, $address, $city, $state, $zip, $card_name, $card_number);
+                $_SESSION['notify'] = purchaseCoins($conn, $_SESSION['username'], $_SESSION['coins']);
+            }
             else
                 $_SESSION['notify'] = 2; 
         }
         else
         {
+            echo "3";
             $full_name = $_POST['firstname'];
             $email = $_POST['email'];
             $address=$_POST['address'];
@@ -51,6 +58,7 @@
     }
     else
     {
+        echo "4";
         $full_name = $_POST['firstname'];
             $email = $_POST['email'];
             $address=$_POST['address'];

@@ -42,6 +42,8 @@
                         include '../APIs/connection.php';
                         $conn = connect();
                         $result = getUserBalance($conn, $_SESSION['username']);
+                        $account_query = searchAccount($conn, $_SESSION['username']);
+                        $account = $account_query->fetch_assoc();
                         $balance = $result->fetch_assoc();
                     ?>
                     <div class="wrapper-searchbar">
@@ -762,6 +764,8 @@
                                                 if($_SESSION['btn_show'] == 1)
                                                 {
                                                         echo'    <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell this amount!" onclick="window.location.reload();">';
+                                                        echo "<p>Depositing to";
+                                                        echo '</p>';
                                                 }        
                                                 echo'    </div>
                                                     </form>
