@@ -660,7 +660,7 @@
                                             <p class="navbar navbar-expand-lg navbar-light bg-dark">Siliqas (q̶):';
                                                 if($_SESSION['coins']!=0)
                                                 {
-                                                    echo $_SESSION['coins'];
+                                                    echo round($_SESSION['coins'], 2);
                                                 }
                                                 else
                                                 {
@@ -746,7 +746,7 @@
                                                     else
                                                         echo "$";
                                                     echo " ";
-                                                    echo $_SESSION['cad'];
+                                                    echo round($_SESSION['cad'], 2);
                                                 }
                                                 else
                                                 {
@@ -758,17 +758,14 @@
                                                     echo 0;
                                                 }
                                                 echo '</p>
-                                                </form>
-                                                <form action = "../APIs/WithdrawCoinsConnection.php" method = "post">
                                                     <div class="navbar-light bg-dark" class="col-md-8 col-12 mx-auto pt-5 text-center">';
                                                 if($_SESSION['btn_show'] == 1)
                                                 {
-                                                        echo'    <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell this amount!" onclick="window.location.reload();">';
-                                                        echo "<p>Depositing to";
-                                                        echo '</p>';
+                                                        echo'    <form action = "SellSiliqas.php" method = "post">
+                                                        <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Sell this amount!" onclick="window.location.reload();">
+                                                        </form>';
                                                 }        
                                                 echo'    </div>
-                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

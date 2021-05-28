@@ -54,6 +54,10 @@
 
         function signup($conn, $username, $password, $type, $email) //done2
         {
+            $transit_no = "";
+            $inst_no = "";
+            $account_no = "";
+            $swift = "";
             $billing_address = "";
             $full_name = "";
             $city = "";
@@ -70,10 +74,10 @@
             $id = $row["max_id"] + 1;
             // $sql = "INSERT INTO account (username, password, account_type, id)
             //         VALUES('$username', '$password', '$type', '$id')";
-            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed, email, billing_address, Full_name, City, State, ZIP, Card_number)
-                    VALUES(?, ?, ?, $id, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed, email, billing_address, Full_name, City, State, ZIP, Card_number, Transit_no, Inst_no, Account_no, Swift)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssiddisssssssss', $username, $password, $type, $num_of_shares, $balance, $rate, $share_distributed, $email, $billing_address, $full_name, $city, $state, $zip, $card_number);
+            $stmt->bind_param('sssiiddisssssssssss', $username, $password, $type, $num_of_shares, $id, $balance, $rate, $share_distributed, $email, $billing_address, $full_name, $city, $state, $zip, $card_number, $transit_no, $inst_no, $account_no, $swift);
             if ($stmt->execute() === TRUE) {
                 $notify = 1;
             } else {
@@ -794,6 +798,12 @@
             $conn->query($sql);
         }
 
+        function saveUserDepositInfo($conn, $username, $full_name, $email, $address, $city, $state, $zip, $transit_no, $inst_no, $account_no, $swift)
+        {
+            $sql = "UPDATE account SET Full_name = '$full_name', email='$email', billing_address='$address', City = '$city', State='$state', ZIP = '$zip', Transit_no='$transit_no', Inst_no='$inst_no', Account_no='$account_no', Swift='$swift' WHERE username='$username'";
+            $conn->query($sql);
+        }
+
         function purchaseCoins($conn, $username, $coins)
         {
             $notify = 0;
@@ -958,6 +968,33 @@
                 } else {
                     $notify = 2;
                 }
+            return $notify;
+        }
+
+        function deleteAlbum($conn, $album_name, $artist_username)
+        {
+            $notify = 0;
+            $sql = "UPDATE song SET album_name = NULL WHERE album_name = '$album_name'";
+            $conn->query($sql);
+
+            $sql = "DELETE FROM album_song WHERE album_name = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $album_name);
+            $stmt->execute();
+
+            $sql = "DELETE FROM artist_album WHERE album_name = ? AND artist_username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ss', $album_name, $artist_username);
+            $stmt->execute();
+
+            $sql = "DELETE FROM album WHERE name = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $album_name);
+            if ($stmt->execute() === TRUE) {
+                $notify = 1;
+            } else {
+                $notify = 2;
+            }
             return $notify;
         }
 

@@ -27,6 +27,9 @@
             {
                 saveUserPaymentInfo($conn, $_SESSION['username'], $full_name, $email, $address, $city, $state, $zip, $card_name, $card_number);
                 $_SESSION['notify'] = purchaseCoins($conn, $_SESSION['username'], $_SESSION['coins']);
+                $_SESSION['btn_show'] = 0;
+                $_SESSION['cad'] = 0;
+                $_SESSION['coins'] = 0;
             }
             else
                 $_SESSION['notify'] = 2; 

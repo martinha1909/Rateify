@@ -9,6 +9,7 @@
   $_SESSION['btn_show'] = 0;
   $_SESSION['saved'] = 0;
   $_SESSION['buy_sell'] = 0;
+  $_SESSION['add'] = 0;
 ?>
 
 <!doctype html>

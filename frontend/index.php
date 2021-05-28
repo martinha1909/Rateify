@@ -11,6 +11,7 @@
   $_SESSION['saved'] = 0;
   $_SESSION['top_rating'] = 0;
   $_SESSION['buy_sell'] = 0;
+  $_SESSION['add'] = 0;
 ?>
 
 <!doctype html>

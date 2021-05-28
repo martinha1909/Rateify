@@ -111,7 +111,7 @@
 
     <section class="middle-card">
       <h1 id="h1-sm">Payment info</h1>
-      <p> Name on card: <?php
+      <p><i style="color: white;" class="fa fa-user"></i> Name on card: <?php
         $result = searchAccount($conn, $_SESSION['username']);
         $account_info = $result->fetch_assoc();
         echo $account_info['Full_name'];
@@ -119,7 +119,7 @@
     </section>
 
     <section class="middle-card">
-    <p><i style="color: white;" class="fa fa-user"></i> Card number: <?php
+    <p><i class="far fa-credit-card"></i> Card number: <?php
     $chars = str_split($account_info['Card_number']);
     echo '<p>';
     $i = 0;
@@ -132,12 +132,6 @@
       $i++;
     }
     echo '</p>';
-      ?></p>
-    </section>
-
-    <section class="middle-card">
-    <p><i style="color: white;" class="fa fa-user"></i> Full Name: <?php
-        echo $account_info['Full_name'];
       ?></p>
     </section>
 
@@ -168,6 +162,31 @@
     <section class="middle-card">
       <p><i style="color: white;" class="fas fa-align-justify"></i> Zip: <?php
         echo $account_info['ZIP'];
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+      <h1 id="h1-sm">Deposit info</h1>
+      <p><i class="fas fa-dolly-flatbed"></i> Transit No. : <?php
+        echo $account_info['Transit_no'];
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+      <p><i class="fas fa-project-diagram"></i> Institution No. : <?php
+        echo $account_info['Inst_no'];
+      ?></p>
+    </section>
+    
+    <section class="middle-card">
+      <p><i class="fas fa-wallet"></i> Account No. : <?php
+        echo $account_info['Account_no'];
+      ?></p>
+    </section>
+
+    <section class="middle-card">
+      <p><i class="fas fa-wallet"></i> Swift/BIC Code : <?php
+        echo $account_info['Swift'];
       ?></p>
     </section>
 

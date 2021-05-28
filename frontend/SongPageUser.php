@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/default.css" id="theme-color">
     <link rel="stylesheet" href="css/searchbar.css" id="theme-color">
 </head>
-<body>
+<body class="bg-dark">
 
 <!--navigation-->
 <section class="smart-scroll">
@@ -68,11 +68,11 @@
 </section>
 
 <!-- listener functionality -->
-<section class="py-7 py-md-0 bg-dark" id="login">
-    <div class="container">
-        <div class="row vh-md-100">
-            <div class="col-12 mx-auto my-auto text-center">             
-            <div class="py-4 col text-center">
+<section id="login">
+    <div class="container-fluid">
+        <div class="row vh-md-100 align-items-start">
+            <div class="mx-auto my-auto text-center col">             
+            <div class="py-4 text-center">
                     <h2>Your shares with <?php echo $_SESSION['artist'];?> </h2>
                     
                 </div>
@@ -80,11 +80,11 @@
               <table class="table">
                     <thead>
                     <tr>
-                    <th scope="col">Owned Shares</th>
-                        <th scope="col">Artist</th>
-                        <th scope="col">Current price per share (q̶)</th>
-                        <th scope="col">Selling profit per share (q̶)</th>
-                        <th scope="col">Available Shares</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">Owned Shares</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">Artist</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">Current price per share (q̶)</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">Selling profit per share (q̶)</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">Available Shares</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -111,8 +111,14 @@
                   ?>
               </tbody>
             </table>
-            <div>
-                <?php
+                
+                <a class= "py-2 nav-link page-scroll d-inline-flex" href="#New_releases" role="button" aria-pressed="true">
+                        ↓ New Releases ↓
+                    </a>
+           
+            </div>
+            <div class="mx-auto my-auto text-center col-4">
+        <?php
                 $result = searchArtistShares($conn, $_SESSION['artist']);
                 $result2 = getArtistShares($conn, $_SESSION['artist']);
                 $share_distributed = $result2->fetch_assoc();
@@ -120,8 +126,8 @@
                 if($no_shares_left['Shares'] != $share_distributed['Share_Distributed'])
                 {
                     echo '<form action="../APIs/BuySellConnection.php" method="post">
-                          <input name="buy_sell" type="submit" id="menu-style-invert" style=" border:1px orange; background-color: transparent;" value="+Buy more shares">
-                          </form>';
+                    <input name="buy_sell" type="submit" id="menu-style-invert" style=" border:1px orange; background-color: transparent;" value="+Buy more shares">
+                    </form>';
                     // echo '<div><a href="RatingView.php"> +Buy more shares</a></div>';
                     echo "<br>";
                 }
@@ -134,13 +140,12 @@
                 }
                 if($_SESSION['buy_sell'] == "BUY")
                 {
-                    
-                    echo '<h6 class="text-left">How many shares are you buying?</h6>
-                    <div class="wrapper-searchbar">
+                    echo '<h6>How many shares are you buying ?</h6>
+                    <div style="float: right;" class="wrapper-searchbar">
                                 <div class="container-searchbar">
                                         <label>
                                             <form action="../APIs/RatingConnection.php" method="post">
-                                                <input type="search" class="search-field" placeholder="Enter share amount" name="share" />
+                                                <input type="search" "class="search-field" placeholder="Enter share amount" name="share" />
                                             </form>
                                         </label>
                                         <!-- <input type="submit" class="search-submit button" value="&#xf002" /> -->
@@ -152,12 +157,12 @@
                 else if($_SESSION['buy_sell'] == "SELL")
                 {
                     
-                    echo '<h6 class="text-left">How many shares are you selling?</h6>
+                    echo '<h6>How many shares are you selling?</h6>
                     <div class="wrapper-searchbar">
                                 <div class="container-searchbar">
                                         <label>
                                             <form action="../APIs/ShareSellConnection.php" method="post">
-                                                <input type="search" class="search-field" placeholder="Enter share amount" name="share" />
+                                                <input type="search" "class="search-field" placeholder="Enter share amount" name="share" />
                                             </form>
                                         </label>
                                         <!-- <input type="submit" class="search-submit button" value="&#xf002" /> -->
@@ -167,29 +172,24 @@
                     $_SESSION['buy_sell'] = 0;
                 }
                 ?>
-            </div>
-            </div>
-            
         </div>
-    </div>
-    <div class="container">
-        <a class= "py-2 nav-link page-scroll btn btn-primary d-inline-flex" href="#New_releases" role="button" aria-pressed="true">
-                        ↓ New Releases ↓
-                    </a>
-    </div>                
+        </div>
+    </div>  
+           
 </section>
-<section class="py-5 top-right bottom-left bg-dark" id="New_releases">
-<a class= "nav-link page-scroll" href="#singles" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
-    Singles
-</a>
-<a class= "nav-link page-scroll" href="#albums" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
-    Albums
-</a>
-<a class= "nav-link page-scroll" href="#posts" class="btn btn-primary d-inline-flex flex-row align-items-center" role="button" aria-pressed="true">
-    Posts
-</a>
+<section class="vh-md-100" id="New_releases">
+<a style="float: right;" class= "nav-link page-scroll" href="#albums" role="button" aria-pressed="true">Albums</a>
+<a style="float: right;" class= "nav-link page-scroll" href="#singles" role="button" aria-pressed="true">Singles</a>
+<a style="float: right;" class= "nav-link page-scroll" href="#posts" role="button" aria-pressed="true">Posts</a>
     <div>
+                
             <h2 style="color: #ff9100; font-weight: bold;"><?php echo $_SESSION['artist'];?> New Releases</h2>
+            <h4 id="posts">Latest Posts</h4>
+            <table class="table">
+                <?php
+                    echo '<h6>No new releases</h6>';
+                ?>
+            </table>
             <h3 id="singles">Latest Singles</h3>
             <table class="table">
                     <?php
@@ -292,13 +292,6 @@
                 else
                     echo '<h6>No new releases</h6>';
             ?>
-            </table>
-
-            <h4 id="posts">Latest Posts</h4>
-            <table class="table">
-                <?php
-                    echo '<h6>No new releases</h6>';
-                ?>
             </table>
     </div>
 </section>

@@ -9,6 +9,7 @@
   $_SESSION['btn_show'] = 0;
   $_SESSION['saved'] = 0;
   $_SESSION['buy_sell'] = 0;
+  $_SESSION['add'] = 0;
 ?>
 
 
@@ -46,6 +47,14 @@
         </nav>
     </div>
 </section>
+
+<?php
+  if($_SESSION['notify'] == 1)
+    echo "<script>alert('Account created sucessfully');</script>";
+  if($_SESSION['notify'] == 2)
+    echo "<script>alert('Failed to create account');</script>";
+  $_SESSION['notify'] = 0;
+?>
 
 <!--signup functionality-->
 <section class="py-7 py-md-0 bg-dark" id="login">
@@ -100,6 +109,9 @@
     <i class="fa fa-angle-up" aria-hidden="true"></i>
 </div>
 
+<?php
+  $_SESSION['notify'] = 0;
+?>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

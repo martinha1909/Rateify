@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include 'logic.php';
-    include 'connection.php';
+    include '../logic.php';
+    include '../connection.php';
     // echo $_SESSION['username'];
     $ids = array();
     $conn = connect();
@@ -23,6 +23,7 @@
         if($_SESSION['notify'] != 2)
         {
             $date_created = $_POST['date_created'];
+            // echo $date_created;
             $duration = $_POST['duration'];
             $query = getMaxSongID($conn);
             $id = $query->fetch_assoc();
@@ -34,6 +35,7 @@
     else
     {
         $date_created = $_POST['date_created'];
+        // echo $date_created;
         $duration = $_POST['duration'];
         $query = getMaxSongID($conn);
         $id = $query->fetch_assoc();
@@ -44,5 +46,5 @@
     // echo " ";
     // echo $_SESSION['notify'];
     // hello2($conn, 'Hello');
-    header("Location: ../frontend/CreateSongView.php");
+    header("Location: ../../frontend/artist.php");
 ?>

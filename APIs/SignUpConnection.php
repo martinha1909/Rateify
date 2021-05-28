@@ -13,8 +13,11 @@
         if(empty($email))
             $email = "";
         $_SESSION['notify'] = signup($conn,$username,$password,$account_type, $email);
-        echo $_SESSION['notify'];
-        header("Location: ../frontend/signup.php");
+        // echo $_SESSION['notify'];
+        if($_SESSION['notify'] == 1)
+            header("Location: ../frontend/login.php");
+        else
+            header("Location: ../frontend/signup.php");
     }
     else
     {

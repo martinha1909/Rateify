@@ -66,8 +66,8 @@
 
 <!-- listener functionality -->
 <section class="py-7 py-md-0 bg-dark" id="login">
-    <div class="container">
-        <div class="row vh-md-100">
+    <div class="py-6 container">
+        <div class="row">
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="py-4 col text-center">
@@ -80,12 +80,12 @@
                 </div>
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Artist Name</th>
-                        <th scope="col">No. of albums</th>
-                        <th scope="col">No. of songs</th>
-                        <th scope="col">Total no. of plays</th>
-                        <th scope="col">Total shares bought</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">#</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">Artist Name</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">No. of albums</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">No. of songs</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">Total no. of plays</th>
+                        <th style="background-color: #ff9100; border-color: #ff9100; color: #11171a;" scope="col">Total shares bought</th>
                     </tr>
                     </thead>
                     <tbody>
