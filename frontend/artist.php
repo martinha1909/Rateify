@@ -19,6 +19,7 @@
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
     <link rel="stylesheet" href="css/menu.css" id="theme-color">
+    <link rel="stylesheet" href="css/date_picker.css" type="text/css">
 </head>
 <body class="bg-dark">
 
@@ -73,7 +74,7 @@
                             <?php
                                 if($_SESSION['display'] == 2 || $_SESSION['display'] == 0)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px #11171a; border-right-color: #11171a;">
                                         <form action="../APIs/artist/DisplaySwitchArtist.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px white; background-color: transparent; color: #ff9100;" value="My Portfolio ->"';
                                     echo '</form>';
@@ -89,7 +90,7 @@
                                 }
                                 if($_SESSION['display'] == 1)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
                                         <form action="../APIs/artist/DisplaySwitchArtist.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Songs ->">';
                                     echo '</form>';
@@ -105,7 +106,7 @@
                                 }
                                 if($_SESSION['display'] == 3)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
                                         <form action="../APIs/artist/DisplaySwitchArtist.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Albums/EPs ->">';
                                     echo '</form>';
@@ -121,7 +122,7 @@
                                 }
                                 if($_SESSION['display'] == 4)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
                                         <form action="../APIs/artist/DisplaySwitchArtist.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Post Something ->">';
                                     echo '</form>';
@@ -137,7 +138,7 @@
                                 }
                                 if($_SESSION['display'] == 5)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
                                         <form action="../APIs/artist/DisplaySwitchArtist.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Account ->">';
                                     echo '</form>';
@@ -151,9 +152,25 @@
                                     echo '</form>';
                                     echo '</li>';
                                 }
+                                if($_SESSION['display'] == 7)
+                                {
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
+                                        <form action="../APIs/artist/DisplaySwitchArtist.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Sell Siliqas ->">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
+                                else
+                                {
+                                    echo '<li class="list-group-item-no-hover">
+                                        <form action="../APIs/artist/DisplaySwitchArtist.php" method="post">';
+                                    echo '<input name="display_type" type="submit" id="abc-no-underline" style="font-weight: bold; border:1px orange; background-color: transparent;" value="Sell Siliqas">';
+                                    echo '</form>';
+                                    echo '</li>';
+                                }
                                 if($_SESSION['display'] == 6)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
                                         <form action="../APIs/artist/DisplaySwitchArtist.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Settings ->">';
                                     echo '</form>';
@@ -169,17 +186,13 @@
                                 }
                                 echo '<li class="list-group-item-no-hover">';
                                     echo '</li>';
-                                echo '<li class="list-group-item-no-hover">';
-                                    echo '</li>';
                                     echo '<li class="list-group-item-no-hover">';
                                     echo '</li>';
                                     echo '<li class="list-group-item-no-hover">';
                                     echo '</li>';
                                     echo '<li class="list-group-item-no-hover">';
                                     echo '</li>';
-                                    echo '<li class="list-group-item-no-hover">';
-                                    echo '</li>';
-                                    echo '<li class="list-group-item-no-hover" style="padding-top: 52px;">';
+                                    echo '<li class="list-group-item-no-hover" style="padding-top: 75px;">';
                                     echo '</li>';
                                     echo '<li class="list-group-item-no-hover" style="border-bottom: 2px solid white;">';
                                     echo    '<a class="dropdown-item" id="dashboard-hover" style="background-color: transparent;" href="login.php">Log out</a>';
@@ -257,17 +270,18 @@
                       echo '</form>
                       </tbody>
                     </table>';
-                    echo '<form action="../APIs/artist/AddSongOrAlbumConnection.php" method="post">
-                            <input name = "add" type="submit" id="menu-style-invert" style=" border:1px orange; background-color: transparent;" value="+Add a song">
+                    echo '<div class="col-6 mx-auto text-center">';
+                    echo '<form class="py-2" action="../APIs/artist/AddSongOrAlbumConnection.php" method="post">
+                            <input class="btn btn-primary-invert" name = "add" type="submit" value="+Add song">
                           </form>';
-                    echo '<form action="../APIs/artist/AddSongOrAlbumConnection.php" method="post">
-                            <input name = "add" type="submit" id="menu-style-invert" style=" border:1px orange; background-color: transparent;" value="-Delete a song">
+                    echo '<form class="py-2" action="../APIs/artist/AddSongOrAlbumConnection.php" method="post">
+                            <input class="btn btn-primary-invert" name = "add" type="submit" value="-Remove song">
                           </form>';
                     if($_SESSION['add'] == 1)
                     {
                       if($_SESSION['notify'] == 1)
                       {
-                        echo "<script>alert('Song created successfully');</script>";
+                        echo "<script>alert('Song added successfully');</script>";
                         $_SESSION['add'] = 0;
                       }
                       if($_SESSION['notify'] == 2)
@@ -276,9 +290,7 @@
                         $_SESSION['add'] = 0;
                       }
                       $_SESSION['notify'] = 0;
-                      echo '<div class="col text-center">
-                              <h3> Add your song!</h3>
-                            </div>';
+                      
                       echo '<form action="../APIs/artist/CreateSongArtistConnection.php" method="post">
 
                                   <!-- username field -->
@@ -295,7 +307,7 @@
                                   <!-- password field -->
                                   <div class="form-group">
                                     <label for="exampleInputPassword1" >Date</label>
-                                    <input name = "date_created" type="date" class="form-control" id="exampleInputPassword1" placeholder="Enter date">
+                                    <input name = "date_created" type="date" class="form-control" id="dateofbirth" placeholder="Enter date">
                                   </div>
               
                                   
@@ -303,16 +315,17 @@
               
                                   <!-- login button -->
                                   <!-- TODO: login button functionality-->
-                                  <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                                    <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Create song" onclick="window.location.reload();">
+                                  <div style="float:right;">
+                                    <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Add!" onclick="window.location.reload();">
                                   </div>
-                              </form>';
+                              </form>
+                              </div>';
                     }
                     else if($_SESSION['add'] == 3)
                     {
                       if($_SESSION['notify'] == 1)
                       {
-                        echo "<script>alert('Song deleted successfully');</script>";
+                        echo "<script>alert('Song removed successfully');</script>";
                         $_SESSION['add'] = 0;
                       }
                       if($_SESSION['notify'] == 2)
@@ -321,9 +334,7 @@
                         $_SESSION['add'] = 0;
                       }
                       $_SESSION['notify'] = 0;
-                      echo '<div class="col text-center">
-                              <h3> Delete a song!</h3>
-                            </div>';
+                     
                       echo '<form action="../APIs/artist/DeleteSongConnection.php" method="post">
 
                             <!-- username field -->
@@ -337,8 +348,8 @@
         
                             <!-- login button -->
                             <!-- TODO: login button functionality-->
-                            <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                              <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Delete!" onclick="window.location.reload();">
+                            <div style="float:right;">
+                              <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Remove!" onclick="window.location.reload();">
                             </div>
                         </form>';
                     }
@@ -372,10 +383,11 @@
                               <tr>
                                   <th scope="col">#</th>
                                   <th scope="col">Album Name</th>
-                                  <th scope="col">No_of_Songs</th>
+                                  <th scope="col">No. of Songs</th>
                                   <th scope="col">Duration</th>
                                   <th scope="col">Status</th>
                                   <th scope="col">Add songs</th>
+                                  <th scope="col">Remove songs</th>
                               </tr>
                               </thead>
                               <tbody>
@@ -387,6 +399,8 @@
                             $id = 1;
                             while($no_of_albums > $album_no){
                                 $duration = $_SESSION['artists_albums'][$album_no]['duration'];
+                                if($duration < 1)
+                                  $duration = 0;
                                 $no_of_songs = $_SESSION['artists_albums'][$album_no]['no_of_songs'];
                                 $album_name = $_SESSION['artists_albums'][$album_no]['name'];
                                 $result = searchAlbum($conn, $album_name);
@@ -405,7 +419,10 @@
                                       <td>'.$duration.'</td>
                                       <td>'.$status.'</td>
                                       <form action="../APIs/artist/AddSongToAlbum.php" method="post">
-                                      <td><input name = "album_name['.$album_name.']" type = "submit" id="abc" style="border:1px transparent; background-color: transparent; font-weight: bold;" role="button" aria-pressed="true" value = "+" onclick = "window.location.href=window.location.href"></td></tr>
+                                      <td><input name = "album_name['.$album_name.']" type = "submit" id="abc-no-underline" style="border:1px transparent; background-color: transparent; font-weight: bold;" role="button" aria-pressed="true" value = "+" onclick = "window.location.href=window.location.href"></td>
+                                      </form>
+                                      <form action="../APIs/artist/RemoveSongFromAlbum.php" method="post">
+                                      <td><input name = "album_name['.$album_name.']" type = "submit" id="abc-no-underline" style="border:1px transparent; background-color: transparent; font-weight: bold;" role="button" aria-pressed="true" value = "-" onclick = "window.location.href=window.location.href"></td></tr>
                                       </form>';
                                 
                                 $id++;
@@ -416,47 +433,128 @@
                         echo'    </form>
                             </tbody>
                           </table>';
-                      echo '<form action="../APIs/artist/AddSongOrAlbumConnection.php" method="post">
-                              <input name = "add" type="submit" id="menu-style-invert" style=" border:1px orange; background-color: transparent;" value="+Add an album">
+                       echo '<div class="col-6 mx-auto text-center">';
+                      echo '<form class="py-2" action="../APIs/artist/AddSongOrAlbumConnection.php" method="post">
+                              <input class="btn btn-primary-invert" name = "add" type="submit" value="+Add album">
                             </form>';
-                      echo '<form action="../APIs/artist/AddSongOrAlbumConnection.php" method="post">
-                              <input name = "add" type="submit" id="menu-style-invert" style=" border:1px orange; background-color: transparent;" value="-Delete an album">
+                      echo '<form class="py-2" action="../APIs/artist/AddSongOrAlbumConnection.php" method="post">
+                              <input class="btn btn-primary-invert" name = "add" type="submit" value="-Remove album">
                             </form>';
                       if($_SESSION['add'] == 5)
                       {
-                        if($_SESSION['notify'] == 1)
+                        $all_songs = array();
+                        $all_songs_in_album = array();
+                        $song_query = searchSongByArtist($conn, $_SESSION['username']);
+                        while($row = $song_query->fetch_assoc())
+                          array_push($all_songs, $row);
+                        $album_query = searchSongsInAlbum($conn, $_SESSION['album_to_add']);
+                        while($row = $album_query->fetch_assoc())
+                          array_push($all_songs_in_album, $row);
+                        echo '<table class="table">
+                              <thead>
+                              <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Song</th>
+                                  <th scope="col">Duration</th>
+                              </tr>
+                              </thead>
+                              <tbody>';
+                        if(sizeof($all_songs_in_album) == 0)
                         {
-                          // echo "<script>alert('Album created successfully');</script>";
-                          $_SESSION['add'] = 0;
+                          echo '<form action="../APIs/artist/IncludeSongInAlbum.php" method="post">';
+                          for($i=0; $i<sizeof($all_songs); $i++)
+                          {
+                            $query = searchSong($conn, $all_songs[$i]['song_id']);
+                            $song_info = $query->fetch_assoc();
+                            $id = $i+1;
+                            echo '<tr><th scope="row">'.$id.'</th>
+                                  <td><input name = "song_to_add" type = "submit" id="abc" style="border:1px transparent; background-color: transparent;" role="button" aria-pressed="true" value = "'.$song_info['name'].'"></td>
+                                  <td>'.$song_info['duration'].'</td></tr>';
+                          }
+                          echo '</form>';
+                          echo '</tbody>';
+                          echo '</table>';
                         }
-                        if($_SESSION['notify'] == 2)
+                        else
                         {
-                          // echo "<script>alert('You already have this album!');</script>";
-                          $_SESSION['add'] = 0;
+                          for($i=0; $i<sizeof($all_songs); $i++)
+                          {
+                            for($j=0; $j<sizeof($all_songs_in_album); $j++)
+                            {
+                              if($all_songs[$i]['song_id'] == $all_songs_in_album[$j]['song_id'])
+                              {
+                                $all_songs[$i]['song_id'] = -1;
+                                break;
+                              }
+                            }
+                          }
+                          for($i=0; $i<sizeof($all_songs); $i++)
+                          {
+                            echo '<form action="../APIs/artist/IncludeSongInAlbum.php" method="post">';
+                            if($all_songs[$i]['song_id'] != -1)
+                            {
+                              $query = searchSong($conn, $all_songs[$i]['song_id']);
+                              $song_info = $query->fetch_assoc();
+                              $id = $i+1;
+                              echo '<tr><th scope="row">'.$id.'</th>
+                                    <td><input name = "song_to_add" type = "submit" id="abc" style="border:1px transparent; background-color: transparent;" role="button" aria-pressed="true" value = "'.$song_info['name'].'"></td>
+                                    <td>'.$song_info['duration'].'</td></tr>';
+                            }
+                          }
+                          echo '</form>';
+                          echo '</tbody>';
+                          echo '</table>';
+                          
                         }
-                        $_SESSION['notify'] = 0;
                         
-                        //need to display list of songs that are not listed in the selected album
-                        // $song_query = searchSongByArtist($conn, $_SESSION['username']);
-                        // $all_songs = $song_query->fetch_assoc();
-                        // $album_query = searchSongsInAlbum($conn, $_SESSION['album_to_add']);
-                        // $all_songs_in_album = $album_query->fetch_assoc();
-                        // echo '<table class="table">
-                        //       <thead>
-                        //       <tr>
-                        //           <th scope="col">#</th>
-                        //           <th scope="col">Song</th>
-                        //           <th scope="col">Album</th>
-                        //           <th scope="col">Duration</th>
-                        //       </tr>
-                        //       </thead>
-                        //       <tbody>';
+                      }
+                      else if($_SESSION['add'] == 6)
+                      {
+                        $query = searchSongsInAlbum($conn, $_SESSION['album_to_remove']);
+                        $all_songs_in_album = array();
+                        
+                        while($row = $query->fetch_assoc())
+                          array_push($all_songs_in_album, $row);
+                        // echo sizeof($all_songs_in_album);
+                        if(sizeof($all_songs_in_album) == 0)
+                        {
+                          echo '<h3>No songs found in ';
+                          echo $_SESSION['album_to_remove'];
+                          echo '</h3>';
+                        }
+                        else
+                        {
+                          echo '<table class="table">
+                          <thead>
+                          <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Song</th>
+                              <th scope="col">Duration</th>
+                          </tr>
+                          </thead>
+                          <tbody>';
+                          echo '<form action="../APIs/artist/ExcludeSongInAlbum.php" method="post">';
+                          for($i=0; $i<sizeof($all_songs_in_album); $i++)
+                          {
+                            $query = searchSong($conn, $all_songs_in_album[$i]['song_id']);
+                            $song_info = $query->fetch_assoc();
+                            $id = $i+1;
+                            echo '<tr><th scope="row">'.$id.'</th>
+                                  <td><input name = "song_to_remove" type = "submit" id="abc" style="border:1px transparent; background-color: transparent;" role="button" aria-pressed="true" value = "'.$song_info['name'].'"></td>
+                                  <td>'.$song_info['duration'].'</td></tr>';
+                          }
+                          echo '</form>';
+                          echo '</tbody>';
+                          echo '</table>';
+                          
+                        }
+                        
                       }
                       else if($_SESSION['add'] == 2)
                       {
                         if($_SESSION['notify'] == 1)
                         {
-                          echo "<script>alert('Album created successfully');</script>";
+                          echo "<script>alert('Album added successfully');</script>";
                           $_SESSION['add'] = 0;
                         }
                         if($_SESSION['notify'] == 2)
@@ -465,9 +563,7 @@
                           $_SESSION['add'] = 0;
                         }
                         $_SESSION['notify'] = 0;
-                        echo '<div class="col text-center">
-                                <h3> Add an album!</h3>
-                              </div>';
+                        
                         echo '<form action="../APIs/artist/CreateAlbumArtistConnection.php" method="post">
 
                                 <!-- username field -->
@@ -486,9 +582,10 @@
             
                                 <!-- login button -->
                                 <!-- TODO: login button functionality-->
-                                <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Create!" onclick="window.location.reload();">
+                                <div style="float:right;">
+                                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Add!" onclick="window.location.reload();">
                                 </div>
+                                </div> 
                             </form>';
                             
                       }
@@ -496,7 +593,7 @@
                       {
                         if($_SESSION['notify'] == 1)
                         {
-                          echo "<script>alert('Album deleted successfully');</script>";
+                          echo "<script>alert('Album removed successfully');</script>";
                           $_SESSION['add'] = 0;
                         }
                         if($_SESSION['notify'] == 2)
@@ -505,17 +602,15 @@
                           $_SESSION['add'] = 0;
                         }
                         $_SESSION['notify'] = 0;
-                        echo '<div class="col text-center">
-                                <h3> Delete an album!</h3>
-                              </div>';
+                        
                         echo '<form action="../APIs/artist/DeleteAlbumConnection.php" method="post">
 
                                 <div class="form-group">
                                   <label for="exampleInputEmail1" >Album Name</label>
                                   <input name = "album_name" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter album name">
                                 </div>
-                                <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Delete!" onclick="window.location.reload();">
+                                <div style="float:right;">
+                                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Remove!" onclick="window.location.reload();">
                                 </div>
                               </form>';
                       }

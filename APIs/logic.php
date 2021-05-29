@@ -971,6 +971,37 @@
             return $notify;
         }
 
+        function removeSongFromAlbum($conn, $album_name, $song_id)
+        {
+            $sql = "DELETE FROM album_song WHERE album_name = ? AND song_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('si', $album_name, $song_id);
+            $stmt->execute();
+
+            $sql = "UPDATE song SET album_name = NULL WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('i', $songId);
+            $stmt->execute();
+
+            $result = searchSong($conn, $song_id);
+            $dur = 0;
+            if ($result->num_rows > 0)
+            {
+                $row = $result->fetch_assoc();
+                $dur = $row['duration'];
+                // $sql = "UPDATE album SET duration = duration + $dur WHERE name = '$a_name' ";
+                $sql = "UPDATE album SET duration = duration - $dur WHERE name = ? ";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('s', $album_name);
+                $stmt->execute();
+                // $sql = "UPDATE album SET no_of_songs = no_of_songs + 1 WHERE name = '$a_name' ";
+                $sql = "UPDATE album SET no_of_songs = no_of_songs - 1 WHERE name = ? ";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('s', $album_name);
+                $stmt->execute();
+            }
+        }
+
         function deleteAlbum($conn, $album_name, $artist_username)
         {
             $notify = 0;

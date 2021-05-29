@@ -13,6 +13,8 @@
         $_SESSION['display'] = 5;   
     else if($type == "Settings")
         $_SESSION['display'] = 6; 
+    else if($type == "Sell Siliqas")
+        $_SESSION['display'] = 7;
     // echo $_SESSION['display'];
     header("Location: ../../frontend/artist.php");
     

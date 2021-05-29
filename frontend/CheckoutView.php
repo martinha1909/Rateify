@@ -42,7 +42,7 @@
         <div class="row">
           <div class="col-50">
             <h3>Billing Address</h3>
-            <h5><a href="../APIs/UseSavedPaymentInfoConnnection.php" onclick='window.location.reload();'>Use saved payment info</a></h5>
+            <h5 class="text-right"><a href="../APIs/UseSavedPaymentInfoConnnection.php" onclick='window.location.reload();' class="btn btn-primary py-2">Use saved payment info</a></h5>
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
             <?php
             if($_SESSION['saved'] == 1)

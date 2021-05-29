@@ -185,7 +185,7 @@
     </section>
 
     <section class="middle-card">
-      <p><i class="fas fa-wallet"></i> Swift/BIC Code : <?php
+      <p><i class="fas fa-wind"></i> Swift/BIC Code : <?php
         echo $account_info['Swift'];
       ?></p>
     </section>

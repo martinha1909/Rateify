@@ -113,7 +113,7 @@
             </table>
                 
                 <a class= "py-2 nav-link page-scroll d-inline-flex" href="#New_releases" role="button" aria-pressed="true">
-                        ↓ New Releases ↓
+                        ↓ Releases ↓
                     </a>
            
             </div>
@@ -141,8 +141,8 @@
                 if($_SESSION['buy_sell'] == "BUY")
                 {
                     echo '<h6>How many shares are you buying ?</h6>
-                    <div style="float: right;" class="wrapper-searchbar">
-                                <div class="container-searchbar">
+                    <div" class="wrapper-searchbar">
+                                <div class="container-searchbar mx-auto">
                                         <label>
                                             <form action="../APIs/RatingConnection.php" method="post">
                                                 <input type="search" "class="search-field" placeholder="Enter share amount" name="share" />
@@ -159,7 +159,7 @@
                     
                     echo '<h6>How many shares are you selling?</h6>
                     <div class="wrapper-searchbar">
-                                <div class="container-searchbar">
+                                <div class="container-searchbar mx-auto">
                                         <label>
                                             <form action="../APIs/ShareSellConnection.php" method="post">
                                                 <input type="search" "class="search-field" placeholder="Enter share amount" name="share" />
@@ -183,14 +183,14 @@
 <a style="float: right;" class= "nav-link page-scroll" href="#posts" role="button" aria-pressed="true">Posts</a>
     <div>
                 
-            <h2 style="color: #ff9100; font-weight: bold;"><?php echo $_SESSION['artist'];?> New Releases</h2>
-            <h4 id="posts">Latest Posts</h4>
+            <h2 style="color: #ff9100; font-weight: bold;"><?php echo $_SESSION['artist'];?> Releases</h2>
+            <h4 id="posts">Posts</h4>
             <table class="table">
                 <?php
-                    echo '<h6>No new releases</h6>';
+                    echo '<h6>No recent posts</h6>';
                 ?>
             </table>
-            <h3 id="singles">Latest Singles</h3>
+            <h3 id="singles">Singles</h3>
             <table class="table">
                     <?php
                         $result = searchArtistSingles($conn, $_SESSION['artist']);
@@ -224,7 +224,7 @@
                     ?>
             </table>
 
-            <h4 id="albums">Latest Albums</h4>
+            <h4 id="albums">Albums</h4>
             <table class="table">
             <?php
                 $result = searchArtistAlbum($conn, $_SESSION['artist']);

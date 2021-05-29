@@ -85,7 +85,7 @@
                             <?php
                                 if($_SESSION['display'] == 2 || $_SESSION['display'] == 0)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px #11171a; border-right-color: #11171a;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px white; background-color: transparent; color: #ff9100;" value="My Portfolio ->"';
                                     echo '</form>';
@@ -101,7 +101,7 @@
                                 }
                                 if($_SESSION['display'] == 1)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Top Invested Artists ->">';
                                     echo '</form>';
@@ -117,7 +117,7 @@
                                 }
                                 if($_SESSION['display'] == 3)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Buy Siliqas ->">';
                                     echo '</form>';
@@ -133,7 +133,7 @@
                                 }
                                 if($_SESSION['display'] == 4)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Sell Siliqas ->">';
                                     echo '</form>';
@@ -149,7 +149,7 @@
                                 }
                                 if($_SESSION['display'] == 5)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Account ->">';
                                     echo '</form>';
@@ -165,7 +165,7 @@
                                 }
                                 if($_SESSION['display'] == 6)
                                 {
-                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white;">
+                                    echo '<li class="list-group-item-no-hover" style="border-color: white; border-bottom: 2px solid white; border-top: 2px solid white; border-right-color: #11171a;">
                                         <form action="../APIs/DisplaySwitch.php" method="post">';
                                     echo '<input name="display_type" type="submit" id="menu-style" style="border:1px orange; background-color: transparent; color: #ff9100;" value="Settings ->">';
                                     echo '</form>';

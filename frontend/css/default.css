@@ -2487,6 +2487,23 @@ fieldset:disabled a.btn {
   box-shadow: none !important;
 }
 
+.btn-primary-invert {
+  background: #11171a;
+  color: #ffffff;
+  /* color: #000000;
+  background-color: #ffffff;
+  border-color: #ffffff; */
+}
+.btn-primary-invert:hover,
+.btn-primary-invert:focus,
+.btn-primary-invert:active,
+.btn-primary-invert.active,
+.open > .dropdown-toggle.btn-primary {
+  background: #ffffff;
+  color: #11171a;
+  box-shadow: none !important;
+}
+
 .btn-primary:active,
 .btn-primary.active {
   background: #af3d3d;
@@ -2533,6 +2550,8 @@ fieldset:disabled a.btn {
 .btn-secondary.active,
 .open > .dropdown-toggle.btn-secondary {
   background: #ffffff;
+  color: #11171a;
+  box-shadow: none !important;
 }
 /* .btn-secondary:hover {
   color: #11171a;

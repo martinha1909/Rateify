@@ -42,7 +42,7 @@
         <div class="row">
           <div class="col-50">
             <h3>Deposit Information</h3>
-            <h5><a href="../APIs/UseSavedDepositInfoConnnection.php" onclick='window.location.reload();'>Use saved payment info</a></h5>
+            <h5 class="text-right"><a href="../APIs/UseSavedDepositInfoConnnection.php" onclick='window.location.reload();' class="btn btn-primary py-2">Use saved deposit info</a></h5>
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
             <?php
             if($_SESSION['saved'] == 1)
@@ -152,7 +152,7 @@
         <?php
             // if($_SESSION['saved'] == 0)
           if($_SESSION['saved'] == 0 || ((empty($account_info['Full_name']) || $account_info['Full_name'] == 0) && empty($account_info['email']) && empty($account_info['billing_address']) && empty($account_info['City']) && empty($account_info['State']) && empty($account_info['ZIP']) && empty($account_info['Transit_no']) && empty($account_info['Inst_no']) && empty($account_info['Account_no'])))
-              echo '<input type="checkbox" name="save_info" value="Yes" checked> Save information for later payments';
+              echo '<input type="checkbox" name="save_info" value="Yes" checked> Save information for later deposits';
           else
             echo '<input type="checkbox" name="save_info" value="Yes" checked> Update billing information';
         ?>
