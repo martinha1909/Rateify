@@ -30,7 +30,6 @@
             <a id = "href-hover" class="navbar-brand heading-black" href="#">
                 HASSNER
             </a>
-            <p class="navbar-light bg-dark">Shares Distributed</p>
             <p>
                 <?php
                     include '../APIs/logic.php';
@@ -38,7 +37,6 @@
                     $conn = connect();
                     $result = getArtistShares($conn, $_SESSION['username']);
                     $_SESSION['artist_distributed'] = $result->fetch_assoc();
-                    echo $_SESSION['artist_distributed']['Share_Distributed'];
                 ?>
             </p>
             <div class="col text-right">
@@ -47,21 +45,28 @@
             <div class="col text-right">
                 <a href="../APIs/DecreaseSharesDistributed.php" onclick='window.location.reload();'>-</a>
             </div>
-            <p class="navbar-light bg-dark">Available Shares</p>
             <p>
-                <?php
-                   $result2 = searchArtistShares($conn, $_SESSION['username']);
-                   $artist_share = $result2->fetch_assoc();
-                   $unbought = $_SESSION['artist_distributed']['Share_Distributed'] - $artist_share['Shares'];
-                   echo $unbought;
-                ?>
             </p>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
                 <span data-feather="grid"></span>
             </button>
-            
+            <?php
+        echo ' <div style="color: #11171a; font-weight: bold; background-color:white; border-left: 4px solid #11171a; border-right: 10px solid white;">';
+        $result = searchAccount($conn, $_SESSION['username']);
+        $account_info = $result->fetch_assoc();
+                            echo "&nbsp;(q̶): ";
+                            echo round($account_info['balance'], 2);
+                            $result2 = searchArtistShares($conn, $_SESSION['username']);
+                            $artist_share = $result2->fetch_assoc();
+                            $unbought = $_SESSION['artist_distributed']['Share_Distributed'] - $artist_share['Shares'];
+                            echo '<br>
+                            &nbsp;Available Shares: ';
+                            echo $unbought;
+                            echo '
+                        </div>';
+    ?>
         </nav>
     </div>
 </section>
@@ -359,6 +364,10 @@
                   else if($_SESSION['display'] == 2 || $_SESSION['display'] == 0)
                   {
                     $_SESSION['add'] = 0;
+                    if($account_info['Share_Distributed'] == 0)
+                    {
+                      echo '<h3>Start distributing share in the account tab</h3>';
+                    }
                   }
                   else if($_SESSION['display'] == 3)
                   {
@@ -624,6 +633,28 @@
                   else if($_SESSION['display'] == 5)
                   {
                     $_SESSION['add'] = 0;
+                    if($_SESSION['notify'] == 3)
+                                echo "<script>alert('Incorrect Password');</script>";
+                            $_SESSION['notify'] = 0;
+                            echo '<section id="login">
+                            <div class="container">
+                                <div">
+                                    <div class="col-12 mx-auto my-auto text-center">
+                                        <h3 style="color: orange;padding-top:150px;">Verify your password to access personal page</h3>
+                                        <form action="../APIs/artist/ArtistPageConnection.php" method="post">
+                                        <div class="form-group">
+                                            <h5>Password</h5>
+                                            <input name = "verify_password" type="password" style="border-color: white;" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="Password">
+                                        </div>
+                                        <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                                            <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Verify" onclick="window.location.reload();">
+                                        </div>
+                                        </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>';
                   }
                   //Settings
                   else if($_SESSION['display'] == 6)

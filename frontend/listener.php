@@ -64,14 +64,7 @@
                     <span data-feather="grid"></span>
                 </button>
 <!-- ACCOUNT BALANCE -->
-                <?php
-        echo ' <div style="color: #11171a; font-weight: bold; background-color:white; border-left: 4px solid #11171a; border-right: 10px solid white;">';
-                            echo "&nbsp;(q̶): ";
-                            echo round($balance['balance'], 2);
-                            echo '<br>
-                            &nbsp;&nbsp;Δ%: +50.3
-                        </div>';
-    ?>
+                
             </nav>
         </div>
 </section>

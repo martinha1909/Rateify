@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2021 at 05:08 AM
+-- Generation Time: May 31, 2021 at 10:04 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -54,7 +54,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`username`, `password`, `account_type`, `id`, `Shares`, `balance`, `rate`, `Share_Distributed`, `email`, `billing_address`, `Full_name`, `City`, `State`, `ZIP`, `Card_number`, `Transit_no`, `Inst_no`, `Account_no`, `Swift`) VALUES
-('88Glam', 'artist', 'artist', 1, 6, 0, 0.27400000000000013, 8, '', '', '0', '', '', '', '', '', '', '', ''),
+('88Glam', 'artist', 'artist', 1, 6, 0, 0.30000000000000016, 8, '', '', '0', '', '', '', '', '', '', '', ''),
 ('admin', 'admin', 'admin', 6, 0, 0, 0, 0, '', '', '0', '', '', '', '', '', '', '', ''),
 ('admin0', 'admin', 'admin', 17, 0, 0, 0, 0, '', '', '0', '', '', '', '', '', '', '', ''),
 ('ayush', 'test', 'user', 4, 0, 0, 0, 0, '', '', '0', '', '', '', '', '', '', '', ''),
@@ -65,7 +65,7 @@ INSERT INTO `account` (`username`, `password`, `account_type`, `id`, `Shares`, `
 ('Kanye West', 'artist', 'artist', 13, 4, 0, 0.026, 8, '', '', '0', '', '', '', '', '', '', '', ''),
 ('kep', 'admin', 'admin', 12, 0, 0, 0, 0, '', '', '0', '', '', '', '', '', '', '', ''),
 ('kepwessner', '1234', 'user', 11, 0, 0, 0, 0, '', '', '0', '', '', '', '', '', '', '', ''),
-('martin', 'user', 'user', 3, 0, 87812.2568, 0, 0, 'martinvuha1909@gmail.com', '2240', 'Vu Minh Ha', 'Calgary', 'AB', 'T2N3Z4', '1111-2222-3333-4444', '12345', '001', '1234567', 'AAAABBCCDDD'),
+('martin', 'user', 'user', 3, 0, 88292.9472, 0, 0, 'martinvuha1909@gmail.com', '2240', 'Vu Minh Ha', 'Calgary', 'AB', 'T2N3Z4', '1111-2222-3333-4444', '12345', '001', '1234567', 'AAAABBCCDDD'),
 ('Martin Ha', '123456', 'user', 9, 0, 0, 0, 0, '', '2240 Uxbridge Dr NW', '0', '', '', '', '', '', '', '', ''),
 ('maya', 'user', 'user', 18, 0, 1055.45, 0, 0, '123@gmail.com', '2240 Uxbridge Dr NW', 'Maya Flynn', 'Calgary', 'AB', 'T2N3Z4', '1111-2222-3333-4444', '', '', '', ''),
 ('Metro Booming', 'producer', 'producer', 7, 0, 0, 0, 0, '', '', '0', '', '', '', '', '', '', '', ''),
@@ -92,12 +92,10 @@ CREATE TABLE `album` (
 --
 
 INSERT INTO `album` (`name`, `no_of_songs`, `duration`, `date_created`, `Published`) VALUES
-('88Glam', 0, 0, '2021-05-27', 0),
-('88Glam 2.5', 0, 0, 'April 10th', 1),
-('88Glam Reloaded', 2, 6.4, 'April 14th', 1),
-('Close to Heaven Far From God', 0, 0, '2021-05-27', 0),
+('88Glam 2.5', 0, -0.4, 'April 10th', 1),
+('88Glam Reloaded', 0, 0, 'April 14th', 1),
+('Close to Heaven Far From God', 0, 0, '2021-05-27', 1),
 ('Emergency Tsunami', 0, 0, 'December 1', 0),
-('New Mania', 1, 3.1, 'April 15th', 1),
 ('Utopia', 1, 3.2, 'April 18th', 0);
 
 -- --------------------------------------------------------
@@ -110,15 +108,6 @@ CREATE TABLE `album_song` (
   `album_name` varchar(50) NOT NULL,
   `song_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `album_song`
---
-
-INSERT INTO `album_song` (`album_name`, `song_id`) VALUES
-('88Glam Reloaded', 1),
-('88Glam Reloaded', 3),
-('New Mania', 4);
 
 -- --------------------------------------------------------
 
@@ -136,11 +125,9 @@ CREATE TABLE `artist_album` (
 --
 
 INSERT INTO `artist_album` (`artist_username`, `album_name`) VALUES
-('88Glam', '88Glam'),
 ('88Glam', '88Glam 2.5'),
 ('88Glam', '88Glam Reloaded'),
 ('88Glam', 'Close to Heaven Far From God'),
-('88Glam', 'New Mania'),
 ('NAV', 'Emergency Tsunami'),
 ('Travis Scott', 'Utopia');
 
@@ -160,7 +147,7 @@ CREATE TABLE `artist_per_share` (
 --
 
 INSERT INTO `artist_per_share` (`artist_username`, `price_per_share`) VALUES
-('88Glam', 41.600000000000016),
+('88Glam', 44.00000000000002),
 ('Drake', 1),
 ('Eminem', 52.400000000000006),
 ('FRVRFRIDAY', 2.2),
@@ -187,9 +174,11 @@ CREATE TABLE `artist_song` (
 INSERT INTO `artist_song` (`artist_username`, `song_id`) VALUES
 ('88Glam', 1),
 ('88Glam', 2),
+('88Glam', 3),
 ('88Glam', 4),
 ('88Glam', 12),
 ('88Glam', 13),
+('88Glam', 14),
 ('NAV', 5),
 ('NAV', 6),
 ('Travis Scott', 9);
@@ -311,18 +300,19 @@ CREATE TABLE `song` (
 --
 
 INSERT INTO `song` (`id`, `album_name`, `no_of_plays`, `duration`, `name`, `date_created`, `Published`, `Monthly_Listeners`) VALUES
-(1, '88Glam Reloaded', 3, 3.2, 'Kitchen Witch', 'April 16th, 2021', 1, 0),
-(2, NULL, 1, 3, 'Ricardo', 'April 16th, 2021', 0, 0),
-(3, '88Glam Reloaded', 0, 3, 'Wet Dreams', 'May 5th, 2021', 1, 0),
-(4, 'New Mania', 0, 3.1, 'East to West', 'April 16th', 1, 0),
+(1, '88Glam 2.5', 3, 3.2, 'Kitchen Witch', 'April 16th, 2021', 1, 0),
+(2, '88Glam 2.5', 1, 3, 'Ricardo', 'April 16th, 2021', 1, 0),
+(3, '88Glam 2.5', 0, 3, 'Wet Dreams', 'May 5th, 2021', 1, 0),
+(4, '88Glam 2.5', 0, 3.1, 'East to West', 'April 16th', 1, 0),
 (5, NULL, 0, 2, 'Habits', 'April 12th', 0, 0),
 (6, NULL, 0, 2.4, 'Hit', 'May 5th', 0, 0),
 (7, NULL, 0, 4.2, 'Drift Away', 'April 1st', 0, 0),
 (9, NULL, 0, 4, 'Antidote', 'April 17', 1, 0),
 (10, NULL, 0, 4.2, 'Moovin\' Up', 'April 21st', 0, 0),
 (11, NULL, 0, 3.4, 'Space Cadet', 'April 17th', 0, 0),
-(12, NULL, 0, 3.4, 'Brand New', 'May 11th, 2021', 1, 0),
-(13, NULL, 0, 3, 'swim', '2021-05-27', 0, 0);
+(12, '88Glam 2.5', 0, 3.4, 'Brand New', 'May 11th, 2021', 1, 0),
+(13, NULL, 0, 3, 'swim', '2021-05-27', 1, 0),
+(14, NULL, 0, 2, '12', '2021-05-28', 1, 0);
 
 -- --------------------------------------------------------
 
