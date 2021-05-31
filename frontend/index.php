@@ -12,6 +12,7 @@
   $_SESSION['top_rating'] = 0;
   $_SESSION['buy_sell'] = 0;
   $_SESSION['add'] = 0;
+  $_SESSION['add_share'] = 0;
 ?>
 
 <!doctype html>

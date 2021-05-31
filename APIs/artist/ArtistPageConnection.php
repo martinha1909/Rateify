@@ -7,7 +7,7 @@
     $result = login($conn, $_SESSION['username'], $pwd);
     if($result->num_rows > 0)
     {
-        header("Location: ../frontend/artist/ArtistPage.php");
+        header("Location: ../../frontend/artist/ArtistPage.php");
     }
     else
     {

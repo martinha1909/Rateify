@@ -54,6 +54,7 @@
 
         function signup($conn, $username, $password, $type, $email) //done2
         {
+            $original_share= "";
             $transit_no = "";
             $inst_no = "";
             $account_no = "";
@@ -74,10 +75,10 @@
             $id = $row["max_id"] + 1;
             // $sql = "INSERT INTO account (username, password, account_type, id)
             //         VALUES('$username', '$password', '$type', '$id')";
-            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed, email, billing_address, Full_name, City, State, ZIP, Card_number, Transit_no, Inst_no, Account_no, Swift)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO account (username, password, account_type, id, Shares, balance, rate, Share_Distributed, email, billing_address, Full_name, City, State, ZIP, Card_number, Transit_no, Inst_no, Account_no, Swift, Original_Share)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssiiddisssssssssss', $username, $password, $type, $num_of_shares, $id, $balance, $rate, $share_distributed, $email, $billing_address, $full_name, $city, $state, $zip, $card_number, $transit_no, $inst_no, $account_no, $swift);
+            $stmt->bind_param('sssiiddisssssssssssi', $username, $password, $type, $num_of_shares, $id, $balance, $rate, $share_distributed, $email, $billing_address, $full_name, $city, $state, $zip, $card_number, $transit_no, $inst_no, $account_no, $swift, $original_share);
             if ($stmt->execute() === TRUE) {
                 $notify = 1;
             } else {
@@ -822,9 +823,27 @@
             $conn->query($sql);
         }
 
-        function increaseArtistDistributedShare($conn, $artist_username)
+        function setOriginalValues($conn, $share_distributed, $price_per_share, $artist_username)
         {
-            $sql = "UPDATE account SET Share_Distributed = Share_Distributed + 1 WHERE username = '$artist_username'";
+            $sql = "UPDATE account SET Original_Share = '$share_distributed' WHERE username = '$artist_username'";
+            $conn->query($sql);
+
+            $sql = "UPDATE artist_per_share SET Original_Price = '$price_per_share' WHERE artist_username = '$artist_username'";
+            $conn->query($sql);
+        }
+
+        function setArtistDistributedShare($conn, $share_distributed, $price_per_share, $artist_username)
+        {
+            $sql = "UPDATE account SET Share_Distributed = '$share_distributed' WHERE username = '$artist_username'";
+            $conn->query($sql);
+
+            $sql = "UPDATE artist_per_share SET price_per_share = '$price_per_share' WHERE artist_username = '$artist_username'";
+            $conn->query($sql);
+        }
+
+        function increaseArtistDistributedShare($conn, $artist_username, $added_share)
+        {
+            $sql = "UPDATE account SET Share_Distributed = Share_Distributed + $added_share WHERE username = '$artist_username'";
             $conn->query($sql);
         }
 
